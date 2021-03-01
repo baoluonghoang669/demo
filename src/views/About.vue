@@ -35,48 +35,9 @@
       <div class="container">
         <h6 class="s_title white">Our Speciallization</h6>
         <div class="row">
-          <div class="col-lg-4 col-sm-6">
-            <div class="spec_item">
-              <img src="./../assets/images/icons/spec-d-1.png" alt="" />
-              <h4>Architecture</h4>
-              <p>
-                Inter’s singular aim is to design the best buildings, places and
-                spaces in the world. A central part of this is providing the
-                complete design of buildings across a range of sectors.
-              </p>
-              <router-link class="view_btn white" to="#"
-                >View project</router-link
-              >
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="spec_item">
-              <img src="./../assets/images/icons/spec-d-2.png" alt="" />
-              <h4>Interior</h4>
-              <p>
-                We offer a fully integrated service that complements the
-                overarching architectural concept, ensuring each project is
-                finished to a high level of quality and detail.
-              </p>
-              <router-link class="view_btn white" to="#"
-                >View project</router-link
-              >
-            </div>
-          </div>
-          <div class="col-lg-4 col-sm-6">
-            <div class="spec_item">
-              <img src="./../assets/images/icons/spec-d-3.png" alt="" />
-              <h4>Urban Design</h4>
-              <p>
-                Working with client and community, we deliver masterplans that
-                create vibrant new places and spaces, attract people, and
-                encourage investment through popularity and increased activity
-              </p>
-              <router-link class="view_btn white" to="#"
-                >View project</router-link
-              >
-            </div>
-          </div>
+          <!--list our speciallization (list of projects) -->
+          <type-list></type-list>
+          <!-- end list -->
         </div>
       </div>
     </section>
@@ -88,29 +49,11 @@
         <div class="main_title white">
           <h2>+2,500 Happy clients</h2>
         </div>
-        <div class="testimonials_slider owl-carousel">
-          <div class="item">
-            <div class="test_item">
-              <h4><span>Ryan Betthalyn</span> / Director at Chobham Manor</h4>
-              <p>
-                Sed elit quam, iaculis sed semper sit amet udin vitae nibh.
-                Rubino staveuo at magna akal semperFusce commodo molestie
-                luctus.Lorem ipsum ulicons Dolor tusima olatiup.
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="test_item">
-              <h4><span>Bobs Hanley</span> / Owner of Edden Villa</h4>
-              <p>
-                Paras stalor ed elit quam, iaculis sed semper sit amet udin
-                vitae nibh. at magna akal semperFusce commodo molestie
-                luctus.Lorem ipsum vitalun Dolor tusima olatiup aculis sed
-                semper sit ame
-              </p>
-            </div>
-          </div>
-        </div>
+
+        <!-- Comment list of user -->
+        <comment-list></comment-list>
+        <!-- end comment -->
+
         <div class="clients_slider owl-carousel">
           <div class="item">
             <img src="./../assets/images/clients-logo/c-logo-d-1.png" alt="" />
@@ -260,101 +203,14 @@
       </div>
     </section>
     <!--================End Meet Team Area =================-->
-
-    <!--================Footer Area =================-->
-    <footer class="footer_area white_f">
-      <div class="footer_widgets row m0">
-        <aside class="f_widgets_item">
-          <div class="f_logo">
-            <img
-              class="img-fluid"
-              src="./../assets/images/logo/logo-dark.png"
-              alt=""
-            />
-          </div>
-        </aside>
-        <aside class="f_widgets_item">
-          <div class="f_contact">
-            <div class="f_title">
-              <h3>contact</h3>
-            </div>
-            <p>
-              17 Princess Road, London, Greater London, NW18JR, United Kingdom
-            </p>
-            <router-link to="">hello@interstudio.co</router-link>
-            <router-link to="">(+0084) 912-3548-073</router-link>
-          </div>
-        </aside>
-        <aside class="f_widgets_item">
-          <div class="f_link">
-            <div class="f_title">
-              <h3>quick links</h3>
-            </div>
-            <ul class="list">
-              <li><router-link to="#">Works</router-link></li>
-              <li><router-link to="#">Affiliate</router-link></li>
-              <li><router-link to="#">Shop</router-link></li>
-              <li><router-link to="#">Partners</router-link></li>
-              <li><router-link to="#">Reviews</router-link></li>
-            </ul>
-          </div>
-        </aside>
-        <aside class="f_widgets_item">
-          <div class="f_link">
-            <div class="f_title">
-              <h3>Company</h3>
-            </div>
-            <ul class="list">
-              <li><router-link to="#">About</router-link></li>
-              <li><router-link to="#">Contact</router-link></li>
-              <li><router-link to="#">Career</router-link></li>
-              <li><router-link to="#">Blog</router-link></li>
-            </ul>
-          </div>
-        </aside>
-        <aside class="f_widgets_item">
-          <div class="f_link">
-            <div class="f_title">
-              <h3>help center</h3>
-            </div>
-            <ul class="list">
-              <li><router-link to="#">FAQs</router-link></li>
-              <li><router-link to="#">Terms & Conditions</router-link></li>
-              <li><router-link to="#">Privacy Policy</router-link></li>
-              <li><router-link to="#">Help</router-link></li>
-              <li><router-link to="#">Services</router-link></li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-      <div class="footer_copyright">
-        <div class="left_text">
-          <p>
-            ©2018 <router-link to="#">Intria</router-link>. All Rights Reserved
-          </p>
-        </div>
-        <div class="middle_text">
-          <ul class="list">
-            <li><router-link to="#">Twitter</router-link></li>
-            <li><router-link to="#">Facebook</router-link></li>
-            <li><router-link to="#">Instagram</router-link></li>
-            <li><router-link to="#">Tumblr</router-link></li>
-            <li><router-link to="#">Pinterest</router-link></li>
-          </ul>
-        </div>
-        <div class="right_text">
-          <ul class="list">
-            <li class="active"><router-link to="#">Eng</router-link></li>
-            <li><router-link to="#">Fra</router-link></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
-    <!--================End Footer Area =================-->
   </div>
 </template>
 <script>
-export default {};
+import CommentList from "../components/comment/CommentList.vue";
+import TypeList from "../components/typeProjects/TypeList.vue";
+export default {
+  components: { TypeList, CommentList },
+};
 </script>
 
 <style scoped>

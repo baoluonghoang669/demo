@@ -73,17 +73,29 @@
         </div>
         <div class="middle_text">
           <ul class="list">
-            <li><router-link to="#">Twitter</router-link></li>
-            <li><router-link to="#">Facebook</router-link></li>
-            <li><router-link to="#">Instagram</router-link></li>
-            <li><router-link to="#">Tumblr</router-link></li>
-            <li><router-link to="#">Pinterest</router-link></li>
+            <li><router-link to="https://twitter.com">Twitter</router-link></li>
+            <li>
+              <router-link to="https://www.facebook.com/">Facebook</router-link>
+            </li>
+            <li>
+              <router-link to="https://www.instagram.com/?hl=vi"
+                >Instagram</router-link
+              >
+            </li>
+            <li>
+              <router-link to="https://www.tumblr.com/">Tumblr</router-link>
+            </li>
+            <li>
+              <router-link to="https://www.pinterest.com/"
+                >Pinterest</router-link
+              >
+            </li>
           </ul>
         </div>
         <div class="right_text">
           <ul class="list">
-            <li class="active"><router-link to="#">Eng</router-link></li>
-            <li><router-link to="#">Fra</router-link></li>
+            <li><router-link to="">Eng</router-link></li>
+            <li><router-link to="">Fra</router-link></li>
           </ul>
         </div>
       </div>
@@ -111,4 +123,6 @@
 <script>
 export default {};
 </script>
-<style scoped></style>
+<style scoped>
+
+</style>

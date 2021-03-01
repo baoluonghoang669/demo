@@ -1,6 +1,6 @@
 <template>
   <div class="form-auth">
-    <form>
+    <form @submit.prevent="authForm()">
       <h1>Login Form / Register form</h1>
       <div class="input-group">
         <label for="email">Email</label>
@@ -67,6 +67,9 @@ export default {
   methods: {
     onChangeClick(number) {
       this.checkClick = number;
+    },
+    authForm() {
+      console.log("hihi");
     },
   },
 };

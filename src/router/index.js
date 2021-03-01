@@ -26,10 +26,10 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Contact.vue"),
   },
   {
-    path: "/blog",
-    name: "Blog",
+    path: "/samples",
+    name: "Samples",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Blog.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Samples.vue"),
   },
   {
     path: "/auth",
@@ -43,6 +43,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../components/layouts/404.vue"),
   },
+  /*-------------------admin-----------------*/
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Admin/Dashboard.vue"),
+  }
 ];
 
 const router = createRouter({

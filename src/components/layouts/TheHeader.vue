@@ -25,27 +25,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="nav navbar-nav">
             <li>
-              <router-link to="/">Home</router-link>
+              <router-link to="/">{{ $t("menu.home") }}</router-link>
             </li>
             <li>
-              <router-link to="/about">About</router-link>
+              <router-link to="/about">{{ $t("menu.about") }}</router-link>
             </li>
             <li>
-              <router-link to="/project">Projects</router-link>
+              <router-link to="/project">{{ $t("menu.project") }}</router-link>
             </li>
             <li class="dropdown submenu">
               <router-link
-                to="/blog"
+                to="/samples"
                 class="dropdown-toggle"
                 data-toggle="dropdown"
                 role="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                >Blog</router-link
+                >{{ $t("menu.samples") }}</router-link
               >
             </li>
             <li>
-              <router-link to="/contact">Contact</router-link>
+              <router-link to="/contact">{{ $t("menu.contact") }}</router-link>
             </li>
           </ul>
           <ul
@@ -60,8 +60,18 @@
             />
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="#">Eng</router-link></li>
-            <li><router-link to="#">Fra</router-link></li>
+            <flag class="flag" :iso="check" />
+            <select
+              class="vuei18n"
+              v-model="check"
+              id="check"
+              @change="handleChange($event)"
+            >
+              <option value="us">
+                English
+              </option>
+              <option value="vn">Vietnam</option>
+            </select>
           </ul>
         </div>
       </nav>
@@ -93,16 +103,20 @@
       </div>
       <ul class="menu-list right-boxed">
         <li>
-          <router-link to="/">Home </router-link>
-        </li>
-        <li><router-link to="/about">About us</router-link></li>
-        <li>
-          <router-link to="/">Projects </router-link>
+          <router-link to="/">{{ $t("menu.home") }}</router-link>
         </li>
         <li>
-          <router-link to="/">Blog</router-link>
+          <router-link to="/about">{{ $t("menu.about") }}</router-link>
         </li>
-        <li><router-link to="/contact">Contact</router-link></li>
+        <li>
+          <router-link to="/project">{{ $t("menu.project") }}</router-link>
+        </li>
+        <li>
+          <router-link to="/samples">{{ $t("menu.samples") }}</router-link>
+        </li>
+        <li>
+          <router-link to="/contact">{{ $t("menu.contact") }}</router-link>
+        </li>
       </ul>
     </div>
     <!--================End Slider Home Area =================-->
@@ -112,19 +126,45 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      check: this.$store.getters["auth/getLanguages"] || "us",
+    };
   },
   computed: {
     isColor() {
-      if (this.$route.path === "/blog" || this.$route.path === "/") {
+      if (this.$route.path === "/") {
         return true;
       }
       return false;
     },
   },
+  methods: {
+    handleChange(e) {
+      localStorage.setItem("lang", e.target.value);
+      this.$i18n.locale = e.target.value;
+      this.$store.commit("auth/setLanguages", e.target.value);
+    },
+  },
 };
 </script>
 <style scoped>
+.vuei18n {
+  border-radius: 5%;
+}
+
+.flag-icon-us.flag-icon-squared {
+  background-position: center;
+  background-size: cover;
+  position: center;
+}
+
+.flag-icon.flag-icon-squared {
+  width: 1.5em;
+  border-radius: 50%;
+  height: 1.5rem;
+  transform: translate(-6px, -5px);
+}
+
 .fix-nav {
   flex-wrap: nowrap;
   margin-right: 40px;
@@ -578,6 +618,8 @@ export default {
   top: 0px;
   z-index: 10;
   padding: 36px 50px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .full_header:before {

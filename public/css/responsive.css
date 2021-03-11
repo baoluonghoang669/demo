@@ -31,12 +31,6 @@
 	.projects_item .hover .project_text h4 {
 		font-size: 26px;
 	}
-	.home_slider .year {
-		display: none;
-	}
-	.home_slider .social_icon {
-		display: none;
-	}
 }
 @media(max-width: 1370px){
 	.since_text {
@@ -135,11 +129,13 @@
 		width: 100%;
     left: 0;
 		padding: 2rem;
+		right: 0;
 	}
 }
 @media(max-width: 991px){
 	.home_slider .text_box {
 		width: 100%;
+		right: 0;
     left: 0;
 		padding: 2rem;
 	}

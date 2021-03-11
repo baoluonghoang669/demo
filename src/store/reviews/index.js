@@ -5,9 +5,7 @@ import getters from "./getters";
 export default {
   namespaced: true,
   state: {
-    lang: localStorage.getItem("lang") || null,
-    user: [],
-    token: localStorage.getItem("token") || null,
+    reviews: [],
   },
   mutations,
   actions,

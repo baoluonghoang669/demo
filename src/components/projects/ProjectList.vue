@@ -1,136 +1,51 @@
 <template>
   <div class="projects_inner">
-    <div class="projects_column arc urban">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-1.jpg"
-          alt=""
-        />
+    <div
+      v-for="project in projects"
+      :key="project.id"
+      class="projects_column arc urban"
+    >
+      <architect-project-item>
+        <img class="img-fluid" :src="project.photo" alt="" />
         <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
+          <architect-button link :path="'/project/' + project.id"
+            ><i class="ion-android-arrow-forward"></i
+          ></architect-button>
           <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
+            <architect-button link :path="'/project/' + project.id"
+              ><h4>{{ project.name }}</h4></architect-button
+            >
+            <h4>Rating: {{ project.averageRating }}</h4>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="projects_column inter">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-2.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column arc urban">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-3.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column arc urban">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-4.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column inter">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-5.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column arc">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-6.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column inter urban">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-7.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="projects_column inter urban">
-      <div class="projects_item">
-        <img
-          class="img-fluid"
-          src="../../assets/images/page-project/latest-project/l-project-8.jpg"
-          alt=""
-        />
-        <div class="hover">
-          <a href="#"><i class="ion-android-arrow-forward"></i></a>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <a href="#"><h4>Private Residence In North London</h4></a>
-          </div>
-        </div>
-      </div>
+      </architect-project-item>
     </div>
   </div>
 </template>
 <script>
-export default {};
+import ArchitectButton from "../common/ArchitectButton.vue";
+export default {
+  components: { ArchitectButton },
+  created() {
+    this.fetchProjects();
+  },
+  computed: {
+    projects() {
+      return this.$store.getters["projects/getProjects"];
+    },
+    checkProjects() {
+      return this.$store.getters["projects/checkProjects"];
+    },
+  },
+  methods: {
+    async fetchProjects() {
+      try {
+        await this.$store.dispatch("projects/fetchListProjects");
+      } catch (error) {
+        this.err = error || "Fail to fetch";
+      }
+    },
+  },
+};
 </script>
 <style scoped></style>

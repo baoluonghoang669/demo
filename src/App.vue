@@ -1,13 +1,11 @@
 <template>
   <div class="layout">
     <the-header></the-header>
-    <div>
-      <router-view v-slot="{ Component }">
-        <transition name="moveUp" mode="out-in">
-          <component :is="Component"></component>
-        </transition>
-      </router-view>
-    </div>
+    <router-view v-slot="{ Component }">
+      <transition name="animate">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <the-footer></the-footer>
   </div>
 </template>
@@ -21,33 +19,47 @@ export default {
 </script>
 
 <style>
+@import "../public/css/style.css";
+@import "../public/css/responsive.css";
+@import "../public/css/bootstrap.min.css";
+@import "../public/vendors/linear-icon/style.css";
+@import "../public/vendors/ionicons/css/ionicons.min.css";
+@import "../public/vendors/elegant-icon/style.css";
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
 .clients_slider,
 .team_slider {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.moveUp-enter-from {
+.animate-enter-from {
+  transform: translateY(-30px);
   opacity: 0;
-  transform: translateY(-10px);
 }
-
-.moveUp-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.moveUp-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.moveUp-leave-active {
-  transition: all 0.3s ease-in;
-}
-
-.moveUp-enter-to,
-.moveUp-leave-from {
-  opacity: 1;
+.animate-enter-to,
+.animate-leave-from {
   transform: translateY(0);
+  opacity: 1;
+}
+.animate-enter-active {
+  transition: 0.4s;
+  transition-delay: 0.4s;
+}
+.animate-leave-active {
+  transition: 0.4s;
+}
+.animate-leave-to {
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+.carousel__pagination .carousel__pagination-item .carousel__pagination-button {
+  color: red;
 }
 </style>

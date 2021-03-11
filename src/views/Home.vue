@@ -27,25 +27,6 @@
       <div class="year">
         <router-link to="/">2018</router-link>
       </div>
-      <div class="social_icon">
-        <ul class="list">
-          <li>
-            <router-link to="https://twitter.com/"
-              ><i class="ion-social-twitter"></i
-            ></router-link>
-          </li>
-          <li>
-            <router-link to="https://www.facebook.com/"
-              ><i class="ion-social-facebook"></i
-            ></router-link>
-          </li>
-          <li>
-            <router-link to="https://www.google.com/"
-              ><i class="ion-social-googleplus"></i
-            ></router-link>
-          </li>
-        </ul>
-      </div>
     </section>
     <!--================Inter Studio Area =================-->
     <section class="intes_studio_area white_cl">
@@ -78,8 +59,8 @@
                 and Sydney providing architecture, interior & urban design
                 services from concept to completion.
               </p>
-              <router-link class="br_btn white" to="/about"
-                >more about us</router-link
+              <architect-button link typeClass="br_btn white" path="/about"
+                >more about us</architect-button
               >
             </div>
           </div>
@@ -92,11 +73,10 @@
     <section class="speciallization_area white_cl">
       <div class="container">
         <h6 class="s_title white">Our Speciallization</h6>
-        <div class="row">
-          <!--list our speciallization (list of projects) -->
-          <type-list></type-list>
-          <!-- end list -->
-        </div>
+
+        <!--list our speciallization (list of projects) -->
+        <type-list></type-list>
+        <!-- end list -->
       </div>
     </section>
     <!--================End Our Speciallization Area =================-->
@@ -107,36 +87,14 @@
         <div class="l_text">
           <div class="float-md-left">
             <div class="main_title white">
-              <h2>Architecture Samples</h2>
+              <h2>Our Projects</h2>
             </div>
           </div>
-          <div class="float-md-right">
-            <ul class="portfolio_filter list">
-              <li class="active" data-filter="*">
-                <router-link to="#">All</router-link>
-              </li>
-              <li data-filter=".arc">
-                <router-link to="#">Architecture</router-link>
-              </li>
-              <li data-filter=".inter">
-                <router-link to="#">Interior</router-link>
-              </li>
-              <li data-filter=".urban">
-                <router-link to="#">Urban Design</router-link>
-              </li>
-            </ul>
-          </div>
+          <type-filter></type-filter>
         </div>
       </div>
       <!--Project list -->
-      <carousel :per-page="1" :mouse-drag="false">
-        <slide>
-          Slide 1 Content
-        </slide>
-        <slide>
-          Slide 2 Content
-        </slide>
-      </carousel>
+      <project-list-slider></project-list-slider>
     </section>
     <!--================End Latest Project Area =================-->
 
@@ -254,12 +212,14 @@
 
 <script>
 import CommentList from "../components/comment/CommentList.vue";
-import { Carousel, Slide } from "vue-carousel";
+import ProjectListSlider from "../components/projects/ProjectListSlider.vue";
+
+import TypeFilter from "../components/typeProjects/TypeFilter.vue";
 
 import TypeList from "../components/typeProjects/TypeList.vue";
 export default {
   name: "Home",
-  components: { CommentList, TypeList, Carousel, Slide },
+  components: { CommentList, TypeList, ProjectListSlider, TypeFilter },
 };
 </script>
 
@@ -285,44 +245,6 @@ export default {
 
 .home_slider .rev_slider li .text_1 {
   color: #fff;
-}
-
-.home_slider .rev_slider li .count {
-  color: #fff;
-  font-weight: bold;
-  font-family: "Oswald", sans-serif;
-  position: relative !important;
-  z-index: 29 !important;
-}
-
-.home_slider .rev_slider li .text_3 {
-  color: #fff;
-  font-family: "Heebo", sans-serif;
-}
-
-.home_slider .rev_slider li .video {
-  overflow: visible;
-}
-
-.home_slider .rev_slider li .video img:hover {
-  -webkit-animation-name: hvr-icon-push;
-  animation-name: hvr-icon-push;
-  -webkit-animation-duration: 0.3s;
-  animation-duration: 0.3s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-}
-
-.home_slider .rev_slider .tp-bullet {
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0.35;
-}
-
-.home_slider .rev_slider .tp-bullet.selected {
-  opacity: 1;
 }
 
 .home_slider .social_icon {
@@ -353,12 +275,10 @@ export default {
 
 .home_slider .text_box {
   position: absolute;
-  right: 30%;
+  left: 41%;
   z-index: 25;
   top: 46%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   color: #fff;
 }
 
@@ -374,7 +294,7 @@ export default {
   margin: 0px;
   padding: 0px;
   letter-spacing: 0px;
-  font-size: 100px;
+  font-size: 80px;
   white-space: nowrap;
   min-height: 0px;
   min-width: 0px;
@@ -400,47 +320,6 @@ export default {
   color: #fff;
   font-family: "Heebo", sans-serif;
   font-size: 20px;
-}
-
-.layout {
-  overflow: hidden;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  width: 100%;
-}
-
-.page_lines {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-  height: 100%;
-}
-
-.page_lines .line {
-  position: absolute;
-  width: 2px;
-  height: 50000px;
-  background: #222222;
-}
-
-.page_lines .line + .line {
-  left: auto;
-  right: 0px;
-}
-
-.page_lines .col-lg-4:first-child .line {
-  left: 0px;
-}
-
-.page_lines .col-lg-4:nth-child(2) .line {
-  left: 7.5px;
-}
-
-.page_lines.white_br .line {
-  background-color: #f8f8f8;
 }
 
 /* End Home Full Slider css

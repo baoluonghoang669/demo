@@ -26,14 +26,14 @@ Table of Content:
 06/ contact
 07/ feature
 08/ service
-09/ gallery 
-10/ clients 
-11/ blog 
-12/ video 
-13/ banner  
-14/ event  
-15/ room  
-16/ resturant 
+09/ gallery
+10/ clients
+11/ blog
+12/ video
+13/ banner
+14/ event
+15/ room
+16/ resturant
 17/ footer
 =====================================================================*/
 /*----------------------------------------------------*/
@@ -323,7 +323,7 @@ i:before {
 /* Project Breadcrumb css
 ============================================================================================ */
 .project_breadcrumb_area {
-  background: url(../img/banner/project-banner-1.jpg) no-repeat scroll center center;
+  /* background: url(../img/banner/project-banner-1.jpg) no-repeat scroll center center; */
   background-size: cover;
   min-height: 100vh;
   position: relative;
@@ -451,7 +451,7 @@ i:before {
 /* Single Banner Image css
 ============================================================================================ */
 .image_banner_area {
-  background: url(../img/blog/single-blog-3.jpg) no-repeat scroll center center;
+  /* background: url(../img/blog/single-blog-3.jpg) no-repeat scroll center center; */
   background-size: cover;
 }
 
@@ -1546,7 +1546,7 @@ i:before {
 
 .intes_studio_area .studio_img:after {
   content: "";
-  background: url(../img/circle-teckture.png) no-repeat scroll center center;
+  /* background: url(../img/circle-teckture.png) no-repeat scroll center center; */
   width: 191px;
   height: 191px;
   position: absolute;
@@ -2395,7 +2395,7 @@ i:before {
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
   max-width: 50%;
-  background: url(../img/next-bg.jpg) no-repeat scroll center center;
+  /* background: url(../img/next-bg.jpg) no-repeat scroll center center; */
   background-size: cover;
   padding: 48px 0px;
 }
@@ -2885,7 +2885,7 @@ i:before {
 ============================================================================================ */
 .clients_area {
   padding-top: 130px;
-  background: url(../img/teckture-bg.jpg) repeat scroll center center;
+  /* background: url(../img/teckture-bg.jpg) repeat scroll center center; */
   padding-bottom: 130px;
 }
 
@@ -2984,7 +2984,7 @@ i:before {
 }
 
 .white_cl.clients_area {
-  background: url(../img/teckture-bg-2.png) repeat scroll;
+  /* background: url(../img/teckture-bg-2.png) repeat scroll; */
   background-color: #f9fafa;
 }
 
@@ -3196,7 +3196,7 @@ i:before {
 
 .full_10_box:after {
   content: "";
-  background: url(../img/circle-teckture.png) no-repeat scroll center center;
+  /* background: url(../img/circle-teckture.png) no-repeat scroll center center; */
   width: 191px;
   height: 191px;
   position: absolute;

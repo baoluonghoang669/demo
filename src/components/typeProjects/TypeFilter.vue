@@ -1,26 +1,18 @@
 <template>
-  <div class="row">
+  <div class="float-md-right">
+    <button class="btn-all">All</button>
+
     <div
-      class="col-lg-4 col-sm-6"
+      class="portfolio_filter list"
       v-for="category in categories"
       :key="category.id"
     >
-      <div class="spec_item">
-        <img :src="category.image" :alt="category.name" />
-        <h4>{{ category.name }}</h4>
-        <p>
-          {{ category.description }}
-        </p>
-        <architect-button link typeClass="view_btn white" path="/project"
-          >View project</architect-button
-        >
-      </div>
+      <button>{{ category.name }}</button>
     </div>
   </div>
 </template>
 <script>
 export default {
-  components: {},
   data() {
     return {
       err: null,
@@ -46,8 +38,31 @@ export default {
 };
 </script>
 <style scoped>
-.spec_item img {
-  width: 111px;
-  height: 110px;
+.float-md-right,
+.portfolio_filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.portfolio_filter {
+  margin: 5px;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #999999;
+  transition: 0.3s all ease-in-out;
+}
+
+button:hover {
+  color: #263a4f;
+}
+
+.btn-all {
+  transform: translateY(9.5px);
 }
 </style>

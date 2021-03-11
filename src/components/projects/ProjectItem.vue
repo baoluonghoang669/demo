@@ -1,26 +1,20 @@
 <template>
-    <div class="item arc urban">
-      <div class="projects_item">
-        <img src="../../assets/images/products/l-project-1.jpg" alt="" />
-        <div class="hover">
-          <router-link to="#"
-            ><i class="ion-android-arrow-forward"></i
-          ></router-link>
-          <div class="project_text">
-            <h5>Interior - Architecture</h5>
-            <router-link to="#"
-              ><h4>Private Residence In North London</h4></router-link
-            >
-          </div>
-        </div>
-      </div>
-    </div>
+  <div>
+    <architect-project-item>
+      <img class="img-fluid" :src="source" alt="" />
+      <slot></slot>
+    </architect-project-item>
+  </div>
 </template>
 <script>
 export default {
-
-}
+  props: {
+    source: {
+      type: String,
+      required: false,
+      default: null,
+    },
+  },
+};
 </script>
-<style lang="">
-
-</style>
+<style scoped></style>

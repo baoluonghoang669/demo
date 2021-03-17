@@ -1,5 +1,20 @@
 <template>
   <div>
+    <!-- first dialog -->
+    <architect-dialog :show="loading" title="Authenticating...">
+      <architect-loading></architect-loading>
+    </architect-dialog>
+
+    <!-- second dialog -->
+    <architect-dialog
+      :show="!!error"
+      title="An error occurred"
+      @close="clearError"
+      fixed
+    >
+      <p>{{ error }}</p>
+    </architect-dialog>
+
     <form @submit.prevent="checkClick == 1 ? onLogin() : onRegister()">
       <h1 v-if="checkClick == 1">Login Form</h1>
       <h1 v-else>Register Form</h1>
@@ -45,7 +60,7 @@
             Login Instead
           </button>
         </div>
-        <router-link class="forgot" to="/forgot-password"
+        <router-link class="forgot" to="/forgotpassword"
           >Forgot password ?</router-link
         >
       </div>
@@ -53,14 +68,16 @@
   </div>
 </template>
 <script>
+import ArchitectDialog from "../common/ArchitectDialog.vue";
 export default {
+  components: { ArchitectDialog },
   data() {
     return {
       email: "",
       password: "",
       checkClick: 1,
       formIsInvalid: false,
-      err: null,
+      error: null,
       loading: false,
     };
   },
@@ -78,15 +95,22 @@ export default {
         this.formIsInvalid = true;
         return;
       }
+
+      this.loading = true;
+
       try {
         await this.$store.dispatch("auth/onLogin", {
           email: this.email,
           password: this.password,
         });
-        this.$router.replace("/");
-      } catch (error) {
-        this.err = error || "Fail to authenticate.";
+
+        const redirectTo = "/" + (this.$route.query.redirect || "");
+
+        this.$router.replace(redirectTo);
+      } catch (err) {
+        this.error = err.response.data.error || "Fail to authenticate.";
       }
+      this.loading = false;
     },
     async onRegister() {
       if (
@@ -97,15 +121,21 @@ export default {
         this.formIsInvalid = true;
         return;
       }
+      this.loading = true;
       try {
         await this.$store.dispatch("auth/onRegister", {
           email: this.email,
           password: this.password,
         });
         this.$router.replace("/");
-      } catch (error) {
-        this.err = error || "Fail to authenticate.";
+      } catch (err) {
+        this.error = err.response.data.error || "Fail to authenticate.";
       }
+      this.loading = false;
+    },
+
+    clearError() {
+      this.error = null;
     },
   },
 };
@@ -185,12 +215,7 @@ form .input-group input {
 
 .forgot {
   color: #637b05;
-  border-bottom: 1px solid #637b05;
   padding: 5px 0;
-}
-
-.forgot:hover {
-  border-bottom: 2px solid #637b05;
 }
 
 .inValid {

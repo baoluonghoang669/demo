@@ -1,12 +1,12 @@
 <template>
   <div class="layout">
-    <the-header></the-header>
+    <the-header v-if="!isDashBoard"></the-header>
     <router-view v-slot="{ Component }">
       <transition name="animate">
         <component :is="Component" />
       </transition>
     </router-view>
-    <the-footer></the-footer>
+    <the-footer v-if="!isDashBoard"></the-footer>
   </div>
 </template>
 
@@ -15,6 +15,23 @@ import TheFooter from "./components/layouts/TheFooter.vue";
 import TheHeader from "./components/layouts/TheHeader.vue";
 export default {
   components: { TheHeader, TheFooter },
+  computed: {
+    isDashBoard() {
+      if (
+        this.$route.path === "/" ||
+        this.$route.path === "/about" ||
+        this.$route.path === "/project" ||
+        this.$route.path === "/contact" ||
+        this.$route.path === "/auth" ||
+        this.$route.path === "/forgotpassword" ||
+        this.$route.path === "/profile" ||
+        this.$route.path === "/resetpassword"
+      ) {
+        return false;
+      }
+      return true;
+    },
+  },
 };
 </script>
 
@@ -26,8 +43,16 @@ export default {
 @import "../public/vendors/ionicons/css/ionicons.min.css";
 @import "../public/vendors/elegant-icon/style.css";
 
+.fa-undo-alt {
+  color: #263a4f;
+}
+
 a {
   text-decoration: none;
+  cursor: pointer;
+}
+button {
+  cursor: pointer;
 }
 a:hover {
   text-decoration: none;
@@ -57,9 +82,5 @@ a:hover {
 .animate-leave-to {
   transform: translateY(30px);
   opacity: 0;
-}
-
-.carousel__pagination .carousel__pagination-item .carousel__pagination-button {
-  color: red;
 }
 </style>

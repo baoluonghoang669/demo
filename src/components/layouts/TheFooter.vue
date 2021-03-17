@@ -157,6 +157,7 @@ export default {};
   left: 2%;
   transform: translate(-50%, -50%);
   color: #fff;
+  z-index: 9999;
 }
 
 .social_icon .list li a {

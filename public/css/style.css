@@ -1,47 +1,12 @@
-/*----------------------------------------------------
-@File: Default Styles
-@Author: paul_tf
-@URL: #
-Author E-mail: 000.lunchbox@gmail.com
-
-This file contains the styling for the actual theme, this
-is the file you need to edit to change the look of the
-theme.
----------------------------------------------------- */
-/*=====================================================================
-@Template Name: Intria
-@Author: paul_tf
-@Developed By: paul_tf
-@Developer URL: #
-Author E-mail: 000.lunchbox@gmail.com
-
-@Default Styles
-
-Table of Content:
-01/ Variables
-02/ predefin
-03/ header
-04/ button
-05/ slider
-06/ contact
-07/ feature
-08/ service
-09/ gallery
-10/ clients
-11/ blog
-12/ video
-13/ banner
-14/ event
-15/ room
-16/ resturant
-17/ footer
-=====================================================================*/
-/*----------------------------------------------------*/
 /*font Variables*/
 /*Color Variables*/
 @import url("https://fonts.googleapis.com/css?family=Heebo:100,300,400,500,700,900|Oswald:300,400,500,600,700");
 .col-md-offset-right-1, .col-lg-offset-right-1 {
   margin-right: 8.33333333%;
+}
+
+a {
+  text-decoration: none;
 }
 
 /*---------------------------------------------------- */
@@ -392,7 +357,7 @@ i:before {
 }
 
 .breadcrumb_link {
-  padding-top: 220px;
+  padding-top: 100px;
 }
 
 .breadcrumb_link a {
@@ -613,6 +578,7 @@ i:before {
   z-index: 25;
   bottom: 70px;
   color: #fff;
+
 }
 
 .home_slider .social_icon ul li {
@@ -2414,8 +2380,8 @@ i:before {
 ============================================================================================ */
 .our_projects_area .projects_tt {
   overflow: hidden;
-  padding-bottom: 140px;
-  padding-top: 40px;
+  padding-bottom: 70px;
+  padding-top: 70px;
 }
 
 .isotope_fillter {
@@ -4229,7 +4195,6 @@ i:before {
 }
 
 .box_layout {
-  max-width: 770px;
   margin: auto;
 }
 
@@ -4567,7 +4532,7 @@ i:before {
 }
 
 .contact_area2 {
-  padding-top: 145px;
+  padding-top: 100px;
   padding-bottom: 160px;
 }
 

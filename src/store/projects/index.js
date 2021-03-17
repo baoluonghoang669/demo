@@ -5,9 +5,10 @@ import getters from "./getters";
 export default {
   namespaced: true,
   state: {
-    projects: []
+    projects: [],
+    projectsDetail: [],
   },
   mutations,
   actions,
   getters,
-}
+};

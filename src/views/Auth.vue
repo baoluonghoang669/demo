@@ -17,5 +17,4 @@ export default {
   margin-top: 11%;
   margin-bottom: 2%;
 }
-
 </style>

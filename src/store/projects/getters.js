@@ -1,4 +1,5 @@
 export default {
   getProjects: (state) => state.projects,
-  checkProjects: (state) => state.projects.length
+  getProjectsDetail: (state) => state.projectsDetail,
+  checkProjects: (state) => state.projects.length,
 };

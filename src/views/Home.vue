@@ -83,16 +83,6 @@
 
     <!--================Latest Project Area =================-->
     <section class="latest_project white_cl">
-      <div class="container">
-        <div class="l_text">
-          <div class="float-md-left">
-            <div class="main_title white">
-              <h2>Our Projects</h2>
-            </div>
-          </div>
-          <type-filter></type-filter>
-        </div>
-      </div>
       <!--Project list -->
       <project-list-slider></project-list-slider>
     </section>
@@ -214,12 +204,10 @@
 import CommentList from "../components/comment/CommentList.vue";
 import ProjectListSlider from "../components/projects/ProjectListSlider.vue";
 
-import TypeFilter from "../components/typeProjects/TypeFilter.vue";
-
 import TypeList from "../components/typeProjects/TypeList.vue";
 export default {
   name: "Home",
-  components: { CommentList, TypeList, ProjectListSlider, TypeFilter },
+  components: { CommentList, TypeList, ProjectListSlider },
 };
 </script>
 

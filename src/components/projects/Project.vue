@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!--================Breadcrumb Area =================-->
     <section class="breadcrumb_link">
       <div class="container">
         <p>Welcome to</p>
@@ -25,8 +24,8 @@
   </div>
 </template>
 <script>
-import ProjectList from "../../components/projects/ProjectList.vue";
-import TypeFilter from '../../components/typeProjects/TypeFilter.vue';
+import TypeFilter from "../typeProjects/TypeFilter.vue";
+import ProjectList from "./ProjectList.vue";
 export default {
   components: { ProjectList, TypeFilter },
 };

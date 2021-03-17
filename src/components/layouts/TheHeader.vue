@@ -36,7 +36,10 @@
             <li>
               <router-link to="/contact">{{ $t("menu.contact") }}</router-link>
             </li>
-            <li v-if="isAuth">
+            <li v-if="isAdmin === 'admin'">
+              <router-link to="/dashboard">DashBoard</router-link>
+            </li>
+            <li v-if="isAdmin === 'user'">
               <router-link to="/profile">My Profile</router-link>
             </li>
           </ul>
@@ -181,6 +184,7 @@ export default {
       err: null,
     };
   },
+
   watch: {
     isAuth() {
       return this.$store.getters["auth/isAuth"];
@@ -195,6 +199,9 @@ export default {
     },
     isAuth() {
       return this.$store.getters["auth/isAuth"];
+    },
+    isAdmin() {
+      return this.$store.getters["auth/isAdmin"];
     },
   },
   methods: {
@@ -223,6 +230,16 @@ export default {
 <style scoped>
 /*custom modal teleport with responsive menu*/
 /* transition animation */
+select {
+  outline: none;
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+option {
+  color: #000;
+}
 a {
   cursor: pointer;
 }
@@ -395,7 +412,7 @@ li {
 .flag-icon.flag-icon-squared {
   width: 1em;
   height: 1rem;
-  transform: translate(-6px, 3px);
+  transform: translate(-6px, 0px);
 }
 
 .fix-nav {

@@ -4,12 +4,16 @@
       v-if="!link"
       :type="type"
       :value="value"
-      class="btn comment_btn form-control fix_btn"
+      class="comment_btn form-control fix_btn"
     >
       <slot></slot>
     </button>
 
-    <router-link v-else :to="{ path: path, query: { redirect: query } }" :class="typeClass">
+    <router-link
+      v-else
+      :to="{ path: path, name: name, query: { redirect: query } }"
+      :class="typeClass"
+    >
       <slot></slot>
     </router-link>
   </div>
@@ -46,6 +50,10 @@ export default {
       type: String,
       required: false,
     },
+    name: {
+      type: String,
+      required: false,
+    },
   },
 };
 </script>
@@ -53,8 +61,8 @@ export default {
 .fix_btn {
   width: 170px;
   height: 50px;
-  background: #263a4f;
-  color: #fff;
+  background: #263a4f !important;
+  color: #fff !important;
   border-radius: 0px;
   border: none;
   box-shadow: none !important;
@@ -62,8 +70,20 @@ export default {
   font-size: 14px;
   font-family: "Heebo", sans-serif;
   font-weight: bold;
-  transition: all 400ms linear 0s;
   letter-spacing: 0.35px;
   text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fix_btn:hover {
+  background-color: #a3cc01 !important;
+}
+
+.fix-back-btn {
+  position: absolute;
+  right: 5%;
 }
 </style>

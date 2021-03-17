@@ -6,7 +6,7 @@
       :key="category.id"
     >
       <div class="spec_item">
-        <img :src="category.image" :alt="category.name" />
+        <img :src="category.image" alt="img" />
         <h4>{{ category.name }}</h4>
         <p>
           {{ category.description }}

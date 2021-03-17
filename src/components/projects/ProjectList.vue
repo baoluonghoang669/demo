@@ -15,7 +15,9 @@
             <architect-button link :path="'/project/' + project.id"
               ><h4>{{ project.name }}</h4></architect-button
             >
-            <h4>Rating: {{ project.averageRating }}</h4>
+            <h4 v-if="project.averageRating > 0">
+              Rating: {{ project.averageRating }}
+            </h4>
           </div>
         </div>
       </architect-project-item>

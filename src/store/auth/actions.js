@@ -3,7 +3,7 @@ import router from "../../router";
 
 export default {
   async onLogin({ commit }, payload) {
-    let url = "http://localhost:3000/api/v1/auth/login";
+    let url = process.env.VUE_APP_LOGIN;
 
     const response = await axios.post(url, {
       email: payload.email,
@@ -13,19 +13,23 @@ export default {
 
     const responseData = response.data;
 
-    if (response.status !== 200) {
-      //error
+    if (responseData.success !== true) {
+      return;
     }
 
     localStorage.setItem("token", responseData.token);
+    localStorage.setItem("role", responseData.role);
+
+    commit("setUser", responseData.data);
 
     commit("setToken", {
       token: responseData.token,
+      role: responseData.role,
     });
   },
 
   async onRegister({ commit }, payload) {
-    let url = "http://localhost:3000/api/v1/auth/register";
+    let url = process.env.VUE_APP_REGISTER;
 
     const response = await axios.post(url, {
       email: payload.email,
@@ -40,14 +44,48 @@ export default {
     }
 
     localStorage.setItem("token", responseData.token);
+    localStorage.setItem("role", responseData.role);
 
     commit("setToken", {
       token: responseData.token,
+      role: responseData.role,
     });
   },
 
+  async onForgotPassword({ commit }, payload) {
+    let url = process.env.VUE_APP_FORGOT_PASSWORD;
+
+    const response = await axios.post(url, {
+      email: payload.email,
+    });
+    const responseData = response.data;
+
+    localStorage.setItem("resetToken", response.data.resetToken);
+
+    commit("setResetToken", {
+      token: responseData.resetToken,
+    });
+  },
+
+  async onResetPassword({ commit }, payload) {
+    let url = `${process.env.VUE_APP_RESET_PASSWORD}/${localStorage.getItem(
+      "resetToken"
+    )}`;
+    const password = {
+      password: payload.password,
+    };
+
+    const response = await axios.put(url, password);
+
+    if (response.data.data.success === false) {
+      return;
+    }
+
+    commit("setResetPassword", password);
+  },
+
   async fetchDetailUser({ commit }) {
-    let url = "http://localhost:3000/api/v1/auth/me";
+    let url = process.env.VUE_APP_GET_ME;
 
     const response = await axios.get(url, {
       headers: {
@@ -55,45 +93,50 @@ export default {
       },
     });
 
-    commit("setUser", response.data.data);
+    const responseData = response.data.data;
+
+    commit("setUser", responseData);
   },
 
   async saveDetailUser({ commit }, payload) {
-    let url = "http://localhost:3000/api/v1/auth/updatedetails";
+    let url = process.env.VUE_APP_UPDATE_DETAIL;
 
     const detailUser = {
-      username: payload.username,
+      name: payload.name,
+      email: payload.email,
       phone: payload.phone,
       address: payload.address,
       birthday: payload.birthday,
       city: payload.city,
       country: payload.country,
+    };
+
+    const response = axios.put(url, detailUser, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
+    if (response.success === false) {
+      return;
     }
 
-    const response = axios.put(
-      url, detailUser,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    );
-
-    console.log(response);
-    commit("setUser", ...detailUser);
+    commit("setUser", detailUser);
   },
 
   async logout({ commit }) {
-    let url = "http://localhost:3000/api/v1/auth/logout";
+    let url = process.env.VUE_APP_LOGOUT;
 
     const response = await axios.get(url);
     const responseData = response.data;
 
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     router.push("/");
 
     commit("setToken", {
       token: null,
+      role: null,
       responseData,
     });
   },

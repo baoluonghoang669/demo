@@ -680,7 +680,7 @@ i:before {
   display: block;
   width: 100%;
   float: none;
-  margin-left: 12.7%;
+  margin-left: 5.7%;
 }
 
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li {
@@ -2681,10 +2681,10 @@ i:before {
   padding-bottom: 125px;
 }
 
-.meet_team_area {
-  padding-top: 120px;
-  padding-bottom: 138px;
-}
+/* .meet_team_area { */
+  /* padding-top: 120px;
+  padding-bottom: 138px; */
+/* } */
 
 .team_inner h4 {
   font-size: 18px;

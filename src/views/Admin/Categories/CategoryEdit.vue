@@ -1,58 +1,122 @@
 <template>
   <div class="container rounded bg-none">
-    <form>
-      <div class="col-md-8">
-        <architect-button
-          typeClass="fix-back-btn"
-          link
-          :path="'/dashboard/categories'"
-        >
-          <i class="fas fa-undo-alt"></i
-        ></architect-button>
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-center">Form Edit Category</h4>
-          </div>
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <label class="labels">Name</label
-              ><input
-                type="text"
-                class="form-control"
-                placeholder="Enter category name"
-              />
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <label class="labels">Logo image:</label>
-              <input type="file" id="img" name="img" accept="image/*" />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Description</label
-              ><input
-                type="text"
-                class="form-control"
-                placeholder="Enter description"
-              />
-            </div>
-          </div>
-          <div class="mt-5 text-center">
-            <button class="btn btn-primary fixed-button" type="submit">
-              Save and update
-            </button>
-          </div>
-        </div>
+    <!-- first dialog -->
+    <architect-dialog :show="loading" title="Authenticating...">
+      <architect-loading></architect-loading>
+    </architect-dialog>
+
+    <!-- second dialog -->
+    <architect-dialog
+      :show="!!error"
+      title="An error occurred"
+      @close="clearError"
+      fixed
+    >
+      <p>{{ error }}</p>
+    </architect-dialog>
+
+
+    <architect-button
+      typeClass="fix-back-btn"
+      link
+      :path="'/dashboard/categories'"
+    >
+      <i class="fas fa-undo-alt"></i
+    ></architect-button>
+
+    <!-- form -->
+    <div class="p-3 py-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-center">Form Edit Category</h4>
       </div>
-    </form>
+      <el-form @submit.prevent="onSave()" label-width="120px" class="demo-">
+        <el-form-item label="Name">
+          <el-input v-model="name"></el-input>
+        </el-form-item>
+        <el-form-item label="Description">
+          <el-input type="textarea" v-model="description"></el-input>
+        </el-form-item>
+
+        <div class="text-center">
+          <button class="btn btn-primary fixed-button" type="submit">
+            Update and Save
+          </button>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      loading: false,
+      error: null,
+    };
+  },
+  created() {
+    this.fetchCategoryById();
+  },
+  computed: {
+    name: {
+      get() {
+        return this.$store.state.categories.categoriesDetail.name;
+      },
+      set(value) {
+        this.$store.commit("categories/updateName", value);
+      },
+    },
+    description: {
+      get() {
+        return this.$store.state.categories.categoriesDetail.description;
+      },
+      set(value) {
+        this.$store.commit("categories/updateDescription", value);
+      },
+    },
+  },
+  methods: {
+    async fetchCategoryById() {
+      try {
+        await this.$store.dispatch(
+          "categories/fetchDetailCategory",
+          this.$route.params.id
+        );
+      } catch (err) {
+        this.error = err;
+      }
+    },
+
+    async onSave() {
+      this.loading = true;
+      const data = {
+        name: this.name,
+        description: this.description,
+        architecture: this.architecture,
+        client: this.client,
+        cost: this.cost,
+        area: this.area,
+      };
+      try {
+        await this.$store.dispatch("categories/updateCategoryById", data);
+
+        this.$router.replace({ name: "CategoryList" });
+      } catch (err) {
+        this.error = err.response.data.error || "Fail to Update";
+      }
+      this.loading = false;
+    },
+
+    clearError() {
+      this.error = null;
+    },
+  },
+};
 </script>
 <style scoped>
+.el-form {
+  flex-direction: column;
+}
 label {
   font-weight: 500;
 }

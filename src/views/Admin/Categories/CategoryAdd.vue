@@ -1,50 +1,34 @@
 <template>
   <div class="container rounded bg-none">
-    <form @submit.prevent="onAddCategory()">
-      <div class="col-md-8">
-        <architect-button
-          typeClass="fix-back-btn"
-          link
-          :path="'/dashboard/categories'"
-        >
-          <i class="fas fa-undo-alt"></i
-        ></architect-button>
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-center">Form Add Category</h4>
-          </div>
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <label class="labels">Name</label
-              ><input
-                type="text"
-                name="name"
-                class="form-control"
-                placeholder="Enter category name"
-                v-model="name"
-              />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Description</label
-              ><input
-                type="text"
-                name="description"
-                class="form-control"
-                placeholder="Enter description"
-                v-model="description"
-              />
-            </div>
-          </div>
-          <div class="mt-5 text-center">
-            <button class="btn btn-primary fixed-button" type="submit">
-              Add Category
-            </button>
-          </div>
-        </div>
+    <architect-button
+      typeClass="fix-back-btn"
+      link
+      :path="'/dashboard/categories'"
+    >
+      <i class="fas fa-undo-alt"></i
+    ></architect-button>
+    <div class="p-3 py-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-center">Form Add Category</h4>
       </div>
-    </form>
+      <el-form
+        @submit.prevent="onAddCategory()"
+        label-width="120px"
+        class="demo-"
+      >
+        <el-form-item label="Name">
+          <el-input v-model="name"></el-input>
+        </el-form-item>
+        <el-form-item label="Description">
+          <el-input type="textarea" v-model="description"></el-input>
+        </el-form-item>
+        <div class="mt-5 text-center">
+          <button class="btn btn-primary fixed-button" type="submit">
+            Add Category
+          </button>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -76,6 +60,9 @@ export default {
 };
 </script>
 <style scoped>
+.el-form {
+  flex-direction: column;
+}
 label {
   font-weight: 500;
 }

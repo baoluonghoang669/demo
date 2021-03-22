@@ -28,53 +28,91 @@
         </div>
       </div>
     </section>
-    <!--================End About Studio Area =================-->
 
-    <!--================Our Speciallization Area =================-->
-    <section class="speciallization_area ab_spec white_cl">
-      <div class="container">
-        <h6 class="s_title white">Our Speciallization</h6>
-        <div class="row">
-          <!--list our speciallization (list of projects) -->
-          <type-list></type-list>
-          <!-- end list -->
-        </div>
-      </div>
-    </section>
-    <!--================End Our Speciallization Area =================-->
-
-    <!--================Clients Area =================-->
-    <section class="clients_area white_cl">
-      <div class="container">
-        <div class="main_title white">
-          <h2>+2,500 Happy clients</h2>
-        </div>
-
-        <!-- Comment list of user -->
-        <comment-list></comment-list>
-        <!-- end comment -->
-
-        <div class="clients_slider owl-carousel">
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-1.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-2.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-3.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-4.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-5.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </section>
     <!--================End Clients Area =================-->
-
+    <section class="blog_sidebar_area">
+      <div class="container">
+        <div class="row row_direction">
+          <div class="col-lg-12 offset-lg-1">
+            <div class="s_blog_text_inner video_s_blog">
+              <div class="blog_main_text">
+                <a href="#"><h4>Best 20 Architecture Buildings in 2018</h4></a>
+                <div class="date">
+                  <a href="#">July 20, 2018</a>
+                  <i class="ion-record"></i>
+                  <a href="#">News</a>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe
+                    class="embed-responsive"
+                    src="https://player.vimeo.com/video/34741214?color=ffffff&title=0&byline=0&portrait=0"
+                  ></iframe>
+                </div>
+                <p>
+                  Most times, ideacide happens without us even realizing it. A
+                  possible off-the-wall idea or solution appears like a blip and
+                  disappears without us even realizing. As a result, some of our
+                  best stuff is suppressed before even getting out into the
+                  world. Whether it’s because we’re too critical or because we
+                  recoil at the impending pain of change, the disruption of
+                  normalcy, self-censoring arises out of fear. Welsh novelist
+                  Sarah Waters sums it up eloquently: “Midway through writing a
+                  novel, I have regularly experienced moments of bowel-curdling
+                  terror, as I contemplate the drivel on the screen before me
+                  and see beyond it, in quick succession, the derisive reviews,
+                  the friends’ embarrassment, the failing career, the dwindling
+                  income, the repossessed house, the divorce…”
+                </p>
+                <p>
+                  We know self-censoring by many names. Carl Jung called it our
+                  “inner critic.”
+                </p>
+                <p>
+                  Michael Ray and Rochelle Myers called it the “voice of
+                  judgment” in their classic book, in Business, based on a
+                  popular course they co-taught at Stanford University
+                </p>
+                <p>
+                  Graduate Business School. Novelist and screenwriter Steven
+                  Pressfield called
+                </p>
+                <p>
+                  it “Resistance,” writing that it is “the most toxic force on
+                  the planet” and that it is “a monster.”
+                </p>
+                <img
+                  class="img-fluid"
+                  src="img/blog/single-blog-2.jpg"
+                  alt=""
+                />
+                <h5>Gathered Was Isn’t Fruitful Every</h5>
+                <p>
+                  Give void had the creature man evening two be for heaven won’t
+                  you’re may. Subdue him. Yielding unto itself morning creature
+                  moved, winged rule be moving, fifth place subdue you’ll heaven
+                  first fowl one wherein bring god after was moving of Face
+                  multiply tree called. Subdue first said made living tree
+                  you’re two beast, moved, every. Evening their us seas.
+                </p>
+                <blockquote class="blockquote">
+                  <h6>
+                    <i>“</i> Our greatest weakness lies in giving up.<br />
+                    The most certain way to succeed is always to try just one
+                    more time.
+                  </h6>
+                </blockquote>
+                <p>
+                  Both of these assumptions, of course, could be entirely false.
+                  Self-censoring is firmly rooted in our experiences with
+                  mistakes in the past and not the present. The brain messages
+                  arising from those experiences can be deceptive.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <!--================Meet Team Area =================-->
     <section class="meet_team_area">
       <div class="container">
@@ -198,7 +236,9 @@
               </div>
             </div>
           </div>
-          <router-link to="#"><h3>Join our team</h3></router-link>
+          <architect-button link :name="'Contact'"
+            ><h3>Join our team</h3></architect-button
+          >
         </div>
       </div>
     </section>
@@ -206,10 +246,9 @@
   </div>
 </template>
 <script>
-import CommentList from "../components/comment/CommentList.vue";
-import TypeList from "../components/typeProjects/TypeList.vue";
+import ArchitectButton from "../components/common/ArchitectButton.vue";
 export default {
-  components: { TypeList, CommentList },
+  components: { ArchitectButton },
 };
 </script>
 

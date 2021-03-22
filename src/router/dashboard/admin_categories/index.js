@@ -14,7 +14,7 @@ export default [
     component: CategoryAdd,
   },
   {
-    path: "editCategory",
+    path: "editCategory/:id",
     name: "CategoryEdit",
     component: CategoryEdit,
   },

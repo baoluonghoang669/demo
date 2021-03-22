@@ -118,6 +118,19 @@
               </div>
             </div>
           </div>
+          <architect-dialog :show="loading" title="Authenticating...">
+            <architect-loading></architect-loading>
+          </architect-dialog>
+
+          <!-- second dialog -->
+          <architect-dialog
+            :show="!!error"
+            title="An error occurred"
+            @close="clearError"
+            fixed
+          >
+            <p>{{ error }}</p>
+          </architect-dialog>
           <section class="comment_form first_form">
             <div class="container">
               <div class="fomment_form_inner box_layout fix_box_layout">
@@ -171,8 +184,14 @@
             </div>
           </section>
           <div class="link_btn">
-            <a href="#">Let’s work together !</a>
+            <architect-button link :path="'/contact'"
+              >Let’s work together !</architect-button
+            >
           </div>
+          <b
+            >Contact:
+            <a class="fix-tel" href="tel:+0902985987">(+84)902 985 987</a></b
+          >
           <project-related
             v-if="projects.categories"
             :category="projects.categories.id"
@@ -204,6 +223,7 @@ export default {
     return {
       comment: "",
       rating: "",
+      loading: false,
       error: null,
     };
   },
@@ -247,6 +267,8 @@ export default {
       }
     },
     async sendComment() {
+      this.loading = true;
+
       const comment = {
         comment: this.comment,
         rating: this.rating,
@@ -260,8 +282,13 @@ export default {
             this.rating = "";
           });
       } catch (err) {
-        this.error = err;
+        this.error = "You can comment once!";
       }
+      this.loading = false;
+    },
+
+    clearError() {
+      this.error = null;
     },
   },
 };

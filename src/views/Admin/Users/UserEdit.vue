@@ -16,106 +16,58 @@
     </architect-dialog>
 
     <!--form edit user -->
-    <form @submit.prevent="onSave()">
-      <div class="col-md-8">
-        <architect-button typeClass="fix-back-btn" link :name="'UserList'">
-          <i class="fas fa-undo-alt"></i
-        ></architect-button>
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-center">Form Edit User</h4>
-          </div>
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <label class="labels">Username</label
-              ><input
-                type="text"
-                name="name"
-                class="form-control"
-                placeholder="Enter your name"
-                v-model="name"
-              />
-            </div>
-          </div>
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <label class="labels">Select avatar:</label>
-              <input type="file" id="img" name="img" accept="image/*" />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Phone Number</label
-              ><input
-                type="number"
-                name="phone"
-                v-model="phone"
-                class="form-control"
-                placeholder="Enter phone number"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="labels">Address</label
-              ><input
-                type="text"
-                name="address"
-                class="form-control"
-                v-model="address"
-                placeholder="Address"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="labels">Birthday</label
-              ><input
-                type="text"
-                name="birthday"
-                v-model="birthday"
-                class="form-control"
-                placeholder="Birthday"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="labels">Role</label
-              ><input
-                type="text"
-                class="form-control"
-                v-model="role"
-                name="role"
-                placeholder="Role"
-                disabled
-              />
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-6">
-              <label class="labels">Country</label
-              ><input
-                type="text"
-                name="country"
-                v-model="country"
-                class="form-control"
-                placeholder="Country"
-              />
-            </div>
-            <div class="col-md-6">
-              <label class="labels">State/Region/City</label
-              ><input
-                type="text"
-                name="city"
-                v-model="city"
-                placeholder="City"
-                class="form-control"
-              />
-            </div>
-          </div>
-          <div class="mt-5 text-center">
-            <button class="btn btn-primary fixed-button" type="submit">
-              Save and update
-            </button>
-          </div>
-        </div>
+    <architect-button typeClass="fix-back-btn" link :name="'UserList'">
+      <i class="fas fa-undo-alt"></i
+    ></architect-button>
+    <div class="p-3 py-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-center">Form Edit User</h4>
       </div>
-    </form>
+      <el-form @submit.prevent="onSave()" label-width="120px" class="demo-">
+        <el-form-item label="Username">
+          <el-input v-model="name"></el-input>
+        </el-form-item>
+        <el-form-item label="Phone Number">
+          <el-input v-model.number="phone"></el-input>
+        </el-form-item>
+        <el-form-item label="Country">
+          <el-select v-model="country" placeholder="please select your zone">
+            <el-option label="Zone one" value="shanghai"></el-option>
+            <el-option label="Zone two" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="State/Region/City">
+          <el-select v-model="city" placeholder="please select your zone">
+            <el-option label="Zone one" value="shanghai"></el-option>
+            <el-option label="Zone two" value="beijing"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="Birthday">
+          <el-col>
+            <el-date-picker
+              type="date"
+              placeholder="Pick a date"
+              v-model="birthday"
+              style="width: 100%;"
+            ></el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item label="Role">
+          <el-radio-group v-model="role">
+            <el-radio label="user"></el-radio>
+            <el-radio label="admin"></el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="Address">
+          <el-input type="textarea" v-model.number="address"></el-input>
+        </el-form-item>
+        <div class="text-center">
+          <button class="btn btn-primary fixed-button" type="submit">
+            Update and Save
+          </button>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -223,6 +175,9 @@ export default {
 };
 </script>
 <style scoped>
+.el-form {
+  flex-direction: column;
+}
 label {
   font-weight: 500;
 }

@@ -3,6 +3,10 @@
     "home": "Trang chủ",
     "about": "Về chúng tôi",
     "project": "Các dự án",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "dashboard": "Trang admin",
+    "profile": "Hồ sơ",
+    "account": "Tài khoản",
+    "logout": "Đăng xuất"
   }
 }

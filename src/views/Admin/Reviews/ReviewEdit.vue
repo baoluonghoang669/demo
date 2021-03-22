@@ -13,59 +13,36 @@
     >
       <p>{{ error }}</p>
     </architect-dialog>
-    <form @submit.prevent="onSave()">
-      <div class="col-md-8">
-        <architect-button
-          typeClass="fix-back-btn"
-          link
-          :path="'/dashboard/reviews'"
-        >
-          <i class="fas fa-undo-alt"></i
-        ></architect-button>
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="text-center">Form Edit Review</h4>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12">
-              <label class="labels">Comment</label>
-              <input
-                type="text"
-                name="comment"
-                class="form-control"
-                placeholder="Comment"
-                v-model="comment"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="labels">Rating</label
-              ><input
-                type="number"
-                name="rating"
-                class="form-control"
-                placeholder="Rating"
-                v-model.number="rating"
-              />
-            </div>
-            <div class="col-md-12">
-              <label class="labels">Id Project</label
-              ><input
-                type="text"
-                name="idProject"
-                class="form-control"
-                v-model="project"
-                disabled
-              />
-            </div>
-          </div>
-          <div class="mt-5 text-center">
-            <button class="btn btn-primary fixed-button" type="submit">
-              Save and Update
-            </button>
-          </div>
-        </div>
+
+    <architect-button
+      typeClass="fix-back-btn"
+      link
+      :path="'/dashboard/reviews'"
+    >
+      <i class="fas fa-undo-alt"></i
+    ></architect-button>
+    <div class="p-3 py-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="text-center">Form Edit Review</h4>
       </div>
-    </form>
+      <el-form @submit.prevent="onSave()" label-width="120px" class="demo-">
+        <el-form-item label="Comment">
+          <el-input v-model="comment"></el-input>
+        </el-form-item>
+        <el-form-item label="Rating">
+          <el-input v-model.number="rating"></el-input>
+        </el-form-item>
+        <el-form-item label="Id Project">
+          <el-input v-model="project" disabled></el-input>
+        </el-form-item>
+
+        <div class="text-center">
+          <button class="btn btn-primary fixed-button" type="submit">
+            Update and Save
+          </button>
+        </div>
+      </el-form>
+    </div>
   </div>
 </template>
 <script>
@@ -143,6 +120,9 @@ export default {
 };
 </script>
 <style scoped>
+.el-form {
+  flex-direction: column;
+}
 label {
   font-weight: 500;
 }

@@ -93,10 +93,12 @@
                       {{ project.completeDay }}
                     </td>
                     <td>
-                      <router-link :to="{ name: 'ProjectEdit' }"
+                      <architect-button
+                        link
+                        :path="'/dashboard/projects/editProject/' + project._id"
+                        class="edit-btn"
                         ><i class="far fa-edit"></i
-                      ></router-link>
-
+                      ></architect-button>
                       <i
                         class="far fa-trash-alt"
                         @click="onDelete(project._id)"
@@ -114,8 +116,9 @@
   </div>
 </template>
 <script>
+import ArchitectButton from "../../../components/common/ArchitectButton.vue";
 export default {
-  components: {},
+  components: { ArchitectButton },
   data() {
     return {
       loading: false,
@@ -162,6 +165,14 @@ export default {
 <style scoped>
 @import "../../../../public/css/dashboard/paper-dashboard.css";
 @import "../../../../public/css/dashboard/bootstrap.min.css";
+.flex-edit {
+  padding: 12px 7px;
+  vertical-align: middle;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .sidebar,
 .sidebar-wrapper {
   background-color: #263a4f !important;
@@ -230,5 +241,17 @@ th {
   left: 58%;
   transform: translateY(-35px);
   outline: none;
+}
+
+.fa-trash-alt:hover {
+  transform: scale(0.9);
+}
+
+.edit-btn {
+  float: left;
+}
+
+.edit-btn:hover {
+  transform: scale(0.9);
 }
 </style>

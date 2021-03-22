@@ -7,7 +7,9 @@
     >
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <router-link class="navbar-brand" to="/">
-          <img src="../../assets/images/logo/logo-white.png" />
+          <div class="fix-main-logo">
+            <img src="../../assets/images/logo/1-removebg-preview.png" />
+          </div>
         </router-link>
         <button
           class="navbar-toggler"
@@ -36,11 +38,13 @@
             <li>
               <router-link to="/contact">{{ $t("menu.contact") }}</router-link>
             </li>
-            <li v-if="isAdmin === 'admin'">
-              <router-link to="/dashboard">DashBoard</router-link>
+            <li v-if="isAuth">
+              <router-link to="/profile">{{ $t("menu.profile") }}</router-link>
             </li>
-            <li v-if="isAdmin === 'user'">
-              <router-link to="/profile">My Profile</router-link>
+            <li v-if="isAdmin === 'admin'">
+              <router-link to="/dashboard">{{
+                $t("menu.dashboard")
+              }}</router-link>
             </li>
           </ul>
           <ul class="fix-nav-tel">
@@ -57,10 +61,10 @@
               alt="img"
             />
             <li v-if="!isAuth">
-              <router-link to="/auth">Account</router-link>
+              <router-link to="/auth">{{ $t("menu.account") }}</router-link>
             </li>
             <li v-else>
-              <a @click="logout">Logout</a>
+              <a @click="logout">{{ $t("menu.logout") }}</a>
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -293,7 +297,7 @@ a {
 }
 
 .fix-tel:hover {
-  color: #a3cc01;
+  color: #a3cc01 !important;
 }
 
 .fa-times:hover {
@@ -418,6 +422,7 @@ li {
 .fix-nav {
   flex-wrap: nowrap;
   margin-right: 40px;
+  width: 16%;
 }
 
 .fix-nav li {
@@ -472,7 +477,7 @@ li {
   display: block;
   width: 100%;
   float: none;
-  margin-left: 12.7%;
+  margin-left: 5.7%;
 }
 
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li {
@@ -729,5 +734,16 @@ li {
 .dark_menu .navbar.navbar-expand-lg .nav.navbar-nav li:hover a,
 .dark_menu .navbar.navbar-expand-lg .nav.navbar-nav li.active a {
   color: #a3cc01;
+}
+
+.fix-main-logo {
+  width: 130px;
+  height: 30px;
+  transform: translateY(-55px);
+}
+
+.fix-main-logo img {
+  max-width: 100%;
+  height: auto;
 }
 </style>

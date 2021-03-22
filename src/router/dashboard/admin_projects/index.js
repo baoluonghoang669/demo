@@ -14,7 +14,7 @@ export default [
     component: ProjectAdd,
   },
   {
-    path: "editProject",
+    path: "editProject/:id",
     name: "ProjectEdit",
     component: ProjectEdit,
   },

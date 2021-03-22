@@ -5,6 +5,8 @@ import store from "./store";
 import FlagIcon from "vue-flag-icon";
 import i18n from "./plugins/i18n";
 import VueAgile from "vue-agile";
+import ElementPlus from "element-plus";
+import "element-plus/lib/theme-chalk/index.css";
 import VueSmoothScroll from "vue3-smooth-scroll";
 import ArchitectButton from "./components/common/ArchitectButton.vue";
 import ArchitectProjectItem from "./components/common/ArchitectProjectItem.vue";
@@ -18,6 +20,7 @@ createApp(App)
   .use(FlagIcon)
   .use(VueSmoothScroll)
   .use(router)
+  .use(ElementPlus)
   .component("architect-button", ArchitectButton)
   .component("architect-project-item", ArchitectProjectItem)
   .component("architect-dialog", ArchitectDialog)

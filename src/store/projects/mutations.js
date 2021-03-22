@@ -15,4 +15,14 @@ export default {
       1
     );
   },
+
+  //update form projects
+  updateName: (state, payload) => (state.projectsDetail.name = payload),
+  updateDescription: (state, payload) =>
+    (state.projectsDetail.description = payload),
+  updateArchitecture: (state, payload) =>
+    (state.projectsDetail.architecture = payload),
+  updateClient: (state, payload) => (state.projectsDetail.client = payload),
+  updateCost: (state, payload) => (state.projectsDetail.cost = payload),
+  updateArea: (state, payload) => (state.projectsDetail.area = payload),
 };

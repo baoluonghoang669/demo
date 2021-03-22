@@ -1,5 +1,5 @@
 import DashBoard from "../../views/Admin/Dashboard.vue";
-import AdminProfile from "../../views/Admin/AdminProfile.vue";
+import Messages from "../../views/Admin/Messages.vue";
 import UserPage from "../../views/Admin/Users/UserPage.vue";
 import CategoryPage from "../../views/Admin/Categories/CategoryPage.vue";
 import ProjectPage from "../../views/Admin/Projects/ProjectPage.vue";
@@ -17,9 +17,9 @@ export default [
     component: DashBoard,
   },
   {
-    path: "profile",
-    name: "AdminProfile",
-    component: AdminProfile,
+    path: "messages",
+    name: "Messages",
+    component: Messages,
   },
   {
     path: "projects",

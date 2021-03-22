@@ -1,4 +1,6 @@
 import axios from "axios";
+import router from "../../router/index";
+
 export default {
   async fetchListProjects({ commit }) {
     const url = process.env.VUE_APP_GET_PROJECTS;
@@ -23,6 +25,32 @@ export default {
     }
 
     commit("setProjects", responseData);
+  },
+
+  //Update project by id
+  async updateProjectById({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}`;
+
+    const detailProject = {
+      name: payload.name,
+      description: payload.description,
+      architecture: payload.architecture,
+      client: payload.client,
+      cost: payload.cost,
+      area: payload.area,
+    };
+
+    const response = await axios.put(url, detailProject, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
+    if (response.data.data.success === false) {
+      //error
+    }
+
+    commit("setProjectsDetail", detailProject);
   },
 
   async fetchDetailProject({ commit }, payload) {

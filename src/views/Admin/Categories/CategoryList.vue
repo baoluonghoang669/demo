@@ -63,9 +63,14 @@
                       {{ category.projects.length }}
                     </td>
                     <td>
-                      <router-link :to="{ name: 'CategoryEdit' }"
+                      <architect-button
+                        link
+                        :path="
+                          '/dashboard/categories/editCategory/' + category._id
+                        "
+                        class="edit-btn"
                         ><i class="far fa-edit"></i
-                      ></router-link>
+                      ></architect-button>
                       <i
                         class="far fa-trash-alt"
                         @click="onDelete(category._id)"
@@ -184,5 +189,17 @@ th {
   left: 58%;
   transform: translateY(-35px);
   outline: none;
+}
+
+.fa-trash-alt:hover {
+  transform: scale(0.9);
+}
+
+.edit-btn {
+  float: left;
+}
+
+.edit-btn:hover {
+  transform: scale(0.9);
 }
 </style>

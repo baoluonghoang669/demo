@@ -20,4 +20,6 @@ export default {
   updateBirthday: (state, payload) => (state.user.birthday = payload),
   updateCity: (state, payload) => (state.user.city = payload),
   updateCountry: (state, payload) => (state.user.country = payload),
+
+  updateAvatar: (state, payload) => (state.user.avatar = payload),
 };

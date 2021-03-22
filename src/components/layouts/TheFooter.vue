@@ -29,11 +29,11 @@
               <h3>quick links</h3>
             </div>
             <ul class="list">
-              <li><router-link to="#">Works</router-link></li>
-              <li><router-link to="#">Affiliate</router-link></li>
-              <li><router-link to="#">Shop</router-link></li>
-              <li><router-link to="#">Partners</router-link></li>
-              <li><router-link to="#">Reviews</router-link></li>
+              <li><router-link to="">Works</router-link></li>
+              <li><router-link to="">Affiliate</router-link></li>
+              <li><router-link to="">Shop</router-link></li>
+              <li><router-link to="">Partners</router-link></li>
+              <li><router-link to="">Reviews</router-link></li>
             </ul>
           </div>
         </aside>
@@ -43,10 +43,10 @@
               <h3>Company</h3>
             </div>
             <ul class="list">
-              <li><router-link to="#">About</router-link></li>
-              <li><router-link to="#">Contact</router-link></li>
-              <li><router-link to="#">Career</router-link></li>
-              <li><router-link to="#">Blog</router-link></li>
+              <li><router-link to="">About</router-link></li>
+              <li><router-link to="">Contact</router-link></li>
+              <li><router-link to="">Career</router-link></li>
+              <li><router-link to="">Blog</router-link></li>
             </ul>
           </div>
         </aside>
@@ -56,11 +56,11 @@
               <h3>help center</h3>
             </div>
             <ul class="list">
-              <li><router-link to="#">FAQs</router-link></li>
-              <li><router-link to="#">Terms & Conditions</router-link></li>
-              <li><router-link to="#">Privacy Policy</router-link></li>
-              <li><router-link to="#">Help</router-link></li>
-              <li><router-link to="#">Services</router-link></li>
+              <li><router-link to="">FAQs</router-link></li>
+              <li><router-link to="">Terms & Conditions</router-link></li>
+              <li><router-link to="">Privacy Policy</router-link></li>
+              <li><router-link to="">Help</router-link></li>
+              <li><router-link to="">Services</router-link></li>
             </ul>
           </div>
         </aside>

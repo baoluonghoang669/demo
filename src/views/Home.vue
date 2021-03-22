@@ -21,11 +21,11 @@
       </div>
       <div class="text_box">
         <div class="tp-caption tp-resizeme text_1">
-          <p>Brian’s Villa<br />Private Residence</p>
+          <p>Troc Studio<br />Architect Company</p>
         </div>
       </div>
       <div class="year">
-        <router-link to="/">2018</router-link>
+        <router-link to="/">2021</router-link>
       </div>
     </section>
     <!--================Inter Studio Area =================-->
@@ -40,7 +40,7 @@
               <img src="./../assets/images/studio1.jpg" alt="" />
               <div class="years_text">
                 <div class="years_text_inner">
-                  <h1>10</h1>
+                  <h1>4</h1>
                   <h2>Years</h2>
                   <h4>working</h4>
                 </div>
@@ -49,11 +49,11 @@
           </div>
           <div class="col-lg-5">
             <div class="studio_text">
-              <h6 class="s_title white">Intria Studio</h6>
-              <h3>Make is a different kind of architecture practice</h3>
+              <h6 class="s_title white">Troc Studio</h6>
+              <h3>Our company designed the best home and interior</h3>
               <h5>We know that good design means good business</h5>
               <p>
-                Founded by Robert Downey Jr in 2004, we’re an employee-owned
+                Founded by Luong Hoang Linh in 2017, we’re an employee-owned
                 firm pursuing a democratic design process that values everyone’s
                 input. Today we have more than 150 people in London, Hong Kong
                 and Sydney providing architecture, interior & urban design

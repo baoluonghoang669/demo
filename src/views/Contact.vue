@@ -72,6 +72,7 @@
                     name="name"
                     placeholder="Your name"
                     v-model="name"
+                    required
                   />
                 </div>
                 <div class="form-group col-md-6">
@@ -82,6 +83,7 @@
                     name="email"
                     placeholder="Email"
                     v-model="email"
+                    required
                   />
                 </div>
                 <div class="form-group col-md-12">
@@ -93,6 +95,7 @@
                     rows="1"
                     placeholder="Your phone number"
                     v-model="phone"
+                    required
                   />
                 </div>
                 <div class="form-group col-md-12">
@@ -103,6 +106,7 @@
                     rows="1"
                     placeholder="Here goes your message"
                     v-model="message"
+                    required
                   ></textarea>
                 </div>
                 <div class="warning-error" v-if="formIsInvalid">

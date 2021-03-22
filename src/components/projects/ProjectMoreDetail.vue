@@ -174,6 +174,10 @@
           <div class="link_btn">
             <a href="#">Let’s work together !</a>
           </div>
+          <b
+            >Contact:
+            <a class="fix-tel" href="tel:+0902985987">(+84)902 985 987</a></b
+          >
         </div>
       </section>
       <!--================End Project Villa Area =================-->

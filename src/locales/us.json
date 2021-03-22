@@ -3,6 +3,10 @@
     "home": "Home",
     "about": "About",
     "project": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "dashboard": "Dashboard",
+    "profile": "My Profile",
+    "account": "Account",
+    "logout": "Logout"
   }
 }

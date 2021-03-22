@@ -16,36 +16,15 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
           <li class="nav-item btn-rotate dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="http://example.com"
-              id="navbarDropdownMenuLink"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
+            <architect-button link class="notify" :name="'Messages'">
               <i class="far fa-bell"></i>
-
-              <p>
-                <span class="d-lg-none d-md-block">Some Actions</span>
-              </p>
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-right"
-              aria-labelledby="navbarDropdownMenuLink"
-            >
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+              <p class="notification-messages">{{ checkMessages }}</p>
+            </architect-button>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn-rotate" href="javascript:;">
-              <i class="fas fa-cog"></i>
-              <p>
-                <span class="d-lg-none d-md-block">Account</span>
-              </p>
-            </a>
+            <architect-button link class="nav-link btn-rotate" :name="'Home'">
+              <i class="fas fa-home"></i>
+            </architect-button>
           </li>
         </ul>
       </div>
@@ -53,15 +32,40 @@
   </nav>
 </template>
 <script>
-export default {};
+import ArchitectButton from "../../common/ArchitectButton.vue";
+export default {
+  components: { ArchitectButton },
+  created() {
+    this.fetchAllMessage();
+  },
+  computed: {
+    checkMessages() {
+      return this.$store.getters["messages/checkMessages"];
+    },
+  },
+  methods: {
+    async fetchAllMessage() {
+      try {
+        await this.$store.dispatch("messages/fetchAllMessage");
+      } catch (err) {
+        this.error = err;
+      }
+    },
+  },
+};
 </script>
 <style scoped>
 .navbar.navbar-transparent {
   background-color: #263a4f !important;
 }
 
-a {
+a,
+.fa-home {
   color: #fff !important;
+}
+
+.fa-home:hover {
+  transform: scale(0.9);
 }
 
 .input-group::placeholder {
@@ -80,5 +84,23 @@ a {
 
 .fa-search:hover {
   color: #a3cc01 !important;
+}
+
+.fa-bell {
+  transform: translateY(6px);
+  color: #fff;
+}
+
+.notify:hover {
+  transform: scale(0.9);
+}
+
+.notification-messages {
+  color: #fff;
+  font-weight: bold;
+  padding: 0 3px;
+  border: 1px solid red;
+  background-color: red;
+  border-radius: 50%;
 }
 </style>

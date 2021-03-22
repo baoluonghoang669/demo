@@ -87,10 +87,11 @@
                     <td>
                       {{ user.role }}
                     </td>
-                    <td class="flex-edit">
+                    <td>
                       <architect-button
                         link
                         :path="'/dashboard/users/editUser/' + user._id"
+                        class="edit-btn"
                         ><i class="far fa-edit"></i
                       ></architect-button>
                       <i
@@ -183,13 +184,7 @@ export default {
 <style scoped>
 @import "../../../../public/css/dashboard/paper-dashboard.css";
 @import "../../../../public/css/dashboard/bootstrap.min.css";
-.flex-edit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 35px;
-  border: none;
-}
+
 .sidebar,
 .sidebar-wrapper {
   background-color: #263a4f !important;
@@ -248,5 +243,17 @@ th {
   left: 58%;
   transform: translateY(-35px);
   outline: none;
+}
+
+.fa-trash-alt:hover {
+  transform: scale(0.9);
+}
+
+.edit-btn {
+  float: left;
+}
+
+.edit-btn:hover {
+  transform: scale(0.9);
 }
 </style>

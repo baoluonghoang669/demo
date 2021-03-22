@@ -7,7 +7,7 @@
         </div>
       </a>
       <a class="simple-text logo-normal">
-        Hello Admin !
+        Hello Admin
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -19,9 +19,9 @@
           </router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'AdminProfile' }">
+          <router-link :to="{ name: 'Messages' }">
             <i class="far fa-user"></i>
-            <p>My Profile</p>
+            <p>Messages</p>
           </router-link>
         </li>
         <li>

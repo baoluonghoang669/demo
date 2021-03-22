@@ -16,15 +16,16 @@ export default {
     if (responseData.success !== true) {
       return;
     }
-
     localStorage.setItem("token", responseData.token);
     localStorage.setItem("role", responseData.role);
+    localStorage.setItem("idUser", responseData.idUser);
 
     commit("setUser", responseData.data);
 
     commit("setToken", {
       token: responseData.token,
       role: responseData.role,
+      id: responseData.idUser,
     });
   },
 
@@ -45,10 +46,12 @@ export default {
 
     localStorage.setItem("token", responseData.token);
     localStorage.setItem("role", responseData.role);
+    localStorage.setItem("idUser", responseData.idUser);
 
     commit("setToken", {
       token: responseData.token,
       role: responseData.role,
+      id: responseData.idUser,
     });
   },
 
@@ -77,7 +80,7 @@ export default {
 
     const response = await axios.put(url, password);
 
-    if (response.data.data.success === false) {
+    if (response.data.success === false) {
       return;
     }
 
@@ -98,7 +101,8 @@ export default {
     commit("setUser", responseData);
   },
 
-  async saveDetailUser({ commit }, payload) {
+  //update user detail profile
+  async updateDetailUser({ commit }, payload) {
     let url = process.env.VUE_APP_UPDATE_DETAIL;
 
     const detailUser = {
@@ -117,11 +121,35 @@ export default {
       },
     });
 
-    if (response.success === false) {
+    if (response.data.data.success === false) {
       return;
     }
 
     commit("setUser", detailUser);
+  },
+
+  //update user's avatar
+  async updateAvatar({ commit }, payload) {
+    let url = `${process.env.VUE_APP_AUTH}/${localStorage.getItem(
+      "idUser"
+    )}/avatar`;
+
+    const avatar = {
+      avatar: payload.avatar,
+    };
+
+    const response = axios.put(url, avatar, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response.data.data.success === false) {
+      return;
+    }
+
+    commit("updateAvatar", avatar);
   },
 
   async logout({ commit }) {
@@ -132,11 +160,13 @@ export default {
 
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("idUser");
     router.push("/");
 
     commit("setToken", {
       token: null,
       role: null,
+      idUser: null,
       responseData,
     });
   },

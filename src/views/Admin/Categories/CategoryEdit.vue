@@ -15,15 +15,6 @@
       <p>{{ error }}</p>
     </architect-dialog>
 
-
-    <architect-button
-      typeClass="fix-back-btn"
-      link
-      :path="'/dashboard/categories'"
-    >
-      <i class="fas fa-undo-alt"></i
-    ></architect-button>
-
     <!-- form -->
     <div class="p-3 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">

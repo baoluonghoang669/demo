@@ -8,8 +8,7 @@ import About from "../views/About.vue";
 import Contact from "../views/Contact.vue";
 import Profile from "../views/Profile.vue";
 import Auth from "../views/Auth.vue";
-import ForgotPassword from "../views/ForgotPassword.vue";
-import ResetPassword from "../views/ResetPassword.vue";
+
 import PageNotFound from "../components/layouts/404.vue";
 
 import MainPage from "../views/Admin/MainPage.vue";
@@ -18,6 +17,7 @@ import ProjectPage from "../views/ProjectPage.vue";
 //other routes
 import DashBoardRoutes from "./dashboard/dashboard";
 import ProjectRoutes from "./project/index";
+import AuthRoutes from "./auth/index";
 
 const routes = [
   {
@@ -41,24 +41,14 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/auth",
-    name: "Auth",
-    component: Auth,
-  },
-  {
-    path: "/forgotpassword",
-    name: "ForgotPassword",
-    component: ForgotPassword,
-  },
-  {
-    path: "/resetpassword",
-    name: "ResetPassword",
-    component: ResetPassword,
-  },
-  {
     path: "/:NotFound(.*)*",
     name: "404",
     component: PageNotFound,
+  },
+  {
+    path: "/auth",
+    component: Auth,
+    children: AuthRoutes,
   },
   {
     path: "/project",

@@ -27,12 +27,11 @@
     <div class="flex">
       <!--form update profile -->
       <div class="col-md-4">
-
         <form id="uploadForm" enctype=multipart/form-data class="d-flex flex-column align-items-center text-center p-3 py-5" @submit.prevent="onUpload()">
           <div class="fix-avatar" v-if="user">
             <img class="rounded-circle mt-5" :src="user.avatar" />
           </div>
-          <input type="file" ref="file" id="file"  @change="onFileChange" name="file">
+          <input type="file" ref="file" id="file" @change="onFileChange" name="file">
           <input type=submit button class="change-avatar" value="Upload avatar">
         </form>
       </div>
@@ -149,6 +148,7 @@ export default {
       loading: false,
       formIsInvalid: false,
       notify: null,
+      fileUpload: null,
     };
   },
   created() {
@@ -273,7 +273,7 @@ export default {
       this.createImage(files[0]);
     },
     createImage(file) {
-      // var image = new Image();
+      this.fileUpload = file
       var reader = new FileReader();
       reader.onload = (e) => {
         this.file = e.target.result;
@@ -281,14 +281,13 @@ export default {
       reader.readAsDataURL(file);
     },
     async onUpload() {
-      let formData = new FormData();
-      formData.append('file', this.file);
-
+      this.loading = true;
       try {
-        await this.$store.dispatch("auth/updateAvatar", this.file)
+        await this.$store.dispatch("auth/updateAvatar", this.fileUpload);
       } catch (err) {
-        this.error = err;
+        this.error = err.response.data.error || "Fail to update"
       }
+      this.loading = false;
     }
   },
 };
@@ -297,6 +296,7 @@ export default {
 #file {
   margin: 10px 0;
   margin-left: 40%;
+  cursor: pointer;
 }
 
 .flex {

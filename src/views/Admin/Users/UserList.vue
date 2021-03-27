@@ -11,7 +11,7 @@
             type="button"
             class="btn btn-primary"
           >
-            Add a User
+            Add User
           </router-link>
           <div class="input-group no-border fix-position-input">
             <input
@@ -27,28 +27,38 @@
               class="table-responsive"
               v-else-if="!loading && users && users.length > 0"
             >
-              <table class="table">
+              <table class="table table-bordered">
                 <thead class=" text-primary">
                   <th>
                     Name
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(name)"></i>
                   </th>
                   <th>
-                    Avatar
+                    Email
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(email)"></i>
                   </th>
                   <th>
                     Address
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(address)"></i>
                   </th>
                   <th>
                     Birthday
+                    <i
+                      class="fa fa-fw fa-sort"
+                      @click="sortUsers(birthday)"
+                    ></i>
                   </th>
                   <th>
                     Phone
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(phone)"></i>
                   </th>
                   <th>
                     City
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(city)"></i>
                   </th>
                   <th>
                     Country
+                    <i class="fa fa-fw fa-sort" @click="sortUsers(country)"></i>
                   </th>
                   <th>
                     Role
@@ -63,11 +73,7 @@
                       {{ user.name }}
                     </td>
                     <td>
-                      <img
-                        :src="user.avatar"
-                        :alt="user.name"
-                        class="fix-size-img"
-                      />
+                      {{ user.email }}
                     </td>
                     <td>
                       {{ user.address }}
@@ -178,59 +184,20 @@ export default {
         this.loading = false;
       }
     },
+    async sortUsers(name) {
+      try {
+        await this.$store.dispatch("userAdmin/sortUsers", name);
+        this.loading = false;
+      } catch (error) {
+        this.err = error || "Fail to sort";
+      }
+    },
   },
 };
 </script>
 <style scoped>
-@import "../../../../public/css/dashboard/paper-dashboard.css";
-@import "../../../../public/css/dashboard/bootstrap.min.css";
-
-.sidebar,
-.sidebar-wrapper {
-  background-color: #263a4f !important;
-}
-
-.sidebar:after {
-  background-color: #263a4f !important;
-}
-
-.sidebar .sidebar-wrapper {
-  width: 259px;
-}
-
-.nav li a {
-  color: #fff;
-}
-
-.fa-edit {
-  color: #a3cc01;
-  margin: 0 2px;
+.fa {
   cursor: pointer;
-}
-.fa-trash-alt {
-  color: red;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #263a4f !important;
-  width: 200px;
-  margin: 0 15px;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #a3cc01 !important;
-  transition: 0.3s all ease;
-}
-
-th {
-  color: #263a4f;
-}
-
-td,
-th {
-  text-align: center;
 }
 
 .fix-size-img {

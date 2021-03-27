@@ -14,13 +14,7 @@
       <p>{{ error }}</p>
     </architect-dialog>
 
-    <architect-button
-      typeClass="fix-back-btn"
-      link
-      :path="'/dashboard/reviews'"
-    >
-      <i class="fas fa-undo-alt"></i
-    ></architect-button>
+    <!-- form edit -->
     <div class="p-3 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-center">Form Edit Review</h4>

@@ -1,13 +1,8 @@
 <template>
   <div class="sidebar">
     <div class="logo">
-      <a href="https://www.creative-tim.com" class="simple-text logo-mini">
-        <div class="logo-image-small">
-          <img src="" />
-        </div>
-      </a>
-      <a class="simple-text logo-normal">
-        Hello Admin
+      <a class="simple-text logo-normal" v-if="user && isAuth">
+        Hello {{ user.name }}
       </a>
     </div>
     <div class="sidebar-wrapper">
@@ -53,7 +48,24 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  created() {
+    this.fetchDetailUser();
+  },
+  computed: {
+    user() {
+      return this.$store.getters["auth/user"];
+    },
+    isAuth() {
+      return this.$store.getters["auth/isAuth"];
+    },
+  },
+  methods: {
+    fetchDetailUser() {
+      return this.$store.dispatch("auth/fetchDetailUser");
+    },
+  },
+};
 </script>
 <style scoped>
 .simple-text:hover {
@@ -63,5 +75,9 @@ export default {};
 
 .nav li a:hover {
   color: #a3cc01;
+}
+
+.logo {
+  text-align: center;
 }
 </style>

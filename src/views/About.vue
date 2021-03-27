@@ -16,14 +16,13 @@
         <div class="ab_studio_text">
           <h6 class="s_title white">Intria Studio</h6>
           <h5>
-            Make is a different kind of architecture practice. Founded by Robert
-            Downey Jr in 2004, we’re an employee-owned firm pursuing a
+            Make is a different kind of architecture practice. Founded by Luong
+            Hoang Linh in 2017, we’re an employee-owned firm pursuing a
             democratic design process that values everyone’s input.
           </h5>
           <h5>
-            Today we have more than 150 people in London, Hong Kong and Sydney
-            providing architecture, interior and urban design services from
-            concept to completion.
+            Today we have more than 30 people in DaNang providing architecture,
+            interior and urban design services from concept to completion.
           </h5>
         </div>
       </div>
@@ -36,7 +35,7 @@
           <div class="col-lg-12 offset-lg-1">
             <div class="s_blog_text_inner video_s_blog">
               <div class="blog_main_text">
-                <a href="#"><h4>Best 20 Architecture Buildings in 2018</h4></a>
+                <a href="#"><h4>Best Architecture Building in 2017</h4></a>
                 <div class="date">
                   <a href="#">July 20, 2018</a>
                   <i class="ion-record"></i>
@@ -107,6 +106,11 @@
                   mistakes in the past and not the present. The brain messages
                   arising from those experiences can be deceptive.
                 </p>
+                <div class="s_blog_tag">
+                  <architect-button link :name="'Project'"
+                    >View my projects</architect-button
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -122,27 +126,27 @@
             <div class="item">
               <div class="team_item">
                 <img
-                  src="./../assets/images/page-about/team/team-1.jpg"
-                  alt=""
+                  src="./../assets/images/page-about/team/linh.jpg"
+                  alt="img"
                 />
                 <div class="hover">
-                  <h5>Jason Staham</h5>
+                  <h5>Lương Hoàng Linh</h5>
                   <h6>CEO Founder</h6>
                   <ul class="list">
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/linh.luong.37"
                         ><i class="ion-social-twitter"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/linh.luong.37"
                         ><i class="ion-social-facebook"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/linh.luong.37"
                         ><i class="ion-social-linkedin"></i
-                      ></router-link>
+                      ></a>
                     </li>
                   </ul>
                 </div>
@@ -151,27 +155,30 @@
             <div class="item">
               <div class="team_item">
                 <img
-                  src="./../assets/images/page-about/team/team-2.jpg"
-                  alt=""
+                  src="./../assets/images/page-about/team/khanh.png"
+                  alt="img"
                 />
                 <div class="hover">
-                  <h5>Jason Staham</h5>
-                  <h6>CEO Founder</h6>
+                  <h5>Ngô Khánh</h5>
+                  <h6>Director</h6>
                   <ul class="list">
                     <li>
-                      <router-link to="#"
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100016579994548"
                         ><i class="ion-social-twitter"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100016579994548"
                         ><i class="ion-social-facebook"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a
+                        href="https://www.facebook.com/profile.php?id=100016579994548"
                         ><i class="ion-social-linkedin"></i
-                      ></router-link>
+                      ></a>
                     </li>
                   </ul>
                 </div>
@@ -180,27 +187,27 @@
             <div class="item">
               <div class="team_item">
                 <img
-                  src="./../assets/images/page-about/team/team-3.jpg"
-                  alt=""
+                  src="./../assets/images/page-about/team/khanh2.png"
+                  alt="img"
                 />
                 <div class="hover">
-                  <h5>Jason Staham</h5>
-                  <h6>CEO Founder</h6>
+                  <h5>Trần Khánh</h5>
+                  <h6>Manager</h6>
                   <ul class="list">
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/khanh.tran.1987"
                         ><i class="ion-social-twitter"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/khanh.tran.1987"
                         ><i class="ion-social-facebook"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/khanh.tran.1987"
                         ><i class="ion-social-linkedin"></i
-                      ></router-link>
+                      ></a>
                     </li>
                   </ul>
                 </div>
@@ -209,51 +216,58 @@
             <div class="item">
               <div class="team_item">
                 <img
-                  src="./../assets/images/page-about/team/team-4.jpg"
-                  alt=""
+                  src="./../assets/images/page-about/team/hinhvuong.png"
+                  alt="img"
                 />
                 <div class="hover">
-                  <h5>Jason Staham</h5>
-                  <h6>CEO Founder</h6>
+                  <h5>Hinh Vuong</h5>
+                  <h6>Designer</h6>
                   <ul class="list">
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/Tv.tien2507"
                         ><i class="ion-social-twitter"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/Tv.tien2507"
                         ><i class="ion-social-facebook"></i
-                      ></router-link>
+                      ></a>
                     </li>
                     <li>
-                      <router-link to="#"
+                      <a href="https://www.facebook.com/Tv.tien2507"
                         ><i class="ion-social-linkedin"></i
-                      ></router-link>
+                      ></a>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <architect-button link :name="'Contact'"
-            ><h3>Join our team</h3></architect-button
+          <a href="https://www.facebook.com/TROC-Studio-111045133645249"
+            ><h3>Our fanpage</h3></a
           >
         </div>
       </div>
     </section>
     <!--================End Meet Team Area =================-->
+    <architect-advertise-label class="container"></architect-advertise-label>
   </div>
 </template>
 <script>
-import ArchitectButton from "../components/common/ArchitectButton.vue";
 export default {
-  components: { ArchitectButton },
+  components: {},
 };
 </script>
 
 <style scoped>
 .fix-img {
   margin-top: 120px;
+}
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  border-bottom: 1px solid #fff;
 }
 </style>

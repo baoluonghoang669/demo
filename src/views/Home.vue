@@ -21,17 +21,17 @@
       </div>
       <div class="text_box">
         <div class="tp-caption tp-resizeme text_1">
-          <p>Troc Studio<br />Architect Company</p>
+          <p>Troc Studio<br />{{ $t("company") }}</p>
         </div>
       </div>
       <div class="year">
-        <router-link to="/">2021</router-link>
+        <router-link to="">2021</router-link>
       </div>
     </section>
     <!--================Inter Studio Area =================-->
     <section class="intes_studio_area white_cl">
       <div class="since_text">
-        <h5>Since 2004</h5>
+        <h5>{{ $t("since") }} 2004</h5>
       </div>
       <div class="container">
         <div class="row">
@@ -41,8 +41,8 @@
               <div class="years_text">
                 <div class="years_text_inner">
                   <h1>4</h1>
-                  <h2>Years</h2>
-                  <h4>working</h4>
+                  <h2>{{ $t("year") }}</h2>
+                  <h4>{{ $t("working") }}</h4>
                 </div>
               </div>
             </div>
@@ -50,18 +50,14 @@
           <div class="col-lg-5">
             <div class="studio_text">
               <h6 class="s_title white">Troc Studio</h6>
-              <h3>Our company designed the best home and interior</h3>
-              <h5>We know that good design means good business</h5>
+              <h3>{{ $t("label-about") }}</h3>
+              <h5>{{ $t("title-about") }}</h5>
               <p>
-                Founded by Luong Hoang Linh in 2017, we’re an employee-owned
-                firm pursuing a democratic design process that values everyone’s
-                input. Today we have more than 150 people in London, Hong Kong
-                and Sydney providing architecture, interior & urban design
-                services from concept to completion.
+                {{ $t("text-about") }}
               </p>
-              <architect-button link typeClass="br_btn white" path="/about"
-                >more about us</architect-button
-              >
+              <architect-button link typeClass="br_btn white" path="/about">{{
+                $t("more-about")
+              }}</architect-button>
             </div>
           </div>
         </div>
@@ -72,26 +68,18 @@
     <!--================Our Speciallization Area =================-->
     <section class="speciallization_area white_cl">
       <div class="container">
-        <h6 class="s_title white">Our Speciallization</h6>
-
-        <!--list our speciallization (list of projects) -->
+        <h6 class="s_title white">{{ $t("speciallization") }}</h6>
         <type-list></type-list>
         <!-- end list -->
       </div>
     </section>
-    <!--================End Our Speciallization Area =================-->
-
-    <!--================Latest Project Area =================-->
     <section class="latest_project white_cl">
       <!--Project list -->
       <project-list-slider></project-list-slider>
     </section>
-    <!--================End Latest Project Area =================-->
-
-    <!--================Our Press Area =================-->
     <section class="our_press_area white_cl">
       <div class="container">
-        <h6 class="s_title white">Our Press</h6>
+        <h6 class="s_title white">{{ $t("press") }}</h6>
         <div class="row">
           <div class="col-lg-6">
             <div class="press_img_item">
@@ -103,61 +91,42 @@
                 />
               </div>
               <div class="date">
-                <router-link to="#">august 19, 2018</router-link>
-                <i class="ion-record"></i>
-                <router-link to="#">news</router-link>
+                <p>{{ $t("day1") }}</p>
               </div>
-              <router-link to="#"
-                ><h4>
-                  HPG Australia announces winning design team on One Sydney Park
-                </h4></router-link
-              >
+              <h4>
+                {{ $t("prize1") }}
+              </h4>
             </div>
           </div>
           <div class="col-lg-6">
             <div class="press_item_inner">
               <div class="press_item">
                 <div class="date">
-                  <router-link to="#">july 30, 2018</router-link>
-                  <i class="ion-record"></i>
-                  <router-link to="#">event</router-link>
+                  <p>{{ $t("day2") }}</p>
                 </div>
-                <router-link to="#"
-                  ><h4>CTBUH International Conference 2017</h4></router-link
-                >
+                <h4>{{ $t("prize2") }}</h4>
               </div>
               <div class="press_item">
                 <div class="date">
-                  <router-link to="#">july 20, 2018</router-link>
-                  <i class="ion-record"></i>
-                  <router-link to="#">News</router-link>
+                  <p>{{ $t("day3") }}</p>
                 </div>
-                <router-link to="#"
-                  ><h4>
-                    Changing it up: Make commissions artist Garth Knight for
-                    groundbreaking new display suite
-                  </h4></router-link
-                >
+                <h4>
+                  {{ $t("prize3") }}
+                </h4>
               </div>
               <div class="press_item">
                 <div class="date">
-                  <router-link to="#">july 26, 2018</router-link>
-                  <i class="ion-record"></i>
-                  <router-link to="#">News</router-link>
+                  <p>{{ $t("day4") }}</p>
                 </div>
-                <router-link to="#"><h4>LandAid SleepOut</h4></router-link>
+                <h4>{{ $t("prize4") }}</h4>
               </div>
               <div class="press_item">
                 <div class="date">
-                  <router-link to="#">May 19, 2018</router-link>
-                  <i class="ion-record"></i>
-                  <router-link to="#">News</router-link>
+                  <p>{{ $t("day5") }}</p>
                 </div>
-                <router-link to="#"
-                  ><h4>
-                    Planning approved for restoration of Hornsey Town Hall
-                  </h4></router-link
-                >
+                <h4>
+                  {{ $t("prize5") }}
+                </h4>
               </div>
             </div>
           </div>
@@ -177,23 +146,7 @@
         <comment-list></comment-list>
         <!-- end comment -->
 
-        <div class="clients_slider owl-carousel">
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-1.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-2.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-3.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-4.png" alt="" />
-          </div>
-          <div class="item">
-            <img src="./../assets/images/clients-logo/c-logo-d-5.png" alt="" />
-          </div>
-        </div>
+        <architect-advertise-label></architect-advertise-label>
       </div>
     </section>
     <!--================End Clients Area =================-->
@@ -308,6 +261,10 @@ export default {
   color: #fff;
   font-family: "Heebo", sans-serif;
   font-size: 20px;
+}
+
+h4:hover {
+  color: #263a4f !important;
 }
 
 /* End Home Full Slider css

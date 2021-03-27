@@ -11,7 +11,7 @@
             type="button"
             class="btn btn-primary"
           >
-            Add a Category
+            Add Category
           </router-link>
           <div class="input-group no-border fix-position-input">
             <input
@@ -27,7 +27,7 @@
               class="table-responsive"
               v-else-if="!loading && categories && categories.length > 0"
             >
-              <table class="table">
+              <table class="table table-bordered">
                 <thead class=" text-primary">
                   <th>
                     Name
@@ -37,6 +37,10 @@
                   </th>
                   <th>
                     Description
+                    <i
+                      class="fa fa-fw fa-sort"
+                      @click="sortCategories(description)"
+                    ></i>
                   </th>
                   <th>
                     Related Projects
@@ -120,6 +124,13 @@ export default {
         this.err = error;
       }
     },
+    async sortCategories(name) {
+      try {
+        await this.$store.dispatch("categories/sortCategories", name);
+      } catch (error) {
+        this.err = error;
+      }
+    },
     async fetchCategories() {
       this.loading = true;
       try {
@@ -134,54 +145,8 @@ export default {
 };
 </script>
 <style scoped>
-@import "../../../../public/css/dashboard/paper-dashboard.css";
-@import "../../../../public/css/dashboard/bootstrap.min.css";
-.sidebar,
-.sidebar-wrapper {
-  background-color: #263a4f !important;
-}
-
-.sidebar:after {
-  background-color: #263a4f !important;
-}
-
-.sidebar .sidebar-wrapper {
-  width: 259px;
-}
-
-.nav li a {
-  color: #fff;
-}
-
-.fa-edit {
-  color: #a3cc01;
-  margin: 0 2px;
+.fa {
   cursor: pointer;
-}
-.fa-trash-alt {
-  color: red;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #263a4f !important;
-  width: 200px;
-  margin: 0 15px;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #a3cc01 !important;
-  transition: 0.3s all ease;
-}
-
-th {
-  color: #263a4f;
-}
-
-td,
-th {
-  text-align: center;
 }
 
 .fix-position-input {

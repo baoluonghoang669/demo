@@ -1,69 +1,90 @@
 <template>
   <div class="container rounded bg-none">
-    <architect-button typeClass="fix-back-btn" link :path="'/dashboard/users'">
-      <i class="fas fa-undo-alt"></i
-    ></architect-button>
+    <architect-dialog :show="loading" title="Authenticating...">
+      <architect-loading></architect-loading>
+    </architect-dialog>
+
+    <!-- second dialog -->
+    <architect-dialog
+      :show="!!error"
+      title="An error occurred"
+      @close="clearError"
+      fixed
+    >
+      <p>{{ error }}</p>
+    </architect-dialog>
+
     <div class="p-3 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-center">Form Add User</h4>
       </div>
-      <el-form @submit.prevent="onAddUser()" label-width="120px" class="demo-">
-        <el-form-item label="Username">
-          <el-input v-model="name" required></el-input>
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="120px"
+        class="demo-ruleForm"
+      >
+        <el-form-item label="Username" prop="name">
+          <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
-        <el-form-item label="Email">
-          <el-input type="email" v-model="email" required></el-input>
+        <el-form-item label="Email" prop="email">
+          <el-input type="email" v-model="ruleForm.email"></el-input>
         </el-form-item>
-        <el-form-item label="Address">
-          <el-input v-model="address" required></el-input>
+        <el-form-item label="Address" prop="address">
+          <el-input v-model="ruleForm.address"></el-input>
         </el-form-item>
-        <el-form-item label="Phone Number">
-          <el-input type="number" v-model.number="phone" required></el-input>
+        <el-form-item label="Phone Number" prop="phone">
+          <el-input type="number" v-model.number="ruleForm.phone"></el-input>
         </el-form-item>
-        <el-form-item label="Password">
+        <el-form-item label="Password" prop="password">
           <el-input
             type="password"
-            v-model.number="password"
-            required
+            v-model.number="ruleForm.password"
           ></el-input>
         </el-form-item>
-        <el-form-item label="Birthday">
+        <el-form-item label="Birthday" prop="birthday">
           <el-col>
             <el-date-picker
               type="date"
               placeholder="Pick a date"
-              v-model="birthday"
+              v-model="ruleForm.birthday"
               style="width: 100%;"
-              required
             ></el-date-picker>
           </el-col>
         </el-form-item>
-        <el-form-item label="Country">
+        <el-form-item label="Country" prop="country">
           <el-select
-            v-model="country"
-            @change="search"
+            v-model="ruleForm.country"
             placeholder="please select your country"
           >
             <el-option label="Việt Nam" value="VietNam"></el-option>
             <el-option label="America" value="America"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="State/Region/City">
-          <el-select v-model="city" placeholder="please select your city">
+        <el-form-item label="State/Region/City" prop="city">
+          <el-select
+            v-model="ruleForm.city"
+            placeholder="please select your city"
+          >
             <el-option label="Đà Nẵng" value="DaNang"></el-option>
             <el-option label="NewYork" value="NewYork"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Role">
-          <el-radio-group v-model="role" required>
+        <el-form-item label="Role" prop="role">
+          <el-radio-group v-model="ruleForm.role">
             <el-radio label="user"></el-radio>
             <el-radio label="admin"></el-radio>
           </el-radio-group>
         </el-form-item>
         <div class="text-center">
-          <button class="btn btn-primary fixed-button" type="submit">
-            Update and Save
-          </button>
+          <el-button
+            type="primary"
+            id="btn-submit"
+            @click="submitForm('ruleForm')"
+            >Add</el-button
+          >
         </div>
       </el-form>
     </div>
@@ -73,38 +94,67 @@
 export default {
   data() {
     return {
-      name: "",
-      email: "",
-      address: "",
-      birthday: "",
-      phone: "",
-      city: "",
-      country: "",
-      role: "",
-      password: "",
+      ruleForm: {
+        name: "",
+        email: "",
+        address: "",
+        birthday: "",
+        phone: "",
+        city: "",
+        country: "",
+        role: "",
+        password: "",
+      },
+      loading: false,
       error: null,
+      rules: {
+        name: { required: true, message: "Please input name" },
+        email: { required: true, message: "Please input email" },
+        address: { required: true, message: "Please input address" },
+        birthday: { required: true, message: "Please input birthday" },
+        phone: { required: true, message: "Please input phone" },
+        city: { required: true, message: "Please input city" },
+        country: { required: true, message: "Please input country" },
+        role: { required: true, message: "Please input role" },
+        password: { required: true, message: "Please input password" },
+      },
     };
   },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.onAddUser();
+        } else {
+          return false;
+        }
+      });
+    },
     async onAddUser() {
+      this.loading = true;
       const data = {
-        name: this.name,
-        email: this.email,
-        address: this.address,
-        birthday: this.birthday,
-        phone: this.phone,
-        city: this.city,
-        country: this.country,
-        role: this.role,
-        password: this.password,
+        name: this.ruleForm.name,
+        email: this.ruleForm.email,
+        address: this.ruleForm.address,
+        birthday: this.ruleForm.birthday,
+        phone: this.ruleForm.phone,
+        city: this.ruleForm.city,
+        country: this.ruleForm.country,
+        role: this.ruleForm.role,
+        password: this.ruleForm.password,
       };
       try {
         await this.$store.dispatch("userAdmin/addUser", data);
 
-        this.$router.replace("/dashboard/users");
+        this.$router.replace({ name: "UserList" });
       } catch (err) {
-        this.error = err || "Fail to Add";
+        this.error = err.response.data.error || "Fail to Add";
       }
+      this.loading = false;
+    },
+
+    clearError() {
+      this.error = null;
     },
   },
 };
@@ -136,5 +186,12 @@ label {
 .fixed-button:hover {
   background-color: #a3cc01 !important;
   transition: 0.3s all ease;
+}
+#btn-submit {
+  background-color: #263a4f;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #a3cc01 !important;
 }
 </style>

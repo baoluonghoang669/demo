@@ -121,7 +121,7 @@ export default {
       },
     });
 
-    if (response.data.data.success === false) {
+    if (response.success === false) {
       return;
     }
 
@@ -129,27 +129,26 @@ export default {
   },
 
   //update user's avatar
-  async updateAvatar({ commit }, payload) {
+  async updateAvatar({ commit }, files) {
     let url = `${process.env.VUE_APP_AUTH}/${localStorage.getItem(
       "idUser"
     )}/avatar`;
 
-    const avatar = {
-      avatar: payload.avatar,
-    };
+    let formData = new FormData();
+    formData.append("file", files);
 
-    const response = axios.put(url, avatar, {
+    const response = await axios.put(url, formData, {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-Type": "multipart/form-data",
       },
     });
 
-    if (response.data.data.success === false) {
+    if (response.success === false) {
       return;
     }
 
-    commit("updateAvatar", avatar);
+    commit("updateAvatar", response.data.data);
   },
 
   async logout({ commit }) {

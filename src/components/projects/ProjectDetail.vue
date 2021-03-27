@@ -111,10 +111,6 @@
                   <h5>Rating: {{ review.rating }}/10</h5>
                   <small>{{ review.createdAt }}</small>
                 </div>
-                <!-- <div class="actions_user">
-                  <i class="far fa-edit" @click="onDelete(review._id)"></i>
-                  <i class="fas fa-times" @click="onDelete(review._id)"></i>
-                </div> -->
               </div>
             </div>
           </div>
@@ -138,7 +134,7 @@
                   <h2>Leave a Review</h2>
                 </div>
                 <form
-                  class="row comment_from"
+                  class="row comment_fro m"
                   @submit.prevent="sendComment()"
                   novalidate="novalidate"
                 >
@@ -150,6 +146,7 @@
                       name="comment"
                       placeholder="Comment"
                       v-model="comment"
+                      required
                     ></textarea>
                   </div>
                   <div class="form-group p_star col-md-6">
@@ -162,6 +159,7 @@
                       min="1"
                       max="10"
                       v-model.number="rating"
+                      required
                     />
                   </div>
                   <div class="form-group col-md-12">
@@ -282,7 +280,7 @@ export default {
             this.rating = "";
           });
       } catch (err) {
-        this.error = "You can comment once!";
+        this.error = "You can comment once per project";
       }
       this.loading = false;
     },
@@ -294,6 +292,13 @@ export default {
 };
 </script>
 <style scoped>
+#btn-submit {
+  background-color: #263a4f;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #a3cc01 !important;
+}
 .fix-img-slider {
   width: 1111px;
   height: 610px;
@@ -305,11 +310,13 @@ export default {
   background-color: #263a4f;
 }
 .carousel .carousel__prev {
-  background-color: #263a4f;
+  background-color: #263a4f !important;
+  border: none;
 }
 
 .carousel .carousel__next {
-  background-color: #263a4f;
+  background-color: #263a4f !important;
+  border: none;
 }
 
 .avatar {

@@ -1,60 +1,94 @@
 <template>
   <div class="container rounded bg-none">
-    <architect-button
-      typeClass="fix-back-btn"
-      link
-      :path="'/dashboard/categories'"
+    <architect-dialog :show="loading" title="Authenticating...">
+      <architect-loading></architect-loading>
+    </architect-dialog>
+
+    <!-- second dialog -->
+    <architect-dialog
+      :show="!!error"
+      title="An error occurred"
+      @close="clearError"
+      fixed
     >
-      <i class="fas fa-undo-alt"></i
-    ></architect-button>
+      <p>{{ error }}</p>
+    </architect-dialog>
+
     <div class="p-3 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-center">Form Add Category</h4>
       </div>
       <el-form
-        @submit.prevent="onAddCategory()"
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
         label-width="120px"
-        class="demo-"
+        class="demo-ruleForm"
       >
-        <el-form-item label="Name">
-          <el-input v-model="name"></el-input>
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="ruleForm.name"></el-input>
         </el-form-item>
-        <el-form-item label="Description">
-          <el-input type="textarea" v-model="description"></el-input>
+        <el-form-item label="Description" prop="description">
+          <el-input type="textarea" v-model="ruleForm.description"></el-input>
         </el-form-item>
         <div class="mt-5 text-center">
-          <button class="btn btn-primary fixed-button" type="submit">
-            Add Category
-          </button>
+          <el-button
+            type="primary"
+            id="btn-submit"
+            @click="submitForm('ruleForm')"
+            >Add</el-button
+          >
         </div>
       </el-form>
     </div>
   </div>
 </template>
 <script>
-import ArchitectButton from "../../../components/common/ArchitectButton.vue";
 export default {
-  components: { ArchitectButton },
+  components: {},
   data() {
     return {
-      name: "",
-      description: "",
+      ruleForm: {
+        name: "",
+        description: "",
+      },
+      loading: false,
       error: null,
+      rules: {
+        name: { required: true, message: "Please input name" },
+        description: { required: true, message: "Please input description" },
+      },
     };
   },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.onAddCategory();
+        } else {
+          return false;
+        }
+      });
+    },
     async onAddCategory() {
+      this.loading = true;
       const category = {
-        name: this.name,
-        description: this.description,
+        name: this.ruleForm.name,
+        description: this.ruleForm.description,
       };
       try {
         await this.$store.dispatch("categories/onAddCategory", category);
 
-        this.$router.replace("/dashboard/categories");
+        this.$router.replace({ name: "CategoryList" });
       } catch (err) {
-        this.error = err || "Fail to Add";
+        this.error = err.response.data.error || "Fail to Add";
       }
+      this.loading = false;
+    },
+
+    clearError() {
+      this.error = null;
     },
   },
 };
@@ -86,5 +120,13 @@ label {
 .fixed-button:hover {
   background-color: #a3cc01 !important;
   transition: 0.3s all ease;
+}
+
+#btn-submit {
+  background-color: #263a4f;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #a3cc01 !important;
 }
 </style>

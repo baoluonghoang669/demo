@@ -21,23 +21,30 @@
         :model="ruleForm"
         status-icon
         :rules="rules"
-        ref="ruleForm demo-"
+        ref="ruleForm"
         label-width="120px"
         class="demo-ruleForm"
-        @submit.prevent="onAddProject()"
       >
-        <el-form-item label="Name">
-          <el-input v-model="name" required></el-input>
+        <el-form-item label="Name" prop="name">
+          <el-input v-model="ruleForm.name" required></el-input>
         </el-form-item>
-        <el-form-item label="Description">
-          <el-input type="textarea" v-model="description" required></el-input>
+        <el-form-item label="Description" prop="description">
+          <el-input
+            type="textarea"
+            v-model="ruleForm.description"
+            required
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Address">
-          <el-input type="textarea" v-model="address" required></el-input>
+        <el-form-item label="Address" prop="address">
+          <el-input
+            type="textarea"
+            v-model="ruleForm.address"
+            required
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Category">
+        <el-form-item label="Category" prop="category">
           <select
-            v-model="category"
+            v-model="ruleForm.category"
             id="category"
             @change="handleChange($event)"
           >
@@ -50,22 +57,33 @@
             </option>
           </select>
         </el-form-item>
-        <el-form-item label="Architecture">
-          <el-input v-model="architecture" required></el-input>
+        <el-form-item label="Architecture" prop="architecture">
+          <el-input v-model="ruleForm.architecture" required></el-input>
         </el-form-item>
-        <el-form-item label="Client">
-          <el-input v-model="client" required></el-input>
+        <el-form-item label="Client" prop="client">
+          <el-input v-model="ruleForm.client" required></el-input>
         </el-form-item>
-        <el-form-item label="Cost">
-          <el-input type="cost" v-model.number="cost" required></el-input>
+        <el-form-item label="Cost" prop="cost">
+          <el-input
+            type="cost"
+            v-model.number="ruleForm.cost"
+            required
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Area">
-          <el-input type="area" v-model.number="area" required></el-input>
+        <el-form-item label="Area" prop="area">
+          <el-input
+            type="area"
+            v-model.number="ruleForm.area"
+            required
+          ></el-input>
         </el-form-item>
         <div class="text-center">
-          <button class="btn btn-primary fixed-button" type="submit">
-            Update and Save
-          </button>
+          <el-button
+            type="primary"
+            id="btn-submit"
+            @click="submitForm('ruleForm')"
+            >Add</el-button
+          >
         </div>
       </el-form>
     </div>
@@ -75,16 +93,28 @@
 export default {
   data() {
     return {
-      name: "",
-      description: "",
-      address: "",
-      architecture: "",
-      category: localStorage.getItem("category"),
-      client: "",
-      area: "",
-      cost: null,
+      ruleForm: {
+        name: "",
+        description: "",
+        address: "",
+        architecture: "",
+        category: localStorage.getItem("category"),
+        client: "",
+        area: "",
+        cost: null,
+      },
       error: null,
       loading: false,
+      rules: {
+        name: { required: true, message: "Please input name" },
+        description: { required: true, message: "Please input description" },
+        address: { required: true, message: "Please input address" },
+        architecture: { required: true, message: "Please input architecture" },
+        category: { required: true, message: "Please input category" },
+        client: { required: true, message: "Please input client" },
+        area: { required: true, message: "Please input area" },
+        cost: { required: true, message: "Please input cost" },
+      },
     };
   },
   created() {
@@ -106,22 +136,31 @@ export default {
         this.error = err;
       }
     },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.onAddProject();
+        } else {
+          return false;
+        }
+      });
+    },
     async onAddProject() {
       this.loading = true;
       const project = {
-        name: this.name,
-        description: this.description,
-        address: this.address,
-        architecture: this.architecture,
-        category: this.category,
-        client: this.client,
-        cost: this.cost,
-        area: this.area,
+        name: this.ruleForm.name,
+        description: this.ruleForm.description,
+        address: this.ruleForm.address,
+        architecture: this.ruleForm.architecture,
+        category: this.ruleForm.category,
+        client: this.ruleForm.client,
+        cost: this.ruleForm.cost,
+        area: this.ruleForm.area,
       };
       try {
         await this.$store.dispatch("projects/onAddProject", project);
 
-        this.$router.replace("/dashboard/projects");
+        this.$router.replace({ name: "ProjectList" });
       } catch (err) {
         this.error = err.response.data.error || "Fail to Add";
       }
@@ -176,5 +215,13 @@ label {
 .fixed-button:hover {
   background-color: #a3cc01 !important;
   transition: 0.3s all ease;
+}
+
+#btn-submit {
+  background-color: #263a4f;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #a3cc01 !important;
 }
 </style>

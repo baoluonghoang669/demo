@@ -14,6 +14,44 @@ export default {
     commit("setProjects", responseData);
   },
 
+  //update project's photo
+  async uploadPhoto({ commit }, files) {
+    let url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}/photo`;
+
+    let formData = new FormData();
+    formData.append("file", files);
+
+    const response = await axios.put(url, formData, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    if (response.success === false) {
+      return;
+    }
+
+    commit("updatePhoto", response.data.data);
+  },
+
+  async sortProjects({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_PROJECTS}?sort=${payload}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
+      //error
+    }
+
+    commit("setProjects", responseData);
+  },
+
   //Get projects belongs to it's category
   async fetchProjectsForCategory({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}/${payload}/projects`;
@@ -27,8 +65,20 @@ export default {
     commit("setProjects", responseData);
   },
 
+  async fetchDetailProject({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_PROJECTS}/${payload}`;
+
+    const response = await axios.get(url);
+    const responseData = response.data.data;
+    if (responseData.success === false) {
+      //error
+    }
+
+    commit("setProjectsDetail", responseData);
+  },
+
   //Update project by id
-  async updateProjectById({ commit }, payload) {
+  async onUpdateProject({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}`;
 
     const detailProject = {
@@ -51,18 +101,6 @@ export default {
     }
 
     commit("setProjectsDetail", detailProject);
-  },
-
-  async fetchDetailProject({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${payload}`;
-
-    const response = await axios.get(url);
-    const responseData = response.data.data;
-    if (responseData.success === false) {
-      //error
-    }
-
-    commit("setProjectsDetail", responseData);
   },
 
   async onDeleteProject({ commit }, payload) {

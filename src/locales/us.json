@@ -8,5 +8,28 @@
     "profile": "My Profile",
     "account": "Account",
     "logout": "Logout"
-  }
+  },
+
+  "company": "Architect Company",
+  "year": "Years",
+  "working": "Working",
+  "since": "Since",
+  "label-about": "OUR COMPANY DESIGNED THE BEST HOME AND INTERIOR",
+  "title-about": "We know that good design means good business",
+  "text-about": "Founded by Founder Luong Hoang Linh in 2017, we’re an employee-owned firm pursuing a democratic design process that values everyone’s input. Today we have more than 150 people in Da Nang providing architecture, interior & urban design services from concept to completion.",
+  "more-about": "MORE ABOUT US",
+
+  "speciallization": "Our Speciallization",  "day1": "July 30, 2021",
+  "day2":"July 30, 2017",
+  "day3":"August 20, 2017",
+  "day4":"July 26, 2018",
+  "day5":"May 19, 2020",
+  "prize1":"My company had over 100 members.",
+  "prize2":"Established at DaNang City",
+  "prize3":"We recruited about 10 members for my company. Since that, we worked and helped together.",
+  "prize4":"We built and designed for more over 1000 peoples.",
+  "prize5":"We are recognized as a famous design company at DaNang City.",
+
+
+  "logo": "© Troc Studio 2017. All Rights Reseverd"
 }

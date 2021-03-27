@@ -16,9 +16,7 @@
     </architect-dialog>
 
     <!--form edit user -->
-    <architect-button typeClass="fix-back-btn" link :name="'UserList'">
-      <i class="fas fa-undo-alt"></i
-    ></architect-button>
+
     <div class="p-3 py-5">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-center">Form Edit User</h4>
@@ -26,6 +24,9 @@
       <el-form @submit.prevent="onSave()" label-width="120px" class="demo-">
         <el-form-item label="Username">
           <el-input v-model="name"></el-input>
+        </el-form-item>
+        <el-form-item label="Email">
+          <el-input v-model="email" disabled></el-input>
         </el-form-item>
         <el-form-item label="Phone Number">
           <el-input v-model.number="phone"></el-input>
@@ -90,6 +91,14 @@ export default {
         this.$store.commit("userAdmin/updateName", value);
       },
     },
+    email: {
+      get() {
+        return this.$store.state.userAdmin.detailUser.email;
+      },
+      set(value) {
+        this.$store.commit("userAdmin/updateEmail", value);
+      },
+    },
     phone: {
       get() {
         return this.$store.state.userAdmin.detailUser.phone;
@@ -152,6 +161,7 @@ export default {
       this.loading = true;
       const data = {
         name: this.name,
+        email: this.email,
         phone: this.phone,
         address: this.address,
         birthday: this.birthday,

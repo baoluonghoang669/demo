@@ -84,6 +84,14 @@ export default {
 
 .fix-back-btn {
   position: absolute;
-  right: 5%;
+  right: 8%;
+  top: 20%;
+}
+
+.btn-link-hover {
+  color: #a3cc01 !important;
+}
+.btn-link-hover:hover {
+  border-bottom: 1px solid #a3cc01;
 }
 </style>

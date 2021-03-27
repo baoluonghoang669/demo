@@ -18,6 +18,7 @@ export default {
 
   //update form projects
   updateName: (state, payload) => (state.projectsDetail.name = payload),
+  updatePhoto: (state, payload) => (state.projectsDetail.photo = payload),
   updateDescription: (state, payload) =>
     (state.projectsDetail.description = payload),
   updateArchitecture: (state, payload) =>

@@ -30,6 +30,23 @@ export default {
     commit("setReviews", responseData);
   },
 
+  async sortReviews({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_REVIEWS}?sort=${payload}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
+      //error
+    }
+
+    commit("setReviews", responseData);
+  },
+
   //get detail review of a user
   async fetchReviewById({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_REVIEWS}/${payload}`;

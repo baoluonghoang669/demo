@@ -18,6 +18,23 @@ export default {
     commit("setUsers", responseData);
   },
 
+  async sortUsers({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_USERS}?sort=${payload}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
+      //error
+    }
+
+    commit("setUsers", responseData);
+  },
+
   async fetchUserById({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_USERS}/${payload}`;
 
@@ -41,6 +58,7 @@ export default {
 
     const detailUser = {
       name: payload.name,
+      email: payload.email,
       phone: payload.phone,
       address: payload.address,
       birthday: payload.birthday,

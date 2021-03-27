@@ -84,7 +84,7 @@ p:hover {
 }
 
 .btn-all {
-  transform: translateY(11px);
+  transform: translateY(10px);
 }
 
 p:hover,

@@ -23,9 +23,9 @@ export default {
         this.$route.path === "/project" ||
         this.$route.path === "/contact" ||
         this.$route.path === "/auth" ||
-        this.$route.path === "/forgotpassword" ||
+        this.$route.path === "/auth/forgotpassword" ||
         this.$route.path === "/profile" ||
-        this.$route.path === "/resetpassword"
+        this.$route.path === "/auth/forgotpassword/resetpassword"
       ) {
         return false;
       }
@@ -62,6 +62,7 @@ a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 .animate-enter-from {
   transform: translateY(-30px);

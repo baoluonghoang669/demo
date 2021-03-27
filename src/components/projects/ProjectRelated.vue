@@ -5,7 +5,11 @@
       <div class="blog_g_item" v-for="project in projects" :key="project.id">
         <div class="press_img_item">
           <div class="press_img">
-            <img class="img-fluid" :src="project.photo" alt="" />
+            <architect-button
+              link
+              :path="'/project/' + project.id + '/projectDetail/' + id"
+              ><img class="img-fluid" :src="project.photo" alt=""
+            /></architect-button>
           </div>
           <div class="date">
             <architect-button
@@ -21,7 +25,8 @@
 </template>
 <script>
 export default {
-  mounted() {
+  components: {},
+  created() {
     this.fetchProjectsForCategory();
   },
   props: ["category", "id"],

@@ -8,5 +8,29 @@
     "profile": "Hồ sơ",
     "account": "Tài khoản",
     "logout": "Đăng xuất"
-  }
+  },
+
+  "company": "Công ty kiến trúc",
+  "year": "Năm",
+  "working": "Hoạt động",
+  "since": "Kể từ",
+  "label-about": "CÔNG TY CHÚNG TÔI THIẾT KẾ TỐT NHẤT VỀ NHÀ VÀ NỘI THẤT",
+  "title-about": "Chúng tôi biết rằng tốt thiết kế có nghĩa là kinh doanh tốt",
+  "text-about": "Được thành lập bởi Lương Hoàng Linh trong 2017, chúng ta là một nhân viên sở hữu công ty theo đuổi một dân chủ thiết kế quá trình mà các giá trị của tất cả mọi người đầu vào. Hôm nay chúng ta có nhiều hơn 150 người ở Đà Nẵng cung cấp kiến trúc, thất & đô thị dịch vụ thiết kế từ khái niệm để hoàn thành.",
+  "more-about": "VỀ CHÚNG TÔI",
+
+  "speciallization": "Lĩnh vực của chúng tôi",
+  "day1": "30 tháng 7, 2021",
+  "day2":"30 tháng 7, 2017",
+  "day3":"20 tháng 8, 2017",
+  "day4":"26 tháng 4, 2018",
+  "day5":"19 tháng 7, 2020",
+  "prize1":"Công ty của tôi đã có hơn 100 thành viên.",
+  "prize2":"Thành lập ở đà Nẵng",
+  "prize3":"Chúng tôi đã tuyển dụng khoảng 10 viên cho công ty của tôi. Kể từ khi đó, chúng tôi làm việc và giúp nhau.",
+  "prize4":"Chúng tôi xây dựng và được thiết kế cho nhiều hơn 1000 dân tộc.",
+  "prize5":"Chúng tôi là công nhận là một thiết kế nổi tiếng công ty ở đà Nẵng.",
+
+
+  "logo": "© Troc Studio 2017. Bản quyền bảo mật."
 }

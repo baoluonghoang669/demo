@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-auth">
     <!-- first dialog -->
     <architect-dialog :show="loading" title="Authenticating...">
       <architect-loading></architect-loading>
@@ -60,8 +60,11 @@
             Login Instead
           </button>
         </div>
-        <router-link class="forgot" to="/forgotpassword"
-          >Forgot password ?</router-link
+        <architect-button
+          link
+          typeClass="btn-link-hover"
+          :path="'/auth/forgotpassword'"
+          >Forgot password?</architect-button
         >
       </div>
     </form>
@@ -141,6 +144,13 @@ export default {
 };
 </script>
 <style scoped>
+.form-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 11%;
+  margin-bottom: 2%;
+}
 h1 {
   color: #263a4f;
   font-weight: bolder;

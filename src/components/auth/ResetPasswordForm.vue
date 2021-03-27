@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-auth">
     <!-- first dialog -->
     <architect-dialog :show="loading" title="Authenticating...">
       <architect-loading></architect-loading>
@@ -33,7 +33,9 @@
         </button>
       </div>
       <div class="back">
-        <router-link to="/forgotpassword">Back to previous page</router-link>
+        <architect-button link typeClass="btn-link-hover" :name="'Auth'"
+          >Back to Login Page</architect-button
+        >
       </div>
     </form>
   </div>
@@ -59,7 +61,7 @@ export default {
         await this.$store.dispatch("auth/onResetPassword", {
           password: this.password,
         });
-        this.$router.replace("/auth");
+        this.$router.replace({ name: "Auth" });
       } catch (err) {
         this.error = err.response.data.error || "Fail To update password ! ";
       }
@@ -72,6 +74,13 @@ export default {
 };
 </script>
 <style scoped>
+.form-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 11%;
+  margin-bottom: 2%;
+}
 h1 {
   color: #263a4f;
   font-weight: bolder;

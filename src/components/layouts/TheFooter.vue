@@ -3,12 +3,8 @@
     <footer id="footer" class="footer_area white_f">
       <div class="footer_widgets row m0">
         <aside class="f_widgets_item">
-          <div class="f_logo">
-            <img
-              class="img-fluid"
-              src="../../assets/images/logo/logo-dark.png"
-              alt=""
-            />
+          <div class="f_title">
+            <h3>TROC STUDIO</h3>
           </div>
         </aside>
         <aside class="f_widgets_item">
@@ -17,10 +13,10 @@
               <h3>contact</h3>
             </div>
             <p>
-              17 Princess Road, London, Greater London, NW18JR, United Kingdom
+              k55/11 My An, Ngu Hanh Son District, Da Nang City, Viet Nam.
             </p>
             <a href="mailto:luonglinham@gmail.com">luonglinham@gmail.com</a>
-            <a href="tel:+0902985987">(+0084) 912-3548-073</a>
+            <a href="tel:+0902985987">(+84) 902 985 987</a>
           </div>
         </aside>
         <aside class="f_widgets_item">
@@ -68,7 +64,7 @@
       <div class="footer_copyright">
         <div class="left_text">
           <p>
-            ©2018 <router-link to="#">Intria</router-link>. All Rights Reserved
+            ©2017 <router-link to="#">Troc Studio</router-link>. All Rights Reserved
           </p>
         </div>
         <div class="middle_text">
@@ -114,7 +110,7 @@
         <li></li>
 
         <li>
-          <a href="https://www.facebook.com/"
+          <a href="https://www.facebook.com/TROC-Studio-111045133645249"
             ><i class="ion-social-facebook"></i
           ></a>
         </li>

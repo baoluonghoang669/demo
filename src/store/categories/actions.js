@@ -27,6 +27,23 @@ export default {
     commit("setCategories", responseData);
   },
 
+  async sortCategories({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_CATEGORIES}?sort=${payload}`;
+
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
+      //error
+    }
+
+    commit("setCategories", responseData);
+  },
+
   async fetchDetailCategory({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}/${payload}`;
 
@@ -39,34 +56,34 @@ export default {
     commit("setCategoriesDetail", responseData);
   },
 
-    //Update project by id
-    async updateCategoryById({ commit }, payload) {
-      const url = `${process.env.VUE_APP_GET_CATEGORIES}/${router.currentRoute.value.params.id}`;
+  //Update project by id
+  async updateCategoryById({ commit }, payload) {
+    const url = `${process.env.VUE_APP_GET_CATEGORIES}/${router.currentRoute.value.params.id}`;
 
-      const detailCategory = {
-        name: payload.name,
-        description: payload.description,
-      };
+    const detailCategory = {
+      name: payload.name,
+      description: payload.description,
+    };
 
-      const response = await axios.put(url, detailCategory, {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
+    const response = await axios.put(url, detailCategory, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
 
-      if (response.data.data.success === false) {
-        //error
-      }
+    if (response.data.data.success === false) {
+      //error
+    }
 
-      commit("setCategoriesDetail", detailCategory);
-    },
+    commit("setCategoriesDetail", detailCategory);
+  },
 
   async onAddCategory({ commit }, payload) {
     const url = process.env.VUE_APP_GET_CATEGORIES;
 
     const category = {
       name: payload.name,
-      description: payload.desription,
+      description: payload.description,
     };
 
     const response = await axios.post(url, category, {

@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <div class="row" >
-      <div class="col-lg-3 col-md-6 col-sm-6">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -55,7 +55,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -82,7 +82,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-6">
+      <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="card card-stats">
           <div class="card-body ">
             <div class="row">
@@ -109,22 +109,81 @@
           </div>
         </div>
       </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-body ">
+            <div class="row">
+              <div class="col-5 col-md-4">
+                <div class="icon-big text-center icon-warning">
+                  <i class="fas fa-search-location"></i>
+                </div>
+              </div>
+              <div class="col-7 col-md-8">
+                <div class="numbers">
+                  <p class="card-category">Messages</p>
+                  <p class="card-title">{{ messages }}</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer ">
+            <hr />
+            <div class="stats">
+              <i class="fa fa-refresh"></i>
+              View
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card ">
           <div class="card-header ">
-            <h5 class="card-title">Notification</h5>
+            <h5 class="card-title">Company Management Chart</h5>
             <p class="card-category">Update 24 Hours</p>
           </div>
           <div class="card-body ">
-            <canvas id="chartHours" width="400" height="100"></canvas>
+            <pie-chart
+              :data="[
+                ['Projects', projects],
+                ['Users', users],
+                ['Categories', categories],
+                ['Reviews', reviews],
+                ['Messages', messages],
+              ]"
+            ></pie-chart>
           </div>
-          <div class="card-footer ">
-            <hr />
-            <div class="stats">
-              <i class="fa fa-history"></i> Updated 3 minutes ago
-            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header ">
+            <h5 class="card-title">
+              Revenue / month <small>( Unit: Vnd )</small>
+            </h5>
+            <p class="card-category">Update 24 Hours</p>
+          </div>
+          <div class="card-body ">
+            <column-chart
+              :data="[
+                ['January', 320000000],
+                ['February', 460000000],
+                ['March', 280000000],
+                ['April', 320000000],
+                ['May', 460000000],
+                ['June', 280000000],
+                ['July', 320000000],
+                ['August', 460000000],
+                ['September', 280000000],
+                ['October', 280000000],
+                ['November', 280000000],
+                ['December', 280000000],
+              ]"
+            ></column-chart>
           </div>
         </div>
       </div>
@@ -133,9 +192,10 @@
 </template>
 <script>
 export default {
+  components: {},
   data() {
     return {
-      error: null
+      error: null,
     };
   },
   created() {
@@ -159,34 +219,37 @@ export default {
     users() {
       return this.$store.getters["userAdmin/checkUsers"];
     },
+    messages() {
+      return this.$store.getters["messages/checkMessages"];
+    },
   },
   methods: {
     async fetchListProjects() {
       try {
         await this.$store.dispatch("projects/fetchListProjects");
       } catch (err) {
-        this.error = err
+        this.error = err;
       }
     },
     async fetchAllReviews() {
       try {
         await this.$store.dispatch("reviews/fetchAllReviews");
       } catch (err) {
-        this.error = err
+        this.error = err;
       }
     },
     async fetchCategories() {
       try {
         await this.$store.dispatch("categories/fetchAllCategories");
       } catch (err) {
-        this.error = err
+        this.error = err;
       }
     },
     async fetchAllUsers() {
       try {
         await this.$store.dispatch("userAdmin/fetchAllUsers");
       } catch (err) {
-        this.error = err
+        this.error = err;
       }
     },
   },

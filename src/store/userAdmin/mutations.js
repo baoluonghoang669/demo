@@ -14,6 +14,7 @@ export default {
 
   //update form user
   updateName: (state, payload) => (state.detailUser.name = payload),
+  updateEmail: (state, payload) => (state.detailUser.email = payload),
   updatePhone: (state, payload) => (state.detailUser.phone = payload),
   updateAddress: (state, payload) => (state.detailUser.address = payload),
   updateBirthday: (state, payload) => (state.detailUser.birthday = payload),

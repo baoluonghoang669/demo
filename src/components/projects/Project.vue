@@ -21,6 +21,7 @@
       </div>
       <project-list></project-list>
     </section>
+    <architect-advertise-label class="container"></architect-advertise-label>
   </div>
 </template>
 <script>

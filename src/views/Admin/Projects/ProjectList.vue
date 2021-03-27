@@ -11,7 +11,7 @@
             type="button"
             class="btn btn-primary"
           >
-            Add a Project
+            Add Project
           </router-link>
 
           <div class="input-group no-border fix-position-input">
@@ -26,12 +26,13 @@
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
               class="table-responsive"
-              v-else-if="!loading && projects && projects.length > 0"
+              v-else-if="projects && projects.length > 0"
             >
-              <table class="table">
+              <table class="table table-bordered">
                 <thead class=" text-primary">
-                  <th>
+                  <th class="th-name">
                     Name
+                    <i class="fa fa-fw fa-sort" @click="sortProjects(name)"></i>
                   </th>
                   <th>
                     Image
@@ -50,33 +51,33 @@
                   </th>
                   <th>
                     Cost
+                    <i class="fa fa-fw fa-sort" @click="sortProjects(cost)"></i>
                   </th>
                   <th>
                     Area
+                    <i class="fa fa-fw fa-sort" @click="sortProjects(area)"></i>
                   </th>
-                  <th>
-                    Completed Day
-                  </th>
+
                   <th>
                     Edit
                   </th>
                 </thead>
                 <tbody v-for="project in researchProjects" :key="project.id">
                   <tr>
-                    <td>
+                    <td v-if="project">
                       {{ project.name }}
                     </td>
-                    <td>
+                    <td v-if="project">
                       <img
                         class="fix-size-img"
                         :src="project.photo"
                         alt="img"
                       />
                     </td>
-                    <td>
+                    <td v-if="project">
                       {{ project.description }}
                     </td>
-                    <td>
+                    <td v-if="project">
                       {{ project.categories.name }}
                     </td>
                     <td>
@@ -89,9 +90,6 @@
                       {{ project.cost }}
                     </td>
                     <td>{{ project.area }} m<sup>2</sup></td>
-                    <td>
-                      {{ project.completeDay }}
-                    </td>
                     <td>
                       <architect-button
                         link
@@ -123,6 +121,7 @@ export default {
     return {
       loading: false,
       search: "",
+      error: null,
     };
   },
   created() {
@@ -154,17 +153,31 @@ export default {
       this.loading = true;
       try {
         await this.$store.dispatch("projects/fetchListProjects");
-        this.loading = false;
-      } catch (error) {
-        this.loading = false;
+      } catch (err) {
+        this.error = err;
+      }
+      this.loading = false;
+    },
+    async sortProjects(name) {
+      try {
+        await this.$store.dispatch("projects/sortProjects", name);
+      } catch (err) {
+        this.error = err;
       }
     },
   },
 };
 </script>
 <style scoped>
-@import "../../../../public/css/dashboard/paper-dashboard.css";
-@import "../../../../public/css/dashboard/bootstrap.min.css";
+.fa {
+  cursor: pointer;
+}
+.th-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+}
 .flex-edit {
   padding: 12px 7px;
   vertical-align: middle;
@@ -172,53 +185,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.sidebar,
-.sidebar-wrapper {
-  background-color: #263a4f !important;
-}
-
-.sidebar:after {
-  background-color: #263a4f !important;
-}
-
-.sidebar .sidebar-wrapper {
-  width: 259px;
-}
-
-.nav li a {
-  color: #fff;
-}
-
-.fa-edit {
-  color: #a3cc01;
-  margin: 0 2px;
-  cursor: pointer;
-}
-.fa-trash-alt {
-  color: red;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: #263a4f !important;
-  width: 200px;
-  margin: 0 15px;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #a3cc01 !important;
-  transition: 0.3s all ease;
-}
-
-th {
-  color: #263a4f;
-}
-
-td,
-th {
-  text-align: center;
 }
 
 .fa-undo-alt {

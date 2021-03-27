@@ -5,7 +5,6 @@ export default {
     state.token = payload.token;
     state.role = payload.role;
   },
-
   setUser: (state, payload) => (state.user = payload),
 
   setResetToken: (state, payload) => (state.setResetToken = payload),

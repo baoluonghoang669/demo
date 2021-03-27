@@ -92,8 +92,7 @@
           ><img src="../../assets/images/logo/logo-white.png" alt=""
         /></router-link>
         <router-link class="phone" to="/"
-          ><i class="lnr lnr-phone-handset"></i> (+070) 3689 56 56
-          56</router-link
+          ><i class="lnr lnr-phone-handset"></i> (+84) 902 985 987</router-link
         >
       </div>
       <div class="float-right">
@@ -116,11 +115,11 @@
                 alt="img"
               />
               <li v-if="!isAuth">
-                <router-link to="/auth">Account</router-link>
+                <router-link to="/auth">{{ $t("menu.account") }}</router-link>
               </li>
               <li v-else>
                 <router-link to="/profile">Profile</router-link>
-                <a @click="logout">Logout</a>
+                <a @click="logout">{{ $t("menu.logout") }}</a>
               </li>
             </ul>
             <ul class="responsive-tel">
@@ -170,7 +169,7 @@
                   class="icon ion-social-dribbble-outline"
                 ></router-link>
               </div>
-              <div class="copy">© Intria 2018. All Rights Reseverd</div>
+              <div class="copy">{{ $t("logo") }}</div>
             </div>
           </div>
         </div>

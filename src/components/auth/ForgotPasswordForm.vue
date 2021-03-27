@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-auth">
     <!-- first dialog -->
     <architect-dialog :show="loading" title="Authenticating...">
       <architect-loading></architect-loading>
@@ -35,13 +35,17 @@
         </button>
       </div>
       <div class="back">
-        <router-link to="/auth">Back to Login Page</router-link>
+        <architect-button link typeClass="btn-link-hover" :name="'Auth'"
+          >Back to Login Page</architect-button
+        >
       </div>
     </form>
   </div>
 </template>
 <script>
+import ArchitectButton from "../common/ArchitectButton.vue";
 export default {
+  components: { ArchitectButton },
   data() {
     return {
       formIsInvalid: false,
@@ -62,7 +66,7 @@ export default {
           email: this.email,
         });
 
-        this.$router.replace("/resetpassword");
+        this.$router.replace({name: "Resetpassword"});
       } catch (err) {
         this.error = err.response.data.error || "Fail to get password ! ";
       }
@@ -75,6 +79,13 @@ export default {
 };
 </script>
 <style scoped>
+.form-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 11%;
+  margin-bottom: 2%;
+}
 h1 {
   color: #263a4f;
   font-weight: bolder;

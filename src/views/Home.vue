@@ -21,7 +21,7 @@
       </div>
       <div class="text_box">
         <div class="tp-caption tp-resizeme text_1">
-          <p>Troc Studio<br />{{ $t("company") }}</p>
+          <p>{{ $t("troc") }}<br />{{ $t("company") }}</p>
         </div>
       </div>
       <div class="year">
@@ -49,7 +49,7 @@
           </div>
           <div class="col-lg-5">
             <div class="studio_text">
-              <h6 class="s_title white">Troc Studio</h6>
+              <h6 class="s_title white">{{ $t("troc") }}</h6>
               <h3>{{ $t("label-about") }}</h3>
               <h5>{{ $t("title-about") }}</h5>
               <p>
@@ -139,7 +139,7 @@
     <section class="clients_area white_cl">
       <div class="container">
         <div class="main_title white">
-          <h2>+2,500 Happy clients</h2>
+          <h2>+500 {{ $t("happy-client") }}</h2>
         </div>
 
         <!-- Comment list of user -->

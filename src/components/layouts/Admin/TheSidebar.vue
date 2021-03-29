@@ -80,4 +80,8 @@ export default {
 .logo {
   text-align: center;
 }
+
+a.router-link-exact-active {
+  color: #a3cc01 !important;
+}
 </style>

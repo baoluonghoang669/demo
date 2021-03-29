@@ -16,8 +16,6 @@ export default {
   },
 
   updateComment: (state, payload) => (state.detailReview.comment = payload),
-
   updateRating: (state, payload) => (state.detailReview.rating = payload),
-
   updateProject: (state, payload) => (state.detailReview.project._id = payload),
 };

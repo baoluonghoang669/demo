@@ -29,7 +29,7 @@
       <div class="col-md-4">
         <form id="uploadForm" enctype=multipart/form-data class="d-flex flex-column align-items-center text-center p-3 py-5" @submit.prevent="onUpload()">
           <div class="fix-avatar" v-if="user">
-            <img class="rounded-circle mt-5" :src="user.avatar" />
+            <img class="rounded-circle mt-5" :src="avatar" />
           </div>
           <input type="file" ref="file" id="file" @change="onFileChange" name="file">
           <input type=submit button class="change-avatar" value="Upload avatar">
@@ -39,7 +39,7 @@
         <div>
           <div class="p-3 py-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="text-right">Profile Settings</h4>
+              <h4 class="text-right">{{$t("update-profile")}}</h4>
             </div>
             <div class="row mt-2">
               <div class="col-md-12">
@@ -50,6 +50,7 @@
                   class="form-control"
                   placeholder="Enter your name"
                   v-model="name"
+                  required
                 />
               </div>
             </div>
@@ -74,6 +75,7 @@
                   class="form-control"
                   placeholder="Enter phone number"
                   v-model="phone"
+                  required
                 />
               </div>
               <div class="col-md-12">
@@ -84,6 +86,7 @@
                   class="form-control"
                   placeholder="enter address"
                   v-model="address"
+                  required
                 />
               </div>
               <div class="col-md-12">
@@ -94,6 +97,7 @@
                   class="form-control"
                   placeholder="Birthday"
                   v-model="birthday"
+                  required
                 />
               </div>
               <div class="col-md-12">
@@ -105,6 +109,7 @@
                   placeholder="Role"
                   v-model="role"
                   disabled
+                  required
                 />
               </div>
             </div>
@@ -117,6 +122,7 @@
                   class="form-control"
                   placeholder="country"
                   v-model="country"
+                  required
                 />
               </div>
               <div class="col-md-6">
@@ -126,12 +132,13 @@
                   name="city"
                   class="form-control"
                   v-model="city"
+                  required
                 />
               </div>
             </div>
             <div class="mt-5 text-center">
               <button class="btn btn-primary fixed-button" type="submit">
-                Save Profile
+                {{$t("save")}}
               </button>
             </div>
           </div>
@@ -155,6 +162,14 @@ export default {
     this.fetchDetailUser();
   },
   computed: {
+    avatar: {
+      get() {
+        return this.$store.state.auth.user.avatar;
+      },
+      set(value) {
+        this.$store.commit("auth/updateAvatar", value);
+      },
+    },
     name: {
       get() {
         return this.$store.state.auth.user.name;
@@ -252,9 +267,9 @@ export default {
       try {
         await this.$store
           .dispatch("auth/updateDetailUser", data)
-          .then(() => (this.notify = "Update successfully !"));
+          .then(() => (this.notify = this.$t("update-success")));
       } catch (err) {
-        this.error = err || "Fail to Update";
+        this.error = err || this.$t("fail");
       }
       this.loading = false;
     },

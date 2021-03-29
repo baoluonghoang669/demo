@@ -15,8 +15,8 @@
       <p>{{ error }}</p>
     </architect-dialog>
     <form @submit.prevent="onForgotPassword">
-      <h1>Forgot Password</h1>
-      <p>If you have forgotten your password, you can reset it here.</p>
+      <h1>{{ $t("forgotpassword") }}</h1>
+      <p>{{ $t("reset") }}</p>
       <div class="input-group">
         <input
           type="email"
@@ -27,17 +27,17 @@
         />
       </div>
       <p class="warning" v-if="formIsInvalid">
-        Please enter a valid email.
+        {{ $t("valid-email") }}
       </p>
       <div class="button-group">
         <button type="submit" id="btn-login">
-          Reset my password
+          {{ $t("reset-password") }}
         </button>
       </div>
       <div class="back">
-        <architect-button link typeClass="btn-link-hover" :name="'Auth'"
-          >Back to Login Page</architect-button
-        >
+        <architect-button link typeClass="btn-link-hover" :name="'Auth'">{{
+          $t("back-to")
+        }}</architect-button>
       </div>
     </form>
   </div>
@@ -66,9 +66,9 @@ export default {
           email: this.email,
         });
 
-        this.$router.replace({name: "Resetpassword"});
+        this.$router.replace({ name: "Resetpassword" });
       } catch (err) {
-        this.error = err.response.data.error || "Fail to get password ! ";
+        this.error = err.response.data.error || this.$t("fail");
       }
       this.loading = false;
     },

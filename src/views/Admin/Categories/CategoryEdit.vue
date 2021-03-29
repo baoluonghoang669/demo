@@ -93,7 +93,7 @@ export default {
 
         this.$router.replace({ name: "CategoryList" });
       } catch (err) {
-        this.error = err.response.data.error || "Fail to Update";
+        this.error = err.response.data.error || this.$t("fail");
       }
       this.loading = false;
     },

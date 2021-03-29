@@ -2,31 +2,33 @@ import axios from "axios";
 import router from "../../router/index";
 
 export default {
+  //Fetch all categories
   async fetchAllCategories({ commit }) {
     const url = process.env.VUE_APP_GET_CATEGORIES;
 
     const response = await axios.get(url);
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setCategories", responseData);
   },
 
-  //for show in client
+  //Show in client
   async fetchCategories({ commit }) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}?limit=3`;
 
     const response = await axios.get(url);
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setCategories", responseData);
   },
 
+  //Sort
   async sortCategories({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}?sort=${payload}`;
 
@@ -38,19 +40,20 @@ export default {
     const responseData = response.data.data;
 
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setCategories", responseData);
   },
 
+  //Get detail of a category
   async fetchDetailCategory({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}/${payload}`;
 
     const response = await axios.get(url);
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setCategoriesDetail", responseData);
@@ -71,13 +74,16 @@ export default {
       },
     });
 
-    if (response.data.data.success === false) {
-      //error
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
+      return;
     }
 
     commit("setCategoriesDetail", detailCategory);
   },
 
+  //Add a category
   async onAddCategory({ commit }, payload) {
     const url = process.env.VUE_APP_GET_CATEGORIES;
 
@@ -95,12 +101,13 @@ export default {
     const responseData = response.data.data;
 
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("addCategory", category);
   },
 
+  //Delete a category
   async onDeleteCategory({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_CATEGORIES}/${payload}`;
 
@@ -113,7 +120,7 @@ export default {
     const responseData = response.data.data;
 
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("deleteCategory", payload);

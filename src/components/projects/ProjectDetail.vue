@@ -280,7 +280,7 @@ export default {
             this.rating = "";
           });
       } catch (err) {
-        this.error = "You can comment once per project";
+        this.error = this.$t("notify-comment");
       }
       this.loading = false;
     },

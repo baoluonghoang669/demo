@@ -2,6 +2,7 @@ import axios from "axios";
 import router from "../../router";
 
 export default {
+  //Login
   async onLogin({ commit }, payload) {
     let url = process.env.VUE_APP_LOGIN;
 
@@ -13,7 +14,7 @@ export default {
 
     const responseData = response.data;
 
-    if (responseData.success !== true) {
+    if (responseData.success === false) {
       return;
     }
     localStorage.setItem("token", responseData.token);
@@ -29,6 +30,7 @@ export default {
     });
   },
 
+  //Register
   async onRegister({ commit }, payload) {
     let url = process.env.VUE_APP_REGISTER;
 
@@ -40,8 +42,8 @@ export default {
 
     const responseData = response.data;
 
-    if (response.status !== 200) {
-      //error
+    if (responseData.success === false) {
+      return;
     }
 
     localStorage.setItem("token", responseData.token);
@@ -55,6 +57,7 @@ export default {
     });
   },
 
+  //Forgot password
   async onForgotPassword({ commit }, payload) {
     let url = process.env.VUE_APP_FORGOT_PASSWORD;
 
@@ -70,6 +73,7 @@ export default {
     });
   },
 
+  //Reset password
   async onResetPassword({ commit }, payload) {
     let url = `${process.env.VUE_APP_RESET_PASSWORD}/${localStorage.getItem(
       "resetToken"
@@ -80,13 +84,16 @@ export default {
 
     const response = await axios.put(url, password);
 
-    if (response.data.success === false) {
+    const responseData = response.data.data;
+
+    if (responseData.success === false) {
       return;
     }
 
     commit("setResetPassword", password);
   },
 
+  //Fetch detail logged user
   async fetchDetailUser({ commit }) {
     let url = process.env.VUE_APP_GET_ME;
 
@@ -97,6 +104,10 @@ export default {
     });
 
     const responseData = response.data.data;
+
+    if(responseData.success === false) {
+      return;
+    }
 
     commit("setUser", responseData);
   },
@@ -125,7 +136,7 @@ export default {
       return;
     }
 
-    commit("setUser", detailUser);
+    commit("setProfileUser", detailUser);
   },
 
   //update user's avatar
@@ -151,6 +162,7 @@ export default {
     commit("updateAvatar", response.data.data);
   },
 
+  //Logout
   async logout({ commit }) {
     let url = process.env.VUE_APP_LOGOUT;
 

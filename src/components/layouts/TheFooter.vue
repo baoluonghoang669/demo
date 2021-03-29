@@ -4,16 +4,16 @@
       <div class="footer_widgets row m0">
         <aside class="f_widgets_item">
           <div class="f_title">
-            <h3>TROC STUDIO</h3>
+            <h3>{{ $t("troc") }}</h3>
           </div>
         </aside>
         <aside class="f_widgets_item">
           <div class="f_contact">
             <div class="f_title">
-              <h3>contact</h3>
+              <h3>{{ $t("menu.contact") }}</h3>
             </div>
             <p>
-              k55/11 My An, Ngu Hanh Son District, Da Nang City, Viet Nam.
+              {{ $t("detail-address") }}
             </p>
             <a href="mailto:luonglinham@gmail.com">luonglinham@gmail.com</a>
             <a href="tel:+0902985987">(+84) 902 985 987</a>
@@ -22,41 +22,78 @@
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>quick links</h3>
+              <h3>{{ $t("menu.about") }}</h3>
             </div>
             <ul class="list">
-              <li><router-link to="">Works</router-link></li>
-              <li><router-link to="">Affiliate</router-link></li>
-              <li><router-link to="">Shop</router-link></li>
-              <li><router-link to="">Partners</router-link></li>
-              <li><router-link to="">Reviews</router-link></li>
+              <li>
+                <a
+                  href="https://www.facebook.com/TROC-Studio-111045133645249/"
+                  >{{ $t("fanpage") }}</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com/search?q=troc+studio&rlz=1C1CHBF_enVN852VN852&oq=troc+studio&aqs=chrome..69i57j35i39j69i60l6.1264j0j7&sourceid=chrome&ie=UTF-8"
+                  >{{ $t("information") }}</a
+                >
+              </li>
+              <li>
+                <a href="https://www.facebook.com/">{{ $t("menu.project") }}</a>
+              </li>
             </ul>
           </div>
         </aside>
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>Company</h3>
+              <h3>{{ $t("my-company") }}</h3>
             </div>
             <ul class="list">
-              <li><router-link to="">About</router-link></li>
-              <li><router-link to="">Contact</router-link></li>
-              <li><router-link to="">Career</router-link></li>
-              <li><router-link to="">Blog</router-link></li>
+              <li>
+                <architect-button link :name="'Home'">{{
+                  $t("menu.home")
+                }}</architect-button>
+              </li>
+              <li>
+                <architect-button link :name="'About'">{{
+                  $t("menu.about")
+                }}</architect-button>
+              </li>
+              <li>
+                <architect-button link :name="'Contact'">{{
+                  $t("menu.contact")
+                }}</architect-button>
+              </li>
+              <li>
+                <architect-button link :name="'Project'">{{
+                  $t("menu.project")
+                }}</architect-button>
+              </li>
             </ul>
           </div>
         </aside>
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>help center</h3>
+              <h3>{{ $t("support") }}</h3>
             </div>
             <ul class="list">
-              <li><router-link to="">FAQs</router-link></li>
-              <li><router-link to="">Terms & Conditions</router-link></li>
-              <li><router-link to="">Privacy Policy</router-link></li>
-              <li><router-link to="">Help</router-link></li>
-              <li><router-link to="">Services</router-link></li>
+              <li>
+                <a href="http://ipc.danang.gov.vn/vi/du-an-keu-goi-dau-tu">{{
+                  $t("investors")
+                }}</a>
+              </li>
+              <li>
+                <a
+                  href="https://kinhnghiemdulichdn.com/thiet-ke-nha-da-nang/"
+                  >{{ $t("designers") }}</a
+                >
+              </li>
+              <li>
+                <a href="https://batdongsan.com.vn/bat-dong-san-da-nang">{{
+                  $t("estate")
+                }}</a>
+              </li>
             </ul>
           </div>
         </aside>
@@ -64,7 +101,8 @@
       <div class="footer_copyright">
         <div class="left_text">
           <p>
-            ©2017 <router-link to="#">Troc Studio</router-link>. All Rights Reserved
+            ©2017 <router-link to="#">{{ $t("troc") }}</router-link
+            >. {{ $t("rule") }}
           </p>
         </div>
         <div class="middle_text">

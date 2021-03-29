@@ -15,7 +15,7 @@
       <p>{{ error }}</p>
     </architect-dialog>
     <form @submit.prevent="onResetPassword">
-      <h1>Reset Password</h1>
+      <h1>{{ $t("form-reset") }}</h1>
       <div class="input-group">
         <input
           type="password"
@@ -25,17 +25,17 @@
         />
       </div>
       <p class="warning" v-if="formIsInvalid">
-        Password must be at least 6 characters.
+        {{ $t("valid-pass") }}
       </p>
       <div class="button-group">
         <button type="submit" id="btn-login">
-          Update my password
+          {{ $t("update-pass") }}
         </button>
       </div>
       <div class="back">
-        <architect-button link typeClass="btn-link-hover" :name="'Auth'"
-          >Back to Login Page</architect-button
-        >
+        <architect-button link typeClass="btn-link-hover" :name="'Auth'">{{
+          $t("back-to")
+        }}</architect-button>
       </div>
     </form>
   </div>
@@ -63,7 +63,7 @@ export default {
         });
         this.$router.replace({ name: "Auth" });
       } catch (err) {
-        this.error = err.response.data.error || "Fail To update password ! ";
+        this.error = err.response.data.error || this.$t("fail");
       }
       this.loading = false;
     },

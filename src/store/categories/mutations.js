@@ -16,7 +16,6 @@ export default {
     );
   },
 
-  //update form categories
   updateName: (state, payload) => (state.categoriesDetail.name = payload),
   updateDescription: (state, payload) =>
     (state.categoriesDetail.description = payload),

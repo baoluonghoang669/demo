@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+  //Fetch all messsages
   async fetchAllMessage({ commit }) {
     const url = process.env.VUE_APP_GET_MESSAGES;
 
@@ -11,12 +12,13 @@ export default {
     });
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setMessages", responseData);
   },
 
+  //Send a messsage
   async onSendMessage({ commit }, payload) {
     const url = process.env.VUE_APP_GET_MESSAGES;
 
@@ -34,12 +36,13 @@ export default {
     });
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("postMessages", message);
   },
 
+  //Update a messsage
   async updateMessage({ commit }, payload) {
     const url = `${process.env.VUE_APP_GET_MESSAGES}/${payload}`;
 
@@ -53,8 +56,9 @@ export default {
       },
     });
 
-    if (response.success === false) {
-      //error
+    const responseData = response.data.data;
+    if (responseData.success === false) {
+      return;
     }
 
     commit("updateContact", message);

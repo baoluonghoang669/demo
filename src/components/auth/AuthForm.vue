@@ -16,8 +16,8 @@
     </architect-dialog>
 
     <form @submit.prevent="checkClick == 1 ? onLogin() : onRegister()">
-      <h1 v-if="checkClick == 1">Login Form</h1>
-      <h1 v-else>Register Form</h1>
+      <h1 v-if="checkClick == 1">{{ $t("signin-form") }}</h1>
+      <h1 v-else>{{ $t("signup-form") }}</h1>
       <div class="input-group">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" v-model="email" />
@@ -32,16 +32,15 @@
         />
       </div>
       <p class="inValid" v-if="formIsInvalid">
-        Please enter a valid email and password (must be at least 6 characters
-        long).
+        {{ $t("valid-form") }}
       </p>
       <div class="button-group">
         <div v-if="checkClick">
           <button type="submit" id="btn-login" v-if="checkClick == 1">
-            Login
+            {{ $t("login") }}
           </button>
           <button type="submit" id="btn-login" v-else>
-            Sign Up
+            {{ $t("register") }}
           </button>
           <button
             type="button"
@@ -49,7 +48,7 @@
             id="btn-signup"
             v-if="checkClick == 1"
           >
-            Sign Up Instead
+            {{ $t("re-register") }}
           </button>
           <button
             type="button"
@@ -57,14 +56,14 @@
             id="btn-signup"
             v-else
           >
-            Login Instead
+            {{ $t("re-login") }}
           </button>
         </div>
         <architect-button
           link
           typeClass="btn-link-hover"
           :path="'/auth/forgotpassword'"
-          >Forgot password?</architect-button
+          >{{ $t("forgotpassword") }} ?</architect-button
         >
       </div>
     </form>
@@ -132,7 +131,7 @@ export default {
         });
         this.$router.replace("/");
       } catch (err) {
-        this.error = err.response.data.error || "Fail to authenticate.";
+        this.error = err.response.data.error || this.$t("fail");
       }
       this.loading = false;
     },

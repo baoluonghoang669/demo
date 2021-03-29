@@ -9,7 +9,6 @@ export default {
     const response = await axios.get(url);
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
       return;
     }
 
@@ -23,7 +22,6 @@ export default {
     const response = await axios.get(url);
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
       return;
     }
 
@@ -41,7 +39,7 @@ export default {
     const responseData = response.data.data;
 
     if (responseData.success === false) {
-      //error
+      return;
     }
 
     commit("setReviews", responseData);
@@ -58,7 +56,6 @@ export default {
     });
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
       return;
     }
 
@@ -81,7 +78,6 @@ export default {
 
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
       return;
     }
 
@@ -100,7 +96,6 @@ export default {
 
     const responseData = response.data.data;
     if (responseData.success === false) {
-      //error
       return;
     }
 
@@ -123,7 +118,8 @@ export default {
       },
     });
 
-    if (response.data.data.success === false) {
+    const responseData = response.data.data;
+    if (responseData.success === false) {
       return;
     }
 

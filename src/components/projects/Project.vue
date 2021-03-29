@@ -2,7 +2,7 @@
   <div>
     <section class="breadcrumb_link">
       <div class="container">
-        <p>Welcome to</p>
+        <p>{{ $t("Welcome to") }}</p>
       </div>
     </section>
     <!--================End Breadcrumb Area =================-->
@@ -13,7 +13,7 @@
         <div class="projects_tt">
           <div class="float-md-left">
             <div class="main_title white">
-              <h2>our projects</h2>
+              <h2>{{ $t("menu.project") }}</h2>
             </div>
           </div>
           <type-filter></type-filter>

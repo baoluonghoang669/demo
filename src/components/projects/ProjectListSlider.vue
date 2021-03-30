@@ -4,7 +4,7 @@
       <div class="l_text">
         <div class="float-md-left">
           <div class="main_title white">
-            <h2>Our Projects</h2>
+            <h2>{{ $t("our-project") }}</h2>
           </div>
         </div>
         <type-filter></type-filter>
@@ -25,13 +25,13 @@
                   ><i class="ion-android-arrow-forward"></i
                 ></architect-button>
                 <div class="project_text">
-                  <h5>Area: {{ project.area }}m<sup>2</sup></h5>
-                  <h5>Architecture: {{ project.architecture }}</h5>
+                  <h5>{{ $t("area") }}: {{ project.area }}m<sup>2</sup></h5>
+                  <h5>{{ $t("architect") }}: {{ project.architecture }}</h5>
                   <architect-button link :path="'/project/' + project.id"
                     ><h4>{{ project.name }}</h4></architect-button
                   >
                   <h4 v-if="project.averageRating > 0">
-                    Rating: {{ project.averageRating }}
+                    {{ $t("rating") }}: {{ project.averageRating }}
                   </h4>
                 </div>
               </div>

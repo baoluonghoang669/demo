@@ -63,6 +63,7 @@
   "view-project": "Xem các dự án",
   "meet-team": "Gặp gỡ các thành viên của chúng tôi",
   "our-fanpage": "Fanpage của chúng tôi",
+  "our-project": "Các dự án của chúng tôi",
   "map": "Bản đồ chỉ dẫn",
   "send-mess": "Gửi tin nhắn cho chúng tôi",
   "btn-send": "Gửi tin nhắn",
@@ -87,6 +88,23 @@
   "update-pass": "Cập nhật mật khẩu",
   "fail": "Thực thi thất bại.",
   "update-success": "Cập nhật thành công !",
-  "notify-comment": "Bạn chỉ có thể bình luận 1 lần trên 1 bài viêt."
+  "notify-comment": "Bạn chỉ có thể bình luận 1 lần trên 1 bài viêt.",
 
+
+  "category": "Mẫu loại",
+  "client": "Khách hàng",
+  "completed": "Ngày hoàn thành",
+  "architect": "Kiến trúc sư",
+  "area": "Khu vực ",
+  "cost": "Chi phí",
+  "comment": "Các bình luận",
+  "rating": "Đánh giá",
+  "leave-review": "Để lại lời nhận xét",
+  "work-together": "Hãy làm việc cùng chúng tôi",
+  "post-comment": "Bình luận",
+
+  "founder": "Nhà sáng lập",
+  "director": "Giám đốc",
+  "manager": "Quản lý",
+  "designer": "Nhà thiết kế"
 }

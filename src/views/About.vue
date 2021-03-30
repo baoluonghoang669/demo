@@ -38,7 +38,7 @@
                 <div class="date">
                   <a href="#">{{ $t("day1z") }}</a>
                   <i class="ion-record"></i>
-                  <a href="#">News</a>
+                  <a href="#">{{ $t("news") }}</a>
                 </div>
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe
@@ -104,7 +104,7 @@
                 />
                 <div class="hover">
                   <h5>Lương Hoàng Linh</h5>
-                  <h6>CEO Founder</h6>
+                  <h6>{{$t("founder")}}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/linh.luong.37"
@@ -133,7 +133,7 @@
                 />
                 <div class="hover">
                   <h5>Ngô Khánh</h5>
-                  <h6>Director</h6>
+                  <h6>{{$t("director")}}</h6>
                   <ul class="list">
                     <li>
                       <a
@@ -165,7 +165,7 @@
                 />
                 <div class="hover">
                   <h5>Trần Khánh</h5>
-                  <h6>Manager</h6>
+                  <h6>{{$t("manager")}}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/khanh.tran.1987"
@@ -194,7 +194,7 @@
                 />
                 <div class="hover">
                   <h5>Hinh Vuong</h5>
-                  <h6>Designer</h6>
+                  <h6>{{$t("designer")}}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/Tv.tien2507"

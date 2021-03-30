@@ -28,7 +28,7 @@
         <router-link to="">2021</router-link>
       </div>
     </section>
-    <!--================Inter Studio Area =================-->
+    <!--=============-->
     <section class="intes_studio_area white_cl">
       <div class="since_text">
         <h5>{{ $t("since") }} 2004</h5>
@@ -63,9 +63,7 @@
         </div>
       </div>
     </section>
-    <!--================End Inter Studio Area =================-->
-
-    <!--================Our Speciallization Area =================-->
+    <!--==========-->
     <section class="speciallization_area white_cl">
       <div class="container">
         <h6 class="s_title white">{{ $t("speciallization") }}</h6>
@@ -133,8 +131,6 @@
         </div>
       </div>
     </section>
-    <!--================End Our Press Area =================-->
-
     <!--================Clients Area =================-->
     <section class="clients_area white_cl">
       <div class="container">
@@ -144,12 +140,10 @@
 
         <!-- Comment list of user -->
         <comment-list></comment-list>
-        <!-- end comment -->
 
         <architect-advertise-label></architect-advertise-label>
       </div>
     </section>
-    <!--================End Clients Area =================-->
   </div>
 </template>
 

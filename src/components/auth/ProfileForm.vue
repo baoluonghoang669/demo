@@ -15,7 +15,7 @@
       <p>{{ error }}</p>
     </architect-dialog>
 
-    <!-- second dialog -->
+    <!-- third dialog -->
     <architect-dialog
       :show="!!notify"
       title="Notification"

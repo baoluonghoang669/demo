@@ -12,8 +12,12 @@
       <!--================End Project Details Area =================-->
       <section class="breadcrumb_link">
         <div class="container">
-          <router-link :to="{ name: 'ProjectMoreDetail' }">Home</router-link>
-          <router-link :to="{ name: 'Project' }">Projects</router-link>
+          <router-link :to="{ name: 'ProjectMoreDetail' }">{{
+            $t("menu.home")
+          }}</router-link>
+          <router-link :to="{ name: 'Project' }">{{
+            $t("menu.project")
+          }}</router-link>
         </div>
       </section>
 
@@ -24,30 +28,33 @@
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5 v-if="projects.categories">
-                  Category: <span>{{ projects.categories.name }}</span>
+                  {{ $t("category") }}:
+                  <span>{{ projects.categories.name }}</span>
                 </h5>
                 <h5>
-                  Client: <span>{{ projects.client }}</span>
-                </h5>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="pd_item">
-                <h5>
-                  Completed: <span>{{ projects.completeDay }}</span>
-                </h5>
-                <h5>
-                  Architect: <span>{{ projects.architecture }}</span>
+                  {{ $t("client") }}: <span>{{ projects.client }}</span>
                 </h5>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5>
-                  Area: <span>{{ projects.area }} m<sup>2</sup></span>
+                  {{ $t("completed") }}: <span>{{ projects.completeDay }}</span>
+                </h5>
+                <h5>
+                  {{ $t("architect") }}:
+                  <span>{{ projects.architecture }}</span>
+                </h5>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+              <div class="pd_item">
+                <h5>
+                  {{ $t("area") }}:
+                  <span>{{ projects.area }} m<sup>2</sup></span>
                 </h5>
                 <h5 class="share_link">
-                  Cost: <span>{{ projects.cost }} vnd</span>
+                  {{ $t("category") }}: <span>{{ projects.cost }} vnd</span>
                 </h5>
               </div>
             </div>
@@ -96,7 +103,7 @@
             </carousel>
           </div>
           <div class="villa_reviews" v-if="reviews">
-            <h2>{{ reviews.length }} Comments</h2>
+            <h2>{{ reviews.length }} {{ $t("comment") }}</h2>
             <div
               class="list_comments"
               v-for="review in reviews"
@@ -109,7 +116,7 @@
                   <p>
                     {{ review.comment }}
                   </p>
-                  <h5>Rating: {{ review.rating }}/10</h5>
+                  <h5>{{ $t("rating") }}: {{ review.rating }}/10</h5>
                   <small>{{ review.createdAt }}</small>
                 </div>
               </div>
@@ -132,7 +139,7 @@
             <div class="container">
               <div class="fomment_form_inner box_layout fix_box_layout">
                 <div class="comment_title">
-                  <h2>Leave a Review</h2>
+                  <h2>{{ $t("leave-review") }}</h2>
                 </div>
                 <form
                   class="row comment_from"
@@ -162,8 +169,11 @@
                     />
                   </div>
                   <div class="form-group col-md-12">
-                    <architect-button value="value" type="submit" v-if="isAuth"
-                      >Post Comment</architect-button
+                    <architect-button
+                      value="value"
+                      type="submit"
+                      v-if="isAuth"
+                      >{{ $t("post-comment") }}</architect-button
                     >
                     <architect-button
                       link
@@ -173,7 +183,7 @@
                       type="submit"
                       typeClass=" form-control fix_btn"
                       v-else
-                      >Post comment</architect-button
+                      >{{ $t("post-comment") }}</architect-button
                     >
                   </div>
                 </form>
@@ -181,7 +191,7 @@
             </div>
           </section>
           <div class="link_btn">
-            <a href="#">Let’s work together !</a>
+            <a href="#">{{ $t("work-together") }} !</a>
           </div>
           <b
             >Contact:

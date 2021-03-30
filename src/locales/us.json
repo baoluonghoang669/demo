@@ -63,6 +63,7 @@
   "view-project": "View my projects",
   "meet-team": "Meet Our Team",
   "our-fanpage": "Our fanpage",
+  "our-project": "Our Projects",
   "map": "Map Direction",
   "send-mess": "Send a message for us",
   "btn-send": "Send Message",
@@ -86,6 +87,23 @@
   "update-pass": "Update my password",
   "fail": "Fail to process",
   "update-success": "Update successfully !",
-  "notify-comment": "You can comment once per project"
+  "notify-comment": "You can comment once per project",
 
+
+  "category": "Category",
+  "client": "Client",
+  "completed": "Completed",
+  "architect": "Architect",
+  "area": "Area",
+  "cost": "Cost",
+  "comment": "Comments",
+  "rating": "Rating",
+  "leave-review": "Leave a review",
+  "work-together": "Let’s work together",
+  "post-comment": "Post comment",
+
+  "founder": "CEO Founder",
+  "director": "Director",
+  "manager": "Manager",
+  "designer": "Designer"
 }

@@ -6,14 +6,14 @@
           <div class="card-header">
             <h4 class="card-title">All Reviews</h4>
           </div>
-          <div class="input-group no-border fix-position-input">
+          <architect-input-search>
             <input
               type="text"
               v-model="search"
               class="form-control"
               placeholder="Search by comment..."
             />
-          </div>
+          </architect-input-search>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div

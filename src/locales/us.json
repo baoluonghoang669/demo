@@ -10,6 +10,11 @@
     "logout": "Logout"
   },
 
+  "CEO": "Luong Hoang Linh",
+  "DIRECTOR": "Ngo Khanh ",
+  "MANAGER": "Tran Khanh",
+  "DESIGNER": "Gia Huy",
+
   "company": "Architect Company",
   "year": "Years",
   "working": "Working",

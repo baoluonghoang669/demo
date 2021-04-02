@@ -107,25 +107,33 @@
         </div>
         <div class="middle_text">
           <ul class="list">
-            <li><a href="https://twitter.com">Twitter</a></li>
             <li>
-              <a href="https://www.facebook.com">Facebook</a>
+              <a href="https://twitter.com">{{ $t("Twitter") }}</a>
             </li>
             <li>
-              <a href="https://www.instagram.com/?hl=vi">Instagram</a>
+              <a href="https://www.facebook.com">{{ $t("Facebook") }}</a>
             </li>
             <li>
-              <a href="https://www.tumblr.com/">Tumblr</a>
+              <a href="https://www.instagram.com/?hl=vi">{{
+                $t("Instagram")
+              }}</a>
             </li>
             <li>
-              <a href="https://www.pinterest.com/">Pinterest</a>
+              <a href="https://www.tumblr.com/">{{ $t("Tumblr") }}</a>
+            </li>
+            <li>
+              <a href="https://www.pinterest.com/">{{ $t("Pinterest") }}</a>
             </li>
           </ul>
         </div>
         <div class="right_text">
           <ul class="list">
-            <li><router-link to="">Eng</router-link></li>
-            <li><router-link to="">Fra</router-link></li>
+            <li>
+              <a href="https://www.facebook.com/TROC-Studio-111045133645249"
+                >Fanpage</a
+              >
+            </li>
+            <li><a href="https://www.facebook.com/">HomePage</a></li>
           </ul>
         </div>
       </div>

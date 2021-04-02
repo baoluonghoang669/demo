@@ -1,11 +1,11 @@
 export default {
-  setMessages: (state, payload) => (state.messages = payload),
+  SET_MESSAGES: (state, payload) => (state.messages = payload),
 
-  postMessages(state, payload) {
+  ADD_MESSAGE(state, payload) {
     return state.messages.push(payload);
   },
 
-  updateContact(state) {
+  UPDATE_CONTACT_MESSAGE(state) {
     return !state.messages.isContacted;
   },
 };

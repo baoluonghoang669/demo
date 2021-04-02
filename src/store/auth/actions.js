@@ -21,9 +21,9 @@ export default {
     localStorage.setItem("role", responseData.role);
     localStorage.setItem("idUser", responseData.idUser);
 
-    commit("setUser", responseData.data);
+    commit("SET_USER", responseData.data);
 
-    commit("setToken", {
+    commit("SET_TOKEN", {
       token: responseData.token,
       role: responseData.role,
       id: responseData.idUser,
@@ -50,7 +50,7 @@ export default {
     localStorage.setItem("role", responseData.role);
     localStorage.setItem("idUser", responseData.idUser);
 
-    commit("setToken", {
+    commit("SET_TOKEN", {
       token: responseData.token,
       role: responseData.role,
       id: responseData.idUser,
@@ -68,7 +68,7 @@ export default {
 
     localStorage.setItem("resetToken", response.data.resetToken);
 
-    commit("setResetToken", {
+    commit("SET_RESET_TOKEN", {
       token: responseData.resetToken,
     });
   },
@@ -90,7 +90,7 @@ export default {
       return;
     }
 
-    commit("setResetPassword", password);
+    commit("SET_RESET_PASSWORD", password);
   },
 
   //Fetch detail logged user
@@ -109,7 +109,7 @@ export default {
       return;
     }
 
-    commit("setUser", responseData);
+    commit("SET_USER", responseData);
   },
 
   //update user detail profile
@@ -136,7 +136,7 @@ export default {
       return;
     }
 
-    commit("setProfileUser", detailUser);
+    commit("SET_PROFILE_USER", detailUser);
   },
 
   //update user's avatar
@@ -159,7 +159,7 @@ export default {
       return;
     }
 
-    commit("updateAvatar", response.data.data);
+    commit("UPDATE_AVATAR", response.data.data);
   },
 
   //Logout
@@ -174,7 +174,7 @@ export default {
     localStorage.removeItem("idUser");
     router.push("/");
 
-    commit("setToken", {
+    commit("SET_TOKEN", {
       token: null,
       role: null,
       idUser: null,

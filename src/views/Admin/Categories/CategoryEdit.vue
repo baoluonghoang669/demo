@@ -54,7 +54,7 @@ export default {
         return this.$store.state.categories.categoriesDetail.name;
       },
       set(value) {
-        this.$store.commit("categories/updateName", value);
+        this.$store.commit("categories/UPDATE_NAME", value);
       },
     },
     description: {
@@ -62,7 +62,7 @@ export default {
         return this.$store.state.categories.categoriesDetail.description;
       },
       set(value) {
-        this.$store.commit("categories/updateDescription", value);
+        this.$store.commit("categories/UPDATE_DESCRIPTION", value);
       },
     },
   },

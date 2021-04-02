@@ -1,13 +1,13 @@
 export default {
-  setCategories: (state, payload) => (state.categories = payload),
+  SET_CATEGORIES: (state, payload) => (state.categories = payload),
 
-  setCategoriesDetail: (state, payload) => (state.categoriesDetail = payload),
+  SET_DETAIL_CATEGORY: (state, payload) => (state.categoriesDetail = payload),
 
-  addCategory(state, payload) {
+  ADD_CATEGORY(state, payload) {
     return state.categories.push(payload);
   },
 
-  deleteCategory(state, payload) {
+  DELETE_CATEGORY(state, payload) {
     return state.categories.splice(
       state.categories.indexOf(
         state.categories.find((category) => category._id === payload)
@@ -16,7 +16,7 @@ export default {
     );
   },
 
-  updateName: (state, payload) => (state.categoriesDetail.name = payload),
-  updateDescription: (state, payload) =>
+  UPDATE_NAME: (state, payload) => (state.categoriesDetail.name = payload),
+  UPDATE_DESCRIPTION: (state, payload) =>
     (state.categoriesDetail.description = payload),
 };

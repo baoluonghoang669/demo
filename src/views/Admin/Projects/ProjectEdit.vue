@@ -71,7 +71,7 @@
         <el-form-item label="Area" prop="area">
           <el-input
             type="area"
-            v-model.number="area"
+            v-model="area"
             autocomplete="off"
           ></el-input>
         </el-form-item>
@@ -102,47 +102,7 @@ export default {
         return this.$store.state.projects.projectsDetail.name;
       },
       set(value) {
-        this.$store.commit("projects/updateName", value);
-      },
-    },
-    description: {
-      get() {
-        return this.$store.state.projects.projectsDetail.description;
-      },
-      set(value) {
-        this.$store.commit("projects/updateDescription", value);
-      },
-    },
-    architecture: {
-      get() {
-        return this.$store.state.projects.projectsDetail.architecture;
-      },
-      set(value) {
-        this.$store.commit("projects/updateArchitecture", value);
-      },
-    },
-    client: {
-      get() {
-        return this.$store.state.projects.projectsDetail.client;
-      },
-      set(value) {
-        this.$store.commit("projects/updateClient", value);
-      },
-    },
-    cost: {
-      get() {
-        return this.$store.state.projects.projectsDetail.cost;
-      },
-      set(value) {
-        this.$store.commit("projects/updateCost", value);
-      },
-    },
-    area: {
-      get() {
-        return this.$store.state.projects.projectsDetail.area;
-      },
-      set(value) {
-        this.$store.commit("projects/updateArea", value);
+        this.$store.commit("projects/UPDATE_NAME", value);
       },
     },
     photo: {
@@ -150,7 +110,47 @@ export default {
         return this.$store.state.projects.projectsDetail.photo;
       },
       set(value) {
-        this.$store.commit("projects/updatePhoto", value);
+        this.$store.commit("projects/UPDATE_PHOTO", value);
+      },
+    },
+    description: {
+      get() {
+        return this.$store.state.projects.projectsDetail.description;
+      },
+      set(value) {
+        this.$store.commit("projects/UPDATE_DESCRIPTION", value);
+      },
+    },
+    architecture: {
+      get() {
+        return this.$store.state.projects.projectsDetail.architecture;
+      },
+      set(value) {
+        this.$store.commit("projects/UPDATE_ARCHITECTURE", value);
+      },
+    },
+    client: {
+      get() {
+        return this.$store.state.projects.projectsDetail.client;
+      },
+      set(value) {
+        this.$store.commit("projects/UPDATE_CLIENT", value);
+      },
+    },
+    cost: {
+      get() {
+        return this.$store.state.projects.projectsDetail.cost;
+      },
+      set(value) {
+        this.$store.commit("projects/UPDATE_COST", value);
+      },
+    },
+    area: {
+      get() {
+        return this.$store.state.projects.projectsDetail.area;
+      },
+      set(value) {
+        this.$store.commit("projects/UPDATE_AREA", value);
       },
     },
   },

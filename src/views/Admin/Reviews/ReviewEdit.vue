@@ -56,7 +56,7 @@ export default {
         return this.$store.state.reviews.detailReview.comment;
       },
       set(value) {
-        this.$store.commit("reviews/updateComment", value);
+        this.$store.commit("reviews/UPDATE_COMMENT", value);
       },
     },
     rating: {
@@ -64,7 +64,7 @@ export default {
         return this.$store.state.reviews.detailReview.rating;
       },
       set(value) {
-        this.$store.commit("reviews/updateRating", value);
+        this.$store.commit("reviews/UPDATE_RATING", value);
       },
     },
     project: {
@@ -75,7 +75,7 @@ export default {
         return this.$store.state.reviews.detailReview.project;
       },
       set(value) {
-        this.$store.commit("reviews/updateProject", value);
+        this.$store.commit("reviews/UPDATE_PROJECT", value);
       },
     },
   },

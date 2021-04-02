@@ -103,8 +103,8 @@
                   alt="img"
                 />
                 <div class="hover">
-                  <h5>Lương Hoàng Linh</h5>
-                  <h6>{{$t("founder")}}</h6>
+                  <h5>{{ $t("CEO") }}</h5>
+                  <h6>{{ $t("founder") }}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/linh.luong.37"
@@ -132,8 +132,8 @@
                   alt="img"
                 />
                 <div class="hover">
-                  <h5>Ngô Khánh</h5>
-                  <h6>{{$t("director")}}</h6>
+                  <h5>{{ $t("DIRECTOR") }}</h5>
+                  <h6>{{ $t("director") }}</h6>
                   <ul class="list">
                     <li>
                       <a
@@ -164,8 +164,8 @@
                   alt="img"
                 />
                 <div class="hover">
-                  <h5>Trần Khánh</h5>
-                  <h6>{{$t("manager")}}</h6>
+                  <h5>{{ $t("MANAGER") }}</h5>
+                  <h6>{{ $t("manager") }}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/khanh.tran.1987"
@@ -193,8 +193,8 @@
                   alt="img"
                 />
                 <div class="hover">
-                  <h5>Hinh Vuong</h5>
-                  <h6>{{$t("designer")}}</h6>
+                  <h5>{{ $t("DESIGNER") }}</h5>
+                  <h6>{{ $t("designer") }}</h6>
                   <ul class="list">
                     <li>
                       <a href="https://www.facebook.com/Tv.tien2507"

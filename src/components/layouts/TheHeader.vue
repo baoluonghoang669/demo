@@ -118,7 +118,7 @@
                 <router-link to="/auth">{{ $t("menu.account") }}</router-link>
               </li>
               <li v-else>
-                <router-link to="/profile">Profile</router-link>
+                <router-link to="/profile">{{ $t("menu.profile") }}</router-link>
                 <a @click="logout">{{ $t("menu.logout") }}</a>
               </li>
             </ul>
@@ -212,7 +212,7 @@ export default {
     handleChange(e) {
       localStorage.setItem("lang", e.target.value);
       this.$i18n.locale = e.target.value;
-      this.$store.commit("auth/setLanguages", e.target.value);
+      this.$store.commit("auth/SET_LANGUAGES", e.target.value);
     },
 
     //responsive menu

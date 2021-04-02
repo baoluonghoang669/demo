@@ -12,7 +12,7 @@ export default {
       return;
     }
 
-    commit("setReviews", responseData);
+    commit("SET_REVIEWS", responseData);
   },
 
   //get detail review of a user
@@ -25,7 +25,7 @@ export default {
       return;
     }
 
-    commit("setReviews", responseData);
+    commit("SET_REVIEWS", responseData);
   },
 
   async sortReviews({ commit }, payload) {
@@ -42,7 +42,7 @@ export default {
       return;
     }
 
-    commit("setReviews", responseData);
+    commit("SET_REVIEWS", responseData);
   },
 
   //get detail review of a user
@@ -59,7 +59,7 @@ export default {
       return;
     }
 
-    commit("setDetailReview", responseData);
+    commit("SET_DETAIL_REVIEW", responseData);
   },
 
   async updateReviewById({ commit }, payload) {
@@ -81,7 +81,7 @@ export default {
       return;
     }
 
-    commit("setDetailReview", detailReview);
+    commit("SET_DETAIL_REVIEW", detailReview);
   },
 
   //delete review of a user
@@ -99,7 +99,7 @@ export default {
       return;
     }
 
-    commit("deleteReview", payload);
+    commit("DELETE_REVIEW", payload);
   },
 
   //add review when user post a comment
@@ -123,6 +123,6 @@ export default {
       return;
     }
 
-    commit("addReview", userReview);
+    commit("ADD_REVIEW", userReview);
   },
 };

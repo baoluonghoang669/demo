@@ -11,7 +11,7 @@ export default {
       //error
     }
 
-    commit("setProjects", responseData);
+    commit("SET_PROJECTS", responseData);
   },
 
   //update project's photo
@@ -32,7 +32,7 @@ export default {
       return;
     }
 
-    commit("updatePhoto", response.data.data);
+    commit("UPDATE_PHOTO", response.data.data);
   },
 
   async sortProjects({ commit }, payload) {
@@ -49,7 +49,7 @@ export default {
       //error
     }
 
-    commit("setProjects", responseData);
+    commit("SET_PROJECTS", responseData);
   },
 
   //Get projects belongs to it's category
@@ -62,7 +62,7 @@ export default {
       //error
     }
 
-    commit("setProjects", responseData);
+    commit("SET_PROJECTS", responseData);
   },
 
   async fetchDetailProject({ commit }, payload) {
@@ -74,7 +74,7 @@ export default {
       //error
     }
 
-    commit("setProjectsDetail", responseData);
+    commit("SET_DETAIL_PROJECT", responseData);
   },
 
   //Update project by id
@@ -100,7 +100,7 @@ export default {
       //error
     }
 
-    commit("setProjectsDetail", detailProject);
+    commit("SET_DETAIL_PROJECT", detailProject);
   },
 
   async onDeleteProject({ commit }, payload) {
@@ -117,7 +117,7 @@ export default {
       //error
     }
 
-    commit("deleteProject", payload);
+    commit("DELETE_PROJECT", payload);
   },
 
   async onAddProject({ commit }, payload) {
@@ -147,6 +147,6 @@ export default {
       //error
     }
 
-    commit("addProject", project);
+    commit("ADD_PROJECT", project);
   },
 };

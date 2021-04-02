@@ -1,14 +1,14 @@
 export default {
-  setLanguages: (state, payload) => (state.lang = payload),
+  SET_LANGUAGES: (state, payload) => (state.lang = payload),
 
-  setToken: (state, payload) => {
+  SET_TOKEN: (state, payload) => {
     state.token = payload.token;
     state.role = payload.role;
   },
 
-  setUser: (state, payload) => (state.user = payload),
+  SET_USER: (state, payload) => (state.user = payload),
 
-  setProfileUser(state, payload) {
+  SET_PROFILE_USER(state, payload) {
     return (
       (state.user.name = payload.name),
       (state.user.email = payload.email),
@@ -20,16 +20,16 @@ export default {
     );
   },
 
-  setResetToken: (state, payload) => (state.setResetToken = payload),
+  SET_RESET_TOKEN: (state, payload) => (state.setResetToken = payload),
 
-  setResetPassword: (state, payload) => (state.resetPassword = payload),
+  SET_RESET_PASSWORD: (state, payload) => (state.resetPassword = payload),
 
-  updateName: (state, payload) => (state.user.name = payload),
-  updateEmail: (state, payload) => (state.user.email = payload),
-  updatePhone: (state, payload) => (state.user.phone = payload),
-  updateAddress: (state, payload) => (state.user.address = payload),
-  updateBirthday: (state, payload) => (state.user.birthday = payload),
-  updateCity: (state, payload) => (state.user.city = payload),
-  updateCountry: (state, payload) => (state.user.country = payload),
-  updateAvatar: (state, payload) => (state.user.avatar = payload),
+  UPDATE_NAME: (state, payload) => (state.user.name = payload),
+  UPDATE_EMAIL: (state, payload) => (state.user.email = payload),
+  UPDATE_PHONE: (state, payload) => (state.user.phone = payload),
+  UPDATE_ADDRESS: (state, payload) => (state.user.address = payload),
+  UPDATE_BIRTHDAY: (state, payload) => (state.user.birthday = payload),
+  UPDATE_CITY: (state, payload) => (state.user.city = payload),
+  UPDATE_COUNTRY: (state, payload) => (state.user.country = payload),
+  UPDATE_AVATAR: (state, payload) => (state.user.avatar = payload),
 };

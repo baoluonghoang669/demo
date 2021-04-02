@@ -13,14 +13,14 @@
           >
             Add User
           </router-link>
-          <div class="input-group no-border fix-position-input">
+          <architect-input-search>
             <input
               type="text"
               v-model="search"
               class="form-control"
               placeholder="Search by name..."
             />
-          </div>
+          </architect-input-search>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
@@ -127,9 +127,8 @@
   </div>
 </template>
 <script>
-// import ModalAdmin from "../../../components/common/ModalAdmin.vue";
 export default {
-  // components: { ModalAdmin },
+  components: {  },
   data() {
     return {
       show: false,
@@ -203,13 +202,6 @@ export default {
 .fix-size-img {
   width: 100px;
   height: 100px;
-}
-
-.fix-position-input {
-  width: 40%;
-  left: 58%;
-  transform: translateY(-35px);
-  outline: none;
 }
 
 .fa-trash-alt:hover {

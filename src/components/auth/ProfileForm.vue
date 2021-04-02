@@ -167,7 +167,7 @@ export default {
         return this.$store.state.auth.user.avatar;
       },
       set(value) {
-        this.$store.commit("auth/updateAvatar", value);
+        this.$store.commit("auth/UPDATE_AVATAR", value);
       },
     },
     name: {
@@ -233,7 +233,7 @@ export default {
         return this.$store.state.auth.user.avatar;
       },
       set(value) {
-        this.$store.commit("auth/updateAvatar", value);
+        this.$store.commit("auth/UPDATE_AVATAR", value);
       },
     },
     isAuth() {

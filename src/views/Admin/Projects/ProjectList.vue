@@ -14,14 +14,14 @@
             Add Project
           </router-link>
 
-          <div class="input-group no-border fix-position-input">
+          <architect-input-search>
             <input
               type="text"
               v-model="search"
               class="form-control"
               placeholder="Search by name..."
             />
-          </div>
+          </architect-input-search>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div

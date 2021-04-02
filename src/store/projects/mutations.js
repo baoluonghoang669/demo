@@ -1,13 +1,13 @@
 export default {
-  setProjects: (state, payload) => (state.projects = payload),
+  SET_PROJECTS: (state, payload) => (state.projects = payload),
 
-  setProjectsDetail: (state, payload) => (state.projectsDetail = payload),
+  SET_DETAIL_PROJECT: (state, payload) => (state.projectsDetail = payload),
 
-  addProject(state, payload) {
+  ADD_PROJECT(state, payload) {
     return state.projects.push(payload);
   },
 
-  deleteProject(state, payload) {
+  DELETE_PROJECT(state, payload) {
     return state.projects.splice(
       state.projects.indexOf(
         state.projects.find((project) => project._id === payload)
@@ -16,13 +16,13 @@ export default {
     );
   },
 
-  updateName: (state, payload) => (state.projectsDetail.name = payload),
-  updatePhoto: (state, payload) => (state.projectsDetail.photo = payload),
-  updateDescription: (state, payload) =>
+  UPDATE_NAME: (state, payload) => (state.projectsDetail.name = payload),
+  UPDATE_PHOTO: (state, payload) => (state.projectsDetail.photo = payload),
+  UPDATE_DESCRIPTION: (state, payload) =>
     (state.projectsDetail.description = payload),
-  updateArchitecture: (state, payload) =>
+  UPDATE_ARCHITECTURE: (state, payload) =>
     (state.projectsDetail.architecture = payload),
-  updateClient: (state, payload) => (state.projectsDetail.client = payload),
-  updateCost: (state, payload) => (state.projectsDetail.cost = payload),
-  updateArea: (state, payload) => (state.projectsDetail.area = payload),
+  UPDATE_CLIENT: (state, payload) => (state.projectsDetail.client = payload),
+  UPDATE_COST: (state, payload) => (state.projectsDetail.cost = payload),
+  UPDATE_AREA: (state, payload) => (state.projectsDetail.area = payload),
 };

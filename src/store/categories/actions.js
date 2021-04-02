@@ -12,7 +12,7 @@ export default {
       return;
     }
 
-    commit("setCategories", responseData);
+    commit("SET_CATEGORIES", responseData);
   },
 
   //Show in client
@@ -25,7 +25,7 @@ export default {
       return;
     }
 
-    commit("setCategories", responseData);
+    commit("SET_CATEGORIES", responseData);
   },
 
   //Sort
@@ -43,7 +43,7 @@ export default {
       return;
     }
 
-    commit("setCategories", responseData);
+    commit("SET_CATEGORIES", responseData);
   },
 
   //Get detail of a category
@@ -56,7 +56,7 @@ export default {
       return;
     }
 
-    commit("setCategoriesDetail", responseData);
+    commit("SET_DETAIL_CATEGORY", responseData);
   },
 
   //Update project by id
@@ -80,7 +80,7 @@ export default {
       return;
     }
 
-    commit("setCategoriesDetail", detailCategory);
+    commit("SET_DETAIL_CATEGORY", detailCategory);
   },
 
   //Add a category
@@ -104,7 +104,7 @@ export default {
       return;
     }
 
-    commit("addCategory", category);
+    commit("ADD_CATEGORY", category);
   },
 
   //Delete a category
@@ -123,6 +123,6 @@ export default {
       return;
     }
 
-    commit("deleteCategory", payload);
+    commit("DELETE_CATEGORY", payload);
   },
 };

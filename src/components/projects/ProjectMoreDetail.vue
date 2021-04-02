@@ -122,74 +122,7 @@
               </div>
             </div>
           </div>
-          <architect-dialog :show="loading" title="Authenticating...">
-            <architect-loading></architect-loading>
-          </architect-dialog>
-
-          <!-- second dialog -->
-          <architect-dialog
-            :show="!!error"
-            title="An error occurred"
-            @close="clearError"
-            fixed
-          >
-            <p>{{ error }}</p>
-          </architect-dialog>
-          <section class="comment_form first_form">
-            <div class="container">
-              <div class="fomment_form_inner box_layout fix_box_layout">
-                <div class="comment_title">
-                  <h2>{{ $t("leave-review") }}</h2>
-                </div>
-                <form
-                  class="row comment_from"
-                  @submit.prevent="sendComment()"
-                  novalidate="novalidate"
-                >
-                  <div class="form-group col-md-12">
-                    <textarea
-                      class="form-control fix-textarea"
-                      id="comment"
-                      rows="1"
-                      name="comment"
-                      placeholder="Comment"
-                      v-model="comment"
-                    ></textarea>
-                  </div>
-                  <div class="form-group p_star col-md-6">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="rating"
-                      name="rating"
-                      placeholder="Rating/10"
-                      min="1"
-                      max="10"
-                      v-model.number="rating"
-                    />
-                  </div>
-                  <div class="form-group col-md-12">
-                    <architect-button
-                      value="value"
-                      type="submit"
-                      v-if="isAuth"
-                      >{{ $t("post-comment") }}</architect-button
-                    >
-                    <architect-button
-                      link
-                      :path="'/auth'"
-                      :query="linkQuery"
-                      value="value"
-                      type="submit"
-                      typeClass=" form-control fix_btn"
-                      v-else
-                      >{{ $t("post-comment") }}</architect-button
-                    >
-                  </div>
-                </form>
-              </div>
-            </div>
-          </section>
+          <comment-form></comment-form>
           <div class="link_btn">
             <a href="#">{{ $t("work-together") }} !</a>
           </div>
@@ -209,6 +142,7 @@ import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import TheFooter from "../layouts/TheFooter.vue";
 import TheHeader from "../layouts/TheHeader.vue";
+import CommentForm from '../comment/CommentForm.vue';
 export default {
   components: {
     Carousel,
@@ -216,13 +150,12 @@ export default {
     Navigation,
     TheFooter,
     TheHeader,
+    CommentForm,
   },
   data() {
     return {
       comment: "",
       rating: "",
-      loading: false,
-      error: null,
     };
   },
   created() {
@@ -235,12 +168,6 @@ export default {
     },
     reviews() {
       return this.$store.getters["reviews/getReviews"];
-    },
-    isAuth() {
-      return this.$store.getters["auth/isAuth"];
-    },
-    linkQuery() {
-      return "project/" + this.$route.params.id;
     },
   },
   methods: {
@@ -263,29 +190,6 @@ export default {
       } catch (err) {
         this.error = err;
       }
-    },
-    async sendComment() {
-      this.loading = true;
-      const comment = {
-        comment: this.comment,
-        rating: this.rating,
-      };
-      try {
-        await this.$store
-          .dispatch("reviews/addUserReview", comment)
-          .then(() => this.fetchDetailReview())
-          .then(() => {
-            this.comment = "";
-            this.rating = "";
-          });
-      } catch (err) {
-        this.error = this.$t("notify-comment");
-      }
-      this.loading = false;
-    },
-
-    clearError() {
-      this.error = null;
     },
   },
 };

@@ -60,7 +60,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="Address">
-          <el-input type="textarea" v-model.number="address"></el-input>
+          <el-input type="textarea" v-model="address"></el-input>
         </el-form-item>
         <div class="text-center">
           <button class="btn btn-primary fixed-button" type="submit">
@@ -88,7 +88,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.name;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateName", value);
+        this.$store.commit("userAdmin/UPDATE_NAME", value);
       },
     },
     email: {
@@ -96,7 +96,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.email;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateEmail", value);
+        this.$store.commit("userAdmin/UPDATE_EMAIL", value);
       },
     },
     phone: {
@@ -104,7 +104,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.phone;
       },
       set(value) {
-        this.$store.commit("userAdmin/updatePhone", value);
+        this.$store.commit("userAdmin/UPDATE_PHONE", value);
       },
     },
     address: {
@@ -112,7 +112,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.address;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateAddress", value);
+        this.$store.commit("userAdmin/UPDATE_ADDRESS", value);
       },
     },
     birthday: {
@@ -120,7 +120,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.birthday;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateBirthday", value);
+        this.$store.commit("userAdmin/UPDATE_BIRTHDAY", value);
       },
     },
     role: {
@@ -133,7 +133,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.city;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateCity", value);
+        this.$store.commit("userAdmin/UPDATE_CITY", value);
       },
     },
     country: {
@@ -141,7 +141,7 @@ export default {
         return this.$store.state.userAdmin.detailUser.country;
       },
       set(value) {
-        this.$store.commit("userAdmin/updateCountry", value);
+        this.$store.commit("userAdmin/UPDATE_COUNTRY", value);
       },
     },
   },

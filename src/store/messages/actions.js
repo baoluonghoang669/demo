@@ -15,7 +15,7 @@ export default {
       return;
     }
 
-    commit("setMessages", responseData);
+    commit("SET_MESSAGES", responseData);
   },
 
   //Send a messsage
@@ -39,7 +39,7 @@ export default {
       return;
     }
 
-    commit("postMessages", message);
+    commit("ADD_MESSAGE", message);
   },
 
   //Update a messsage
@@ -61,6 +61,6 @@ export default {
       return;
     }
 
-    commit("updateContact", message);
+    commit("UPDATE_CONTACT_MESSAGE", message);
   },
 };

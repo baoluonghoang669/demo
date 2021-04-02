@@ -73,7 +73,7 @@
         <el-form-item label="Area" prop="area">
           <el-input
             type="area"
-            v-model.number="ruleForm.area"
+            v-model="ruleForm.area"
             required
           ></el-input>
         </el-form-item>

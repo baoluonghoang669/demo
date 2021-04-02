@@ -75,6 +75,17 @@ export default {
 
   //Reset password
   async onResetPassword({ commit }, payload) {
+    /* TODO 
+    không phải lưu vào env toàn bộ api đâu, api có thể là:
+    domain.com/a
+    domain.com/b
+    a,b thay đổi, còn domain giữ nguyên, nên chỉ lưu vào file env API_DOMAIN: domain.com thôi
+
+    vd em đang làm ở local: API_DOMAIN: localhost:xxxx, sau này deploy lên server thì chỉ cần sửa lại trong file .env API_DOMAIN: server.com là được
+
+    em lưu toàn bộ thì chẳng còn công dụng gì cả 
+    mỗi api em phải set url: API_URL/xxx thì code sẽ bị lặp lại nhiều lần, tạo ra 1 file để set up axios, em hỏi Hân nhé
+    */
     let url = `${process.env.VUE_APP_RESET_PASSWORD}/${localStorage.getItem(
       "resetToken"
     )}`;

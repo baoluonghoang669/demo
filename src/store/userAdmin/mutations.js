@@ -12,6 +12,8 @@ export default {
     );
   },
 
+  GET_CITY: (state, payload) => (state.cities = payload),
+
   //update form user
   UPDATE_NAME: (state, payload) => (state.detailUser.name = payload),
   UPDATE_EMAIL: (state, payload) => (state.detailUser.email = payload),

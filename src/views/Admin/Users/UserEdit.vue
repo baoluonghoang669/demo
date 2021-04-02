@@ -33,14 +33,14 @@
         </el-form-item>
         <el-form-item label="Country">
           <el-select v-model="country" placeholder="please select your zone">
-            <el-option label="Zone one" value="shanghai"></el-option>
-            <el-option label="Zone two" value="beijing"></el-option>
+            <el-option label="Việt Nam" value="VietNam"></el-option>
+            <el-option label="America" value="America"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="State/Region/City">
           <el-select v-model="city" placeholder="please select your zone">
-            <el-option label="Zone one" value="shanghai"></el-option>
-            <el-option label="Zone two" value="beijing"></el-option>
+            <el-option label="Đà Nẵng" value="DaNang"></el-option>
+            <el-option label="NewYork" value="NewYork"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="Birthday">

@@ -6,7 +6,8 @@ export default {
   namespaced: true,
   state: {
     users: [],
-    detailUser: []
+    detailUser: [],
+    cities: [],
   },
   mutations,
   actions,

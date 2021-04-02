@@ -141,7 +141,7 @@
       <div class="col-md-12">
         <div class="card ">
           <div class="card-header ">
-            <h5 class="card-title">Company Management Chart</h5>
+            <h5 class="card-title">Company Management Chart (Circle Chart)</h5>
             <p class="card-category">Update 24 Hours</p>
           </div>
           <div class="card-body ">
@@ -156,37 +156,29 @@
             ></pie-chart>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
         <div class="card ">
           <div class="card-header ">
             <h5 class="card-title">
-              Revenue / month <small>( Unit: Vnd )</small>
+              Company Management Chart (Column Chart)
             </h5>
             <p class="card-category">Update 24 Hours</p>
           </div>
           <div class="card-body ">
             <column-chart
               :data="[
-                ['January', 320000000],
-                ['February', 460000000],
-                ['March', 280000000],
-                ['April', 320000000],
-                ['May', 460000000],
-                ['June', 280000000],
-                ['July', 320000000],
-                ['August', 460000000],
-                ['September', 280000000],
-                ['October', 280000000],
-                ['November', 280000000],
-                ['December', 280000000],
+                ['Projects', projects],
+                ['Users', users],
+                ['Categories', categories],
+                ['Reviews', reviews],
+                ['Messages', messages],
               ]"
             ></column-chart>
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12"></div>
     </div>
   </div>
 </template>

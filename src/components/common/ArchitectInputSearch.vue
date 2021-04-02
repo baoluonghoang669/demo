@@ -12,7 +12,7 @@ export default {};
   left: 58%;
   transform: translateY(-35px);
   outline: none;
-  border: 2px solid #263a4f;
+  border: 2px solid #b6cbe2;
   border-radius: 2%;
 }
 </style>

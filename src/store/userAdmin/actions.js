@@ -126,4 +126,13 @@ export default {
 
     commit("ADD_USER", user);
   },
+
+  async getCity({ commit }) {
+    const url = "https://vapi.vnappmob.com/api/province";
+    const response = await axios.get(url);
+
+    const responseData = response.data;
+
+    commit("GET_CITY", responseData);
+  },
 };

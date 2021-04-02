@@ -65,8 +65,12 @@
             v-model="ruleForm.city"
             placeholder="please select your city"
           >
-            <el-option label="Đà Nẵng" value="DaNang"></el-option>
-            <el-option label="NewYork" value="NewYork"></el-option>
+            <el-option
+              :label="city.province_name"
+              :value="city.province_name"
+              v-for="city in cities"
+              :key="city.id"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="Role" prop="role">
@@ -97,7 +101,7 @@ export default {
         address: "",
         birthday: "",
         phone: "",
-        city: "",
+        city: this.cities,
         country: "",
         role: "",
         password: "",
@@ -116,6 +120,14 @@ export default {
         password: { required: true, message: "Please input password" },
       },
     };
+  },
+  created() {
+    this.getCity();
+  },
+  computed: {
+    cities() {
+      return this.$store.state.userAdmin.cities.results;
+    },
   },
   methods: {
     submitForm(formName) {
@@ -152,6 +164,10 @@ export default {
 
     clearError() {
       this.error = null;
+    },
+
+    getCity() {
+      return this.$store.dispatch("userAdmin/getCity");
     },
   },
 };

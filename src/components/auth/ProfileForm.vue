@@ -175,7 +175,7 @@ export default {
         return this.$store.state.auth.user.name;
       },
       set(value) {
-        this.$store.commit("auth/updateName", value);
+        this.$store.commit("auth/UPDATE_NAME", value);
       },
     },
     email: {
@@ -188,7 +188,7 @@ export default {
         return this.$store.state.auth.user.phone;
       },
       set(value) {
-        this.$store.commit("auth/updatePhone", value);
+        this.$store.commit("auth/UPDATE_PHONE", value);
       },
     },
     address: {
@@ -196,7 +196,7 @@ export default {
         return this.$store.state.auth.user.address;
       },
       set(value) {
-        this.$store.commit("auth/updateAddress", value);
+        this.$store.commit("auth/UPDATE_ADDRESS", value);
       },
     },
     birthday: {
@@ -204,7 +204,7 @@ export default {
         return this.$store.state.auth.user.birthday;
       },
       set(value) {
-        this.$store.commit("auth/updateBirthday", value);
+        this.$store.commit("auth/UPDATE_BIRTHDAY", value);
       },
     },
     role: {
@@ -217,7 +217,7 @@ export default {
         return this.$store.state.auth.user.city;
       },
       set(value) {
-        this.$store.commit("auth/updateCity", value);
+        this.$store.commit("auth/UPDATE_CITY", value);
       },
     },
     country: {
@@ -225,7 +225,7 @@ export default {
         return this.$store.state.auth.user.country;
       },
       set(value) {
-        this.$store.commit("auth/updateCountry", value);
+        this.$store.commit("auth/UPDATE_COUNTRY", value);
       },
     },
     file: {

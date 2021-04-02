@@ -69,11 +69,7 @@
           ></el-input>
         </el-form-item>
         <el-form-item label="Area" prop="area">
-          <el-input
-            type="area"
-            v-model="area"
-            autocomplete="off"
-          ></el-input>
+          <el-input type="area" v-model="area" autocomplete="off"></el-input>
         </el-form-item>
         <div class="text-center">
           <el-button type="primary" id="btn-submit" @click="onSave()"
@@ -173,7 +169,7 @@ export default {
       try {
         await this.$store.dispatch("projects/uploadPhoto", this.fileUpload);
       } catch (err) {
-        this.error = err.response.data.error || "Fail to update";
+        this.error = err.response.data.error || this.$t("fail");
       }
       this.loading = false;
     },

@@ -105,7 +105,7 @@ export default {
 
     const responseData = response.data.data;
 
-    if(responseData.success === false) {
+    if (responseData.success === false) {
       return;
     }
 
@@ -181,4 +181,19 @@ export default {
       responseData,
     });
   },
+
+  // async onFetchCountry({ commit }) {
+  //   const url = "https://apis.haravan.com/com/countries.json";
+  //   const response = await axios.get(url, {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   });
+  //   const responseData = response.data;
+
+  //   console.log(responseData);
+
+  //   commit();
+  // },
 };

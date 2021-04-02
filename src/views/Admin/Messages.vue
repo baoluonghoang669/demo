@@ -71,7 +71,7 @@ export default {
         return this.$store.getters["messages/getMessages"];
       },
       set(value) {
-        this.$store.commit("messages/updateContact", value);
+        this.$store.commit("messages/UPDATE_CONTACT_MESSAGE", value);
       },
     },
   },

@@ -15,7 +15,7 @@ export default {
       //error
     }
 
-    commit("setUsers", responseData);
+    commit("SET_USERS", responseData);
   },
 
   async sortUsers({ commit }, payload) {
@@ -32,7 +32,7 @@ export default {
       //error
     }
 
-    commit("setUsers", responseData);
+    commit("SET_USERS", responseData);
   },
 
   async fetchUserById({ commit }, payload) {
@@ -50,7 +50,7 @@ export default {
       //error
     }
 
-    commit("setDetailUser", responseData);
+    commit("SET_DETAIL_USER", responseData);
   },
 
   async updateUserById({ commit }, payload) {
@@ -76,7 +76,7 @@ export default {
       //error
     }
 
-    commit("setDetailUser", detailUser);
+    commit("SET_DETAIL_USER", detailUser);
   },
 
   async onDeleteUser({ commit }, payload) {
@@ -94,7 +94,7 @@ export default {
       return;
     }
 
-    commit("deleteUser", payload);
+    commit("DELETE_USER", payload);
   },
 
   async addUser({ commit }, payload) {
@@ -124,6 +124,6 @@ export default {
       return;
     }
 
-    commit("addUser", user);
+    commit("ADD_USER", user);
   },
 };

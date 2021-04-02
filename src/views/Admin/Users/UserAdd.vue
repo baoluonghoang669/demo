@@ -39,10 +39,7 @@
           <el-input type="number" v-model.number="ruleForm.phone"></el-input>
         </el-form-item>
         <el-form-item label="Password" prop="password">
-          <el-input
-            type="password"
-            v-model="ruleForm.password"
-          ></el-input>
+          <el-input type="password" v-model="ruleForm.password"></el-input>
         </el-form-item>
         <el-form-item label="Birthday" prop="birthday">
           <el-col>

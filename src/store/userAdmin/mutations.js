@@ -1,11 +1,11 @@
 export default {
-  setUsers: (state, payload) => (state.users = payload),
+  SET_USERS: (state, payload) => (state.users = payload),
 
-  setDetailUser: (state, payload) => (state.detailUser = payload),
+  SET_DETAIL_USER: (state, payload) => (state.detailUser = payload),
 
-  addUser: (state, payload) => state.users.push(payload),
+  ADD_USER: (state, payload) => state.users.push(payload),
 
-  deleteUser(state, payload) {
+  DELETE_USER(state, payload) {
     return state.users.splice(
       state.users.indexOf(state.users.find((user) => user._id === payload)),
       1
@@ -13,11 +13,11 @@ export default {
   },
 
   //update form user
-  updateName: (state, payload) => (state.detailUser.name = payload),
-  updateEmail: (state, payload) => (state.detailUser.email = payload),
-  updatePhone: (state, payload) => (state.detailUser.phone = payload),
-  updateAddress: (state, payload) => (state.detailUser.address = payload),
-  updateBirthday: (state, payload) => (state.detailUser.birthday = payload),
-  updateCity: (state, payload) => (state.detailUser.city = payload),
-  updateCountry: (state, payload) => (state.detailUser.country = payload),
+  UPDATE_NAME: (state, payload) => (state.detailUser.name = payload),
+  UPDATE_EMAIL: (state, payload) => (state.detailUser.email = payload),
+  UPDATE_PHONE: (state, payload) => (state.detailUser.phone = payload),
+  UPDATE_ADDRESS: (state, payload) => (state.detailUser.address = payload),
+  UPDATE_BIRTHDAY: (state, payload) => (state.detailUser.birthday = payload),
+  UPDATE_CITY: (state, payload) => (state.detailUser.city = payload),
+  UPDATE_COUNTRY: (state, payload) => (state.detailUser.country = payload),
 };

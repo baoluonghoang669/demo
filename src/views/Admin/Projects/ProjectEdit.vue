@@ -93,6 +93,7 @@ export default {
     this.fetchProjectById();
   },
   computed: {
+    // TODO bị lặp nhiều quá, có 1 getter return userData, rồi ở component lấy ra thôi, trong getter return {...userData} thì sẽ tránh được lỗi warning thay đổi trực tiếp từ state
     name: {
       get() {
         return this.$store.state.projects.projectsDetail.name;

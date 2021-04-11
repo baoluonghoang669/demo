@@ -3,11 +3,7 @@
     <the-header></the-header>
     <div>
       <section class="about_image">
-        <img
-          class="img-fluid fix-img"
-          src="./../../assets/images/page-project/detail-project/project-banner-1.jpg"
-          alt=""
-        />
+        <img class="img-fluid fix-img" :src="projects.photo" alt="" />
       </section>
       <!--================End Project Details Area =================-->
       <section class="breadcrumb_link">
@@ -54,7 +50,7 @@
                   <span>{{ projects.area }} m<sup>2</sup></span>
                 </h5>
                 <h5 class="share_link">
-                  {{ $t("category") }}: <span>{{ projects.cost }} vnd</span>
+                  {{ $t("cost") }}: <span>{{ projects.cost }} vnd</span>
                 </h5>
               </div>
             </div>
@@ -74,27 +70,13 @@
           </div>
           <div class="villa_slider">
             <carousel :items-to-show="1" :wrapAround="true" :transition="1000">
-              <slide v-for="slide in 3" :key="slide">
-                <div class="item">
-                  <img
-                    class="fix-img-slider"
-                    src="https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=610&w=1170"
-                    alt=""
-                  />
-                </div>
-                <div class="item">
-                  <img
-                    class="fix-img-slider"
-                    src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=610&w=1170"
-                    alt=""
-                  />
-                </div>
-                <div class="item">
-                  <img
-                    class="fix-img-slider"
-                    src="https://images.pexels.com/photos/417273/pexels-photo-417273.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=610&w=1170"
-                    alt=""
-                  />
+              <slide v-for="slide in 2" :key="slide">
+                <div
+                  class="item"
+                  v-for="project in projects.relatedPhoto"
+                  :key="project._id"
+                >
+                  <img class="fix-img-slider" :src="project" alt="" />
                 </div>
               </slide>
               <template #addons>
@@ -110,7 +92,7 @@
               :key="review.id"
             >
               <div class="comment_item">
-                <img src="./../../assets/avatar.jpg" class="avatar" alt="img" />
+                <img :src="review.user.avatar" class="avatar" alt="img" />
                 <div class="comment_content" v-if="review.user">
                   <h4>{{ review.user.name }}</h4>
                   <p>
@@ -123,9 +105,6 @@
             </div>
           </div>
           <comment-form></comment-form>
-          <div class="link_btn">
-            <a href="#">{{ $t("work-together") }} !</a>
-          </div>
           <b
             >Contact:
             <a class="fix-tel" href="tel:+0902985987">(+84)902 985 987</a></b
@@ -142,7 +121,7 @@ import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import TheFooter from "../layouts/TheFooter.vue";
 import TheHeader from "../layouts/TheHeader.vue";
-import CommentForm from '../comment/CommentForm.vue';
+import CommentForm from "../comment/CommentForm.vue";
 export default {
   components: {
     Carousel,
@@ -198,6 +177,10 @@ export default {
 .fix-img-slider {
   width: 1111px;
   height: 610px;
+}
+.fix-img {
+  width: 100%;
+  height: 750px;
 }
 #message {
   height: 200px;

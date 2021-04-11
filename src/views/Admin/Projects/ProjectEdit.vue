@@ -20,29 +20,6 @@
       <div class="d-flex justify-content-between align-items-center mb-3">
         <h4 class="text-center">Form Edit Project</h4>
       </div>
-      <form
-        id="uploadForm"
-        enctype="multipart/form-data"
-        @submit.prevent="onUpload()"
-      >
-        <span class="demo-input-label">Image</span>
-        <div class="fix-avatar" v-if="photo">
-          <img :src="photo" />
-        </div>
-        <input
-          type="file"
-          ref="file"
-          id="file"
-          @change="onFileChange"
-          name="file"
-        />
-        <input
-          type="submit"
-          button
-          class="change-avatar"
-          value="Upload avatar"
-        />
-      </form>
       <el-form
         status-icon
         ref="ruleForm"
@@ -101,14 +78,6 @@ export default {
         this.$store.commit("projects/UPDATE_NAME", value);
       },
     },
-    photo: {
-      get() {
-        return this.$store.state.projects.projectsDetail.photo;
-      },
-      set(value) {
-        this.$store.commit("projects/UPDATE_PHOTO", value);
-      },
-    },
     description: {
       get() {
         return this.$store.state.projects.projectsDetail.description;
@@ -151,28 +120,6 @@ export default {
     },
   },
   methods: {
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      this.createImage(files[0]);
-    },
-    createImage(file) {
-      this.fileUpload = file;
-      var reader = new FileReader();
-      reader.onload = (e) => {
-        this.file = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    },
-    async onUpload() {
-      this.loading = true;
-      try {
-        await this.$store.dispatch("projects/uploadPhoto", this.fileUpload);
-      } catch (err) {
-        this.error = err.response.data.error || this.$t("fail");
-      }
-      this.loading = false;
-    },
     async fetchProjectById() {
       try {
         await this.$store.dispatch(

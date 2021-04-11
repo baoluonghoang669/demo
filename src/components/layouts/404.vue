@@ -1,9 +1,9 @@
 <template>
   <div id="page-not-found">
-    <h2>Page not found</h2>
+    <h2>{{ $t("page-not-found") }}</h2>
     <p>
-      This page could not be found - maybe check out all our
-      <router-link to="/"> home. </router-link>
+      {{ $t("error-found") }}
+      <router-link to="/"> {{ $t("menu.home") }}. </router-link>
     </p>
   </div>
 </template>

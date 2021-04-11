@@ -22,6 +22,15 @@
               placeholder="Search by name..."
             />
           </architect-input-search>
+          <div class="related-btn">
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="onExportExcels"
+            >
+              Export CSV
+            </button>
+          </div>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
@@ -90,7 +99,7 @@
                       {{ project.cost }}
                     </td>
                     <td>{{ project.area }} m<sup>2</sup></td>
-                    <td>
+                    <td style="width: 80px">
                       <architect-button
                         link
                         :path="'/dashboard/projects/editProject/' + project._id"
@@ -100,6 +109,10 @@
                       <i
                         class="far fa-trash-alt"
                         @click="onDelete(project._id)"
+                      ></i>
+                      <i
+                        class="fas fa-file-export"
+                        @click="onExport(project._id)"
                       ></i>
                     </td>
                   </tr>
@@ -165,6 +178,20 @@ export default {
         this.error = err;
       }
     },
+    async onExport(id) {
+      try {
+        await this.$store.dispatch("projects/getExcelFileById", id);
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
+    async onExportExcels() {
+      try {
+        await this.$store.dispatch("projects/getExcelFiles");
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
   },
 };
 </script>
@@ -217,7 +244,28 @@ export default {
   float: left;
 }
 
+.fa:hover,
+.fas:hover,
+.far:hover {
+  transform: scale(0.9);
+}
+
+.fa-file-export {
+  color: rgb(39, 131, 198);
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.related-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
 .edit-btn:hover {
   transform: scale(0.9);
+}
+.btn-success:hover {
+  border-color: #28a745;
 }
 </style>

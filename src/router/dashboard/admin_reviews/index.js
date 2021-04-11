@@ -1,5 +1,5 @@
-import ReviewList from "../../../views/Admin/Reviews/ReviewList.vue";
-import ReviewEdit from "../../../views/Admin/Reviews/ReviewEdit.vue";
+const ReviewEdit = () => import("../../../views/Admin/Reviews/ReviewEdit.vue");
+const ReviewList = () => import("../../../views/Admin/Reviews/ReviewList.vue");
 
 export default [
   {

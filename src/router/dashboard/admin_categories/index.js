@@ -1,6 +1,9 @@
-import CategoryList from "../../../views/Admin/Categories/CategoryList.vue";
-import CategoryAdd from "../../../views/Admin/Categories/CategoryAdd.vue";
-import CategoryEdit from "../../../views/Admin/Categories/CategoryEdit.vue";
+const CategoryList = () =>
+  import("../../../views/Admin/Categories/CategoryList.vue");
+const CategoryAdd = () =>
+  import("../../../views/Admin/Categories/CategoryAdd.vue");
+const CategoryEdit = () =>
+  import("../../../views/Admin/Categories/CategoryEdit.vue");
 
 export default [
   {

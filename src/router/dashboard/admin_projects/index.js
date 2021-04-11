@@ -1,6 +1,6 @@
-import ProjectList from "../../../views/Admin/Projects/ProjectList.vue";
-import ProjectAdd from "../../../views/Admin/Projects/ProjectAdd.vue";
-import ProjectEdit from "../../../views/Admin/Projects/ProjectEdit.vue";
+const ProjectList = () => import("../../../views/Admin/Projects/ProjectList.vue");
+const ProjectAdd = () => import("../../../views/Admin/Projects/ProjectAdd.vue");
+const ProjectEdit = () => import("../../../views/Admin/Projects/ProjectEdit.vue");
 
 export default [
   {

@@ -27,6 +27,9 @@
       <div class="year">
         <router-link to="">2021</router-link>
       </div>
+      <div class="interior">
+        <p>{{ $t("interior") }}</p>
+      </div>
     </section>
     <!--=============-->
     <section class="intes_studio_area white_cl">
@@ -135,7 +138,7 @@
     <section class="clients_area white_cl">
       <div class="container">
         <div class="main_title white">
-          <h2>+500 {{ $t("happy-client") }}</h2>
+          <h2>{{ $t("happy-client") }}</h2>
         </div>
 
         <!-- Comment list of user -->
@@ -161,6 +164,15 @@ export default {
 <style scoped>
 /* Home Full Slider css
 ============================================================================================ */
+.interior {
+  position: absolute;
+  top: 20%;
+  left: 19%;
+  color: #fff;
+}
+.interior p {
+  font-size: 30px;
+}
 .home_slider {
   position: relative;
 }
@@ -210,7 +222,7 @@ export default {
 
 .home_slider .text_box {
   position: absolute;
-  left: 41%;
+  left: 40%;
   z-index: 25;
   top: 46%;
   transform: translate(-50%, -50%);

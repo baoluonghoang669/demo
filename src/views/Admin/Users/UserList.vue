@@ -21,6 +21,15 @@
               placeholder="Search by name..."
             />
           </architect-input-search>
+          <div class="related-btn">
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="onExportExcels"
+            >
+              Export CSV
+            </button>
+          </div>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
@@ -57,8 +66,11 @@
                     <i class="fa fa-fw fa-sort" @click="sortUsers(city)"></i>
                   </th>
                   <th>
-                    Country
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(country)"></i>
+                    Province
+                    <i
+                      class="fa fa-fw fa-sort"
+                      @click="sortUsers(province)"
+                    ></i>
                   </th>
                   <th>
                     Role
@@ -88,7 +100,7 @@
                       {{ user.city }}
                     </td>
                     <td>
-                      {{ user.country }}
+                      {{ user.province }}
                     </td>
                     <td>
                       {{ user.role }}
@@ -104,18 +116,12 @@
                         class="far fa-trash-alt"
                         @click="onDelete(user._id)"
                       ></i>
+                      <i
+                        class="fas fa-file-export"
+                        @click="onExport(user._id)"
+                      ></i>
                     </td>
                   </tr>
-
-                  <!-- Modal
-                  <modal-admin
-                    :show="show"
-                    @close="clearForm"
-
-                  >
-                    <p>Bạn có chắc chắn muốn xoá không ?</p>
-                  </modal-admin>
-                  -->
                 </tbody>
               </table>
             </div>
@@ -128,7 +134,7 @@
 </template>
 <script>
 export default {
-  components: {  },
+  components: {},
   data() {
     return {
       show: false,
@@ -191,10 +197,27 @@ export default {
         this.err = error || "Fail to sort";
       }
     },
+    async onExport(id) {
+      try {
+        await this.$store.dispatch("userAdmin/getExcelFileById", id);
+      } catch (error) {
+        this.err = error || "Fail to get";
+      }
+    },
+    async onExportExcels() {
+      try {
+        await this.$store.dispatch("userAdmin/getExcelFiles");
+      } catch (error) {
+        this.err = error || "Fail to get";
+      }
+    },
   },
 };
 </script>
 <style scoped>
+.btn-success:hover {
+  border-color: #28a745;
+}
 .fa {
   cursor: pointer;
 }
@@ -204,15 +227,29 @@ export default {
   height: 100px;
 }
 
-.fa-trash-alt:hover {
-  transform: scale(0.9);
-}
-
 .edit-btn {
   float: left;
 }
 
 .edit-btn:hover {
   transform: scale(0.9);
+}
+
+.fa:hover,
+.fas:hover,
+.far:hover {
+  transform: scale(0.9);
+}
+
+.fa-file-export {
+  color: rgb(39, 131, 198);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.related-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 </style>

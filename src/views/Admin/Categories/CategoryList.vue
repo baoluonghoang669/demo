@@ -21,6 +21,15 @@
               placeholder="Search by name..."
             />
           </architect-input-search>
+          <div class="related-btn">
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="onExportExcels"
+            >
+              Export CSV
+            </button>
+          </div>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
@@ -42,7 +51,7 @@
                       @click="sortCategories(description)"
                     ></i>
                   </th>
-                  <th>
+                  <th style="width: 160px;">
                     Related Projects
                   </th>
                   <th>
@@ -66,7 +75,7 @@
                     <td>
                       {{ category.projects.length }}
                     </td>
-                    <td>
+                    <td style="width: 80px">
                       <architect-button
                         link
                         :path="
@@ -78,6 +87,10 @@
                       <i
                         class="far fa-trash-alt"
                         @click="onDelete(category._id)"
+                      ></i>
+                      <i
+                        class="fas fa-file-export"
+                        @click="onExport(category._id)"
                       ></i>
                     </td>
                   </tr>
@@ -141,6 +154,20 @@ export default {
         this.loading = false;
       }
     },
+    async onExport(id) {
+      try {
+        await this.$store.dispatch("categories/getExcelFileById", id);
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
+    async onExportExcels() {
+      try {
+        await this.$store.dispatch("categories/getExcelFiles");
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
   },
 };
 </script>
@@ -166,5 +193,27 @@ export default {
 
 .edit-btn:hover {
   transform: scale(0.9);
+}
+
+.fa:hover,
+.fas:hover,
+.far:hover {
+  transform: scale(0.9);
+}
+
+.fa-file-export {
+  color: rgb(39, 131, 198);
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.related-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.btn-success:hover {
+  border-color: #28a745;
 }
 </style>

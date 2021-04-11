@@ -13,6 +13,7 @@ export default {
   },
 
   GET_CITY: (state, payload) => (state.cities = payload),
+  GET_PROVINCES: (state, payload) => (state.provinces = payload),
 
   //update form user
   UPDATE_NAME: (state, payload) => (state.detailUser.name = payload),
@@ -21,5 +22,5 @@ export default {
   UPDATE_ADDRESS: (state, payload) => (state.detailUser.address = payload),
   UPDATE_BIRTHDAY: (state, payload) => (state.detailUser.birthday = payload),
   UPDATE_CITY: (state, payload) => (state.detailUser.city = payload),
-  UPDATE_COUNTRY: (state, payload) => (state.detailUser.country = payload),
+  UPDATE_PROVINCE: (state, payload) => (state.detailUser.province = payload),
 };

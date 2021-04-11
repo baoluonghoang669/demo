@@ -11,15 +11,15 @@
       </div>
     </div>
     <div class="fillter_slider owl-carousel">
-      <carousel :items-to-show="3.5" :wrapAround="true" :transition="500">
-        <slide v-for="slide in 4" :key="slide">
+      <carousel :items-to-show="4" :transition="500">
+        <slide v-for="slide in 12" :key="slide">
           <div
             v-for="project in projects"
             :key="project.id"
             class="item arc urban"
           >
             <architect-project-item>
-              <img :src="project.photo" alt="" />
+              <img class="fix-image-slide" :src="project.photo" alt="" />
               <div class="hover">
                 <architect-button link :path="'/project/' + project.id"
                   ><i class="ion-android-arrow-forward"></i
@@ -40,6 +40,7 @@
         </slide>
         <template #addons>
           <navigation />
+          <pagination />
         </template>
       </carousel>
     </div>
@@ -47,7 +48,7 @@
 </template>
 <script>
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
+import { Carousel, Slide, Navigation, Pagination } from "vue3-carousel";
 import TypeFilter from "../typeProjects/TypeFilter.vue";
 
 export default {
@@ -56,6 +57,7 @@ export default {
     Slide,
     Navigation,
     TypeFilter,
+    Pagination,
   },
   data() {
     return {
@@ -87,5 +89,9 @@ export default {
 <style scoped>
 .project_text {
   text-align: left;
+}
+.fix-image-slide {
+  width: 476px !important;
+  height: 570px !important;
 }
 </style>

@@ -1,14 +1,11 @@
-import axios from "axios";
 import router from "../../router/index";
+import http from "../../helpers/http";
+import axios from "axios";
+import FileSaver from "file-saver";
+
 export default {
   async fetchAllUsers({ commit }) {
-    const url = process.env.VUE_APP_GET_USERS;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get("users");
     const responseData = response.data.data;
 
     if (responseData.success === false) {
@@ -19,13 +16,7 @@ export default {
   },
 
   async sortUsers({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_USERS}?sort=${payload}`;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get(`users?sort=${payload}`);
     const responseData = response.data.data;
 
     if (responseData.success === false) {
@@ -36,13 +27,7 @@ export default {
   },
 
   async fetchUserById({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_USERS}/${payload}`;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get(`users/${payload}`);
 
     const responseData = response.data.data;
 
@@ -54,8 +39,6 @@ export default {
   },
 
   async updateUserById({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_USERS}/${router.currentRoute.value.params.id}`;
-
     const detailUser = {
       name: payload.name,
       email: payload.email,
@@ -66,11 +49,10 @@ export default {
       country: payload.country,
     };
 
-    const response = await axios.put(url, detailUser, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.put(
+      `users/${router.currentRoute.value.params.id}`,
+      detailUser
+    );
 
     if (response.success === false) {
       //error
@@ -80,13 +62,7 @@ export default {
   },
 
   async onDeleteUser({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_USERS}/${payload}`;
-
-    const response = await axios.delete(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.delete(`users/${payload}`);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -98,8 +74,6 @@ export default {
   },
 
   async addUser({ commit }, payload) {
-    const url = process.env.VUE_APP_GET_USERS;
-
     const user = {
       name: payload.name,
       email: payload.email,
@@ -112,11 +86,7 @@ export default {
       password: payload.password,
     };
 
-    const response = await axios.post(url, user, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.post("users", user);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -134,5 +104,37 @@ export default {
     const responseData = response.data;
 
     commit("GET_CITY", responseData);
+  },
+
+  async getProvice({ commit }) {
+    const url = `https://vapi.vnappmob.com/api/province/district/${localStorage.getItem(
+      "city"
+    )}`;
+    console.log(url);
+    const response = await axios.get(url);
+    const responseData = response.data;
+
+    commit("GET_PROVINCES", responseData);
+  },
+
+  async getExcelFiles({ commit }) {
+    const response = await http.get("users/export", {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, "assets.csv");
+
+    commit(responseData);
+  },
+
+  async getExcelFileById({ commit }, payload) {
+    const response = await http.get(`users/export/${payload}`, {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, `assets_${payload}.csv`);
+    commit(responseData);
   },
 };

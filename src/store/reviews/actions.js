@@ -1,12 +1,11 @@
-import axios from "axios";
 import router from "../../router/index";
+import http from "../../helpers/http";
+import FileSaver from "file-saver";
 
 export default {
   //get all reviews of users
   async fetchAllReviews({ commit }) {
-    const url = process.env.VUE_APP_GET_REVIEWS;
-
-    const response = await axios.get(url);
+    const response = await http.get("reviews");
     const responseData = response.data.data;
     if (responseData.success === false) {
       return;
@@ -17,9 +16,7 @@ export default {
 
   //get detail review of a user
   async fetchDetailReview({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${payload}/reviews`;
-
-    const response = await axios.get(url);
+    const response = await http.get(`projects/${payload}/reviews`);
     const responseData = response.data.data;
     if (responseData.success === false) {
       return;
@@ -29,13 +26,7 @@ export default {
   },
 
   async sortReviews({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_REVIEWS}?sort=${payload}`;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get(`reviews?sort=${payload}`);
     const responseData = response.data.data;
 
     if (responseData.success === false) {
@@ -47,13 +38,7 @@ export default {
 
   //get detail review of a user
   async fetchReviewById({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_REVIEWS}/${payload}`;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get(`reviews/${payload}`);
     const responseData = response.data.data;
     if (responseData.success === false) {
       return;
@@ -63,18 +48,12 @@ export default {
   },
 
   async updateReviewById({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_REVIEWS}/${router.currentRoute.value.params.id}`;
-
     const detailReview = {
       comment: payload.comment,
       rating: payload.rating,
     };
 
-    const response = await axios.put(url, detailReview, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.put(`reviews/${router.currentRoute.value.params.id}`, detailReview);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -86,13 +65,7 @@ export default {
 
   //delete review of a user
   async onDeleteReview({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_REVIEWS}/${payload}`;
-
-    const response = await axios.delete(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.delete(`reviews/${payload}`);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -104,19 +77,12 @@ export default {
 
   //add review when user post a comment
   async addUserReview({ commit }, payload) {
-    // const projectId = rootGetters["projects/getProjects"].id;
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}/reviews`;
-
     const userReview = {
       comment: payload.comment,
       rating: payload.rating,
     };
 
-    const response = await axios.post(url, userReview, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.post(`projects/${router.currentRoute.value.params.id}/reviews`, userReview);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -124,5 +90,26 @@ export default {
     }
 
     commit("ADD_REVIEW", userReview);
+  },
+
+  async getExcelFiles({ commit }) {
+    const response = await http.get("reviews/export", {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, "reviews.csv");
+
+    commit(responseData);
+  },
+
+  async getExcelFileById({ commit }, payload) {
+    const response = await http.get(`reviews/export/${payload}`, {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, `review_${payload}.csv`);
+    commit(responseData);
   },
 };

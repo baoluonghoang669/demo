@@ -1,5 +1,7 @@
-import ResetPasswordForm from "../../components/auth/ResetPasswordForm.vue";
-import ForgotPasswordForm from "../../components/auth/ForgotPasswordForm.vue";
+const ResetPasswordForm = () =>
+  import("../../components/auth/ResetPasswordForm.vue");
+const ForgotPasswordForm = () =>
+  import("../../components/auth/ForgotPasswordForm.vue");
 
 export default [
   {

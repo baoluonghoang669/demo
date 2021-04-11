@@ -1,15 +1,22 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../views/Home.vue";
 import store from "../store/index.js";
-import About from "../views/About.vue";
-import Contact from "../views/Contact.vue";
-import Profile from "../views/Profile.vue";
-import Auth from "../views/Auth.vue";
 
-import PageNotFound from "../components/layouts/404.vue";
-
-import MainPage from "../views/Admin/MainPage.vue";
-import ProjectPage from "../views/ProjectPage.vue";
+// import Home from "../views/Home.vue";
+// import About from "../views/About.vue";
+// import Contact from "../views/Contact.vue";
+// import Profile from "../views/Profile.vue";
+// import Auth from "../views/Auth.vue";
+// import PageNotFound from "../components/layouts/404.vue";
+// import MainPage from "../views/Admin/MainPage.vue";
+// import ProjectPage from "../views/ProjectPage.vue";
+const ProjectPage = () => import("../views/ProjectPage.vue");
+const MainPage = () => import("../views/Admin/MainPage.vue");
+const PageNotFound = () => import("../components/layouts/404.vue");
+const Auth = () => import("../views/Auth.vue");
+const Profile = () => import("../views/Profile.vue");
+const Contact = () => import("../views/Contact.vue");
+const About = () => import("../views/About.vue");
+const Home = () => import("../views/Home.vue");
 
 //other routes
 import DashBoardRoutes from "./dashboard/dashboard";

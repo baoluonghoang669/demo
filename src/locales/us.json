@@ -41,7 +41,8 @@
   "troc": "TROC STUDIO",
   "detail-address": "K55/11 My An, Ngu Hanh Son District, Da Nang City.",
   "fanpage": "Fanpage",
-  "information": "information",
+  "homepage": "Homepage",
+  "information": "Information",
   "my-company": "Company",
   "support": "Support",
   "investors": "Investors",
@@ -110,5 +111,11 @@
   "founder": "CEO Founder",
   "director": "Director",
   "manager": "Manager",
-  "designer": "Designer"
+  "designer": "Designer",
+  "type-home": "Total of home types",
+
+  "page-not-found": "Page not found",
+  "error-found": "This page could not be found - maybe check out all our",
+  "interior": "Interior - Architecture"
+
 }

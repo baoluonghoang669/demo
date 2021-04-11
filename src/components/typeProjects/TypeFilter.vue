@@ -22,7 +22,7 @@ export default {
   },
   created() {
     this.fetchCategories();
-    this.fetchProjectsForCategory();
+    this.fetchListProjects();
   },
   computed: {
     categories() {

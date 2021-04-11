@@ -41,7 +41,7 @@
             <li v-if="isAuth">
               <router-link to="/profile">{{ $t("menu.profile") }}</router-link>
             </li>
-            <li v-if="isAdmin === 'admin'">
+            <li v-if="isAdmin === 'admin' && isAuth">
               <router-link to="/dashboard">{{
                 $t("menu.dashboard")
               }}</router-link>
@@ -118,7 +118,9 @@
                 <router-link to="/auth">{{ $t("menu.account") }}</router-link>
               </li>
               <li v-else>
-                <router-link to="/profile">{{ $t("menu.profile") }}</router-link>
+                <router-link to="/profile">{{
+                  $t("menu.profile")
+                }}</router-link>
                 <a @click="logout">{{ $t("menu.logout") }}</a>
               </li>
             </ul>

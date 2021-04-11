@@ -11,9 +11,9 @@
         <p>
           {{ category.description }}
         </p>
-        <architect-button link typeClass="view_btn white" path="/project"
-          >View project</architect-button
-        >
+        <architect-button link typeClass="view_btn white" path="/project">{{
+          $t("view-project")
+        }}</architect-button>
       </div>
     </div>
   </div>

@@ -8,7 +8,10 @@
             <architect-button
               link
               :path="'/project/' + project.id + '/projectDetail/' + id"
-              ><img class="img-fluid" :src="project.photo" alt=""
+              ><img
+                class="img-fluid fix-related-img"
+                :src="project.photo"
+                alt=""
             /></architect-button>
           </div>
           <div class="date">
@@ -56,5 +59,9 @@ export default {
 
 .img-fluid {
   cursor: pointer;
+}
+.fix-related-img {
+  width: 500px;
+  height: 500px;
 }
 </style>

@@ -31,16 +31,28 @@
         <el-form-item label="Phone Number">
           <el-input v-model.number="phone"></el-input>
         </el-form-item>
-        <el-form-item label="Country">
-          <el-select v-model="country" placeholder="please select your zone">
-            <el-option label="Việt Nam" value="VietNam"></el-option>
-            <el-option label="America" value="America"></el-option>
+        <el-form-item label="City">
+          <el-select v-model="city" placeholder="please select your city">
+            <el-option
+              :label="city.province_name"
+              :value="city.province_name"
+              v-for="city in cities"
+              :key="city.province_id"
+            ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="State/Region/City">
-          <el-select v-model="city" placeholder="please select your zone">
-            <el-option label="Đà Nẵng" value="DaNang"></el-option>
-            <el-option label="NewYork" value="NewYork"></el-option>
+        <el-form-item label="Province">
+          <el-select
+            v-model="province"
+            placeholder="please select your province"
+          >
+            <el-option
+              :label="province.district_name"
+              :value="province.district_name"
+              v-for="province in provinces"
+              :key="province.district_id"
+            >
+            </el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="Birthday">
@@ -81,6 +93,8 @@ export default {
   },
   created() {
     this.fetchUserById();
+    this.getCities();
+    this.getProvinces();
   },
   computed: {
     name: {
@@ -136,16 +150,28 @@ export default {
         this.$store.commit("userAdmin/UPDATE_CITY", value);
       },
     },
-    country: {
+    province: {
       get() {
-        return this.$store.state.userAdmin.detailUser.country;
+        return this.$store.state.userAdmin.detailUser.province;
       },
       set(value) {
-        this.$store.commit("userAdmin/UPDATE_COUNTRY", value);
+        this.$store.commit("userAdmin/UPDATE_PROVINCE", value);
       },
+    },
+    cities() {
+      return this.$store.state.userAdmin.cities.results;
+    },
+    provinces() {
+      return this.$store.state.userAdmin.provinces.results;
     },
   },
   methods: {
+    getCities() {
+      return this.$store.dispatch("userAdmin/getCity");
+    },
+    getProvinces() {
+      return this.$store.dispatch("userAdmin/getProvice");
+    },
     async fetchUserById() {
       try {
         await this.$store.dispatch(

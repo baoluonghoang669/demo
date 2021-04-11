@@ -1,12 +1,10 @@
-import axios from "axios";
 import router from "../../router";
+import http from "../../helpers/http";
 
 export default {
   //Login
   async onLogin({ commit }, payload) {
-    let url = process.env.VUE_APP_LOGIN;
-
-    const response = await axios.post(url, {
+    const response = await http.post("auth/login", {
       email: payload.email,
       password: payload.password,
       token: true,
@@ -32,9 +30,7 @@ export default {
 
   //Register
   async onRegister({ commit }, payload) {
-    let url = process.env.VUE_APP_REGISTER;
-
-    const response = await axios.post(url, {
+    const response = await http.post("auth/register", {
       email: payload.email,
       password: payload.password,
       token: true,
@@ -46,7 +42,6 @@ export default {
       return;
     }
 
-    localStorage.setItem("token", responseData.token);
     localStorage.setItem("role", responseData.role);
     localStorage.setItem("idUser", responseData.idUser);
 
@@ -59,9 +54,7 @@ export default {
 
   //Forgot password
   async onForgotPassword({ commit }, payload) {
-    let url = process.env.VUE_APP_FORGOT_PASSWORD;
-
-    const response = await axios.post(url, {
+    const response = await http.post("auth/forgotpassword", {
       email: payload.email,
     });
     const responseData = response.data;
@@ -75,33 +68,24 @@ export default {
 
   //Reset password
   async onResetPassword({ commit }, payload) {
-    let url = `${process.env.VUE_APP_RESET_PASSWORD}/${localStorage.getItem(
-      "resetToken"
-    )}`;
     const password = {
       password: payload.password,
     };
 
-    const response = await axios.put(url, password);
+    const response = await http.put(
+      `auth/resetpassword/${localStorage.getItem("resetToken")}`,
+      password
+    );
 
     const responseData = response.data.data;
-
-    if (responseData.success === false) {
-      return;
-    }
+    console.log(responseData);
 
     commit("SET_RESET_PASSWORD", password);
   },
 
   //Fetch detail logged user
   async fetchDetailUser({ commit }) {
-    let url = process.env.VUE_APP_GET_ME;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get("auth/me");
 
     const responseData = response.data.data;
 
@@ -114,8 +98,6 @@ export default {
 
   //update user detail profile
   async updateDetailUser({ commit }, payload) {
-    let url = process.env.VUE_APP_UPDATE_DETAIL;
-
     const detailUser = {
       name: payload.name,
       email: payload.email,
@@ -126,11 +108,7 @@ export default {
       country: payload.country,
     };
 
-    const response = axios.put(url, detailUser, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = http.put("auth/updatedetails", detailUser);
 
     if (response.success === false) {
       return;
@@ -141,19 +119,18 @@ export default {
 
   //update user's avatar
   async updateAvatar({ commit }, files) {
-    let url = `${process.env.VUE_APP_AUTH}/${localStorage.getItem(
-      "idUser"
-    )}/avatar`;
-
     let formData = new FormData();
     formData.append("file", files);
 
-    const response = await axios.put(url, formData, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await http.put(
+      `auth/${localStorage.getItem("idUser")}/avatar`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     if (response.success === false) {
       return;
@@ -164,15 +141,13 @@ export default {
 
   //Logout
   async logout({ commit }) {
-    let url = process.env.VUE_APP_LOGOUT;
-
-    const response = await axios.get(url);
+    const response = await http.get("auth/logout");
     const responseData = response.data;
 
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("idUser");
-    router.push("/");
+    router.push("/auth");
 
     commit("SET_TOKEN", {
       token: null,
@@ -182,18 +157,4 @@ export default {
     });
   },
 
-  // async onFetchCountry({ commit }) {
-  //   const url = "https://apis.haravan.com/com/countries.json";
-  //   const response = await axios.get(url, {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //   });
-  //   const responseData = response.data;
-
-  //   console.log(responseData);
-
-  //   commit();
-  // },
 };

@@ -51,15 +51,6 @@
             ></el-date-picker>
           </el-col>
         </el-form-item>
-        <el-form-item label="Country" prop="country">
-          <el-select
-            v-model="ruleForm.country"
-            placeholder="please select your country"
-          >
-            <el-option label="Việt Nam" value="VietNam"></el-option>
-            <el-option label="America" value="America"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="State/Region/City" prop="city">
           <el-select
             v-model="ruleForm.city"
@@ -67,9 +58,22 @@
           >
             <el-option
               :label="city.province_name"
-              :value="city.province_name"
+              :value="city.province_id"
               v-for="city in cities"
-              :key="city.id"
+              :key="city.province_id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="Provinces" prop="provinces">
+          <el-select
+            v-model="ruleForm.provinces"
+            placeholder="please select your province"
+          >
+            <el-option
+              :label="province.district_name"
+              :value="province.district_name"
+              v-for="province in provinces"
+              :key="province.district_id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -95,6 +99,7 @@
 export default {
   data() {
     return {
+      citys: "",
       ruleForm: {
         name: "",
         email: "",
@@ -102,7 +107,7 @@ export default {
         birthday: "",
         phone: "",
         city: this.cities,
-        country: "",
+        provinces: this.provinces,
         role: "",
         password: "",
       },
@@ -115,18 +120,27 @@ export default {
         birthday: { required: true, message: "Please input birthday" },
         phone: { required: true, message: "Please input phone" },
         city: { required: true, message: "Please input city" },
-        country: { required: true, message: "Please input country" },
+        provinces: { required: true, message: "Please input province" },
         role: { required: true, message: "Please input role" },
         password: { required: true, message: "Please input password" },
       },
     };
   },
-  created() {
-    this.getCity();
+  watch: {
+    "ruleForm.city": function(city) {
+      localStorage.setItem("city", city);
+    },
+  },
+  mounted() {
+    this.getCities();
+    this.getProvinces();
   },
   computed: {
     cities() {
       return this.$store.state.userAdmin.cities.results;
+    },
+    provinces() {
+      return this.$store.state.userAdmin.provinces.results;
     },
   },
   methods: {
@@ -166,8 +180,11 @@ export default {
       this.error = null;
     },
 
-    getCity() {
+    getCities() {
       return this.$store.dispatch("userAdmin/getCity");
+    },
+    getProvinces() {
+      return this.$store.dispatch("userAdmin/getProvice");
     },
   },
 };

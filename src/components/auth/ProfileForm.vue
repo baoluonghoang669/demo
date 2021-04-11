@@ -113,29 +113,6 @@
                 />
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-md-6">
-                <label class="labels">Country</label
-                ><input
-                  type="text"
-                  name="country"
-                  class="form-control"
-                  placeholder="country"
-                  v-model="country"
-                  required
-                />
-              </div>
-              <div class="col-md-6">
-                <label class="labels">State/Region/City</label
-                ><input
-                  type="text"
-                  name="city"
-                  class="form-control"
-                  v-model="city"
-                  required
-                />
-              </div>
-            </div>
             <div class="mt-5 text-center">
               <button class="btn btn-primary fixed-button" type="submit">
                 {{$t("save")}}
@@ -212,22 +189,6 @@ export default {
         return this.$store.state.auth.user.role;
       },
     },
-    city: {
-      get() {
-        return this.$store.state.auth.user.city;
-      },
-      set(value) {
-        this.$store.commit("auth/UPDATE_CITY", value);
-      },
-    },
-    country: {
-      get() {
-        return this.$store.state.auth.user.country;
-      },
-      set(value) {
-        this.$store.commit("auth/UPDATE_COUNTRY", value);
-      },
-    },
     file: {
       get() {
         return this.$store.state.auth.user.avatar;
@@ -261,8 +222,6 @@ export default {
         phone: this.phone,
         address: this.address,
         birthday: this.birthday,
-        city: this.city,
-        country: this.country,
       };
       try {
         await this.$store

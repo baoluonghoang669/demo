@@ -1,26 +1,29 @@
 <template>
-  <div class="projects_inner">
-    <div
-      v-for="project in projects"
-      :key="project.id"
-      class="projects_column arc urban"
-    >
-      <architect-project-item>
-        <img class="img-fluid" :src="project.photo" alt="" />
-        <div class="hover">
-          <architect-button link :path="'/project/' + project.id"
-            ><i class="ion-android-arrow-forward"></i
-          ></architect-button>
-          <div class="project_text">
+  <div>
+    <p class="container">{{ $t("type-home") }} : {{ projects.length }}</p>
+    <div class="projects_inner">
+      <div
+        v-for="project in projects"
+        :key="project.id"
+        class="projects_column arc urban"
+      >
+        <architect-project-item>
+          <img class="img-fluid fix-img-fluid" :src="project.photo" alt="" />
+          <div class="hover">
             <architect-button link :path="'/project/' + project.id"
-              ><h4>{{ project.name }}</h4></architect-button
-            >
-            <h4 v-if="project.averageRating > 0">
-              Rating: {{ project.averageRating }}
-            </h4>
+              ><i class="ion-android-arrow-forward"></i
+            ></architect-button>
+            <div class="project_text">
+              <architect-button link :path="'/project/' + project.id"
+                ><h4>{{ project.name }}</h4></architect-button
+              >
+              <h4 v-if="project.averageRating > 0">
+                Rating: {{ project.averageRating }}
+              </h4>
+            </div>
           </div>
-        </div>
-      </architect-project-item>
+        </architect-project-item>
+      </div>
     </div>
   </div>
 </template>
@@ -50,4 +53,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.fix-img-fluid {
+  height: 470px !important;
+}
+</style>

@@ -8,6 +8,7 @@ export default {
     users: [],
     detailUser: [],
     cities: [],
+    provinces: [],
   },
   mutations,
   actions,

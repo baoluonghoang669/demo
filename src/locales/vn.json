@@ -42,6 +42,7 @@
   "troc": "TROC STUDIO",
   "detail-address": "K55/11 Mỹ An, Ngũ Hành Sơn, Đà Nẵng.",
   "fanpage": "Trang chủ",
+  "homepage": "Trang cá nhân",
   "information": "Thông tin",
   "my-company": "Công ty",
   "support": "Hỗ trợ",
@@ -100,7 +101,7 @@
   "client": "Khách hàng",
   "completed": "Ngày hoàn thành",
   "architect": "Kiến trúc sư",
-  "area": "Khu vực ",
+  "area": "Diện tích",
   "cost": "Chi phí",
   "comment": "Các bình luận",
   "rating": "Đánh giá",
@@ -111,5 +112,10 @@
   "founder": "Nhà sáng lập",
   "director": "Giám đốc",
   "manager": "Quản lý",
-  "designer": "Nhà thiết kế"
+  "designer": "Nhà thiết kế",
+  "type-home": "Số lượng mẫu nhà",
+
+  "page-not-found": "Không tìm thấy trang",
+  "error-found": "Trang này không được tìm thấy - hãy quay lại trang chủ của chúng tôi",
+  "interior": "Kiến trúc - Nội Thất "
 }

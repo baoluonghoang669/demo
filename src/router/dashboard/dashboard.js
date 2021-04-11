@@ -1,9 +1,11 @@
-import DashBoard from "../../views/Admin/Dashboard.vue";
-import Messages from "../../views/Admin/Messages.vue";
-import UserPage from "../../views/Admin/Users/UserPage.vue";
-import CategoryPage from "../../views/Admin/Categories/CategoryPage.vue";
-import ProjectPage from "../../views/Admin/Projects/ProjectPage.vue";
-import ReviewPage from "../../views/Admin/Reviews/ReviewPage.vue";
+const ReviewPage = () => import("../../views/Admin/Reviews/ReviewPage.vue");
+const ProjectPage = () => import("../../views/Admin/Projects/ProjectPage.vue");
+const CategoryPage = () => import("../../views/Admin/Categories/CategoryPage.vue");
+const UserPage = () => import("../../views/Admin/Users/UserPage.vue");
+const Messages = () => import("../../views/Admin/Messages.vue");
+const DashBoard = () => import("../../views/Admin/Dashboard.vue");
+
+
 
 import AdminProjectRoutes from "./admin_projects/index";
 import AdminUserRoutes from "./admin_users/index";

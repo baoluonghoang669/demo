@@ -3,4 +3,5 @@ export default {
   getDetailUser: (state) => state.detailUser,
   checkUsers: (state) => state.users.length,
   getCities: (state) => state.cities,
+  getProvinces: (state) => state.provinces,
 };

@@ -14,8 +14,9 @@ import ArchitectProjectItem from "./components/common/ArchitectProjectItem.vue";
 import ArchitectDialog from "./components/common/ArchitectDialog.vue";
 import ArchitectLoading from "./components/common/ArchitectLoading.vue";
 import ArchitectInputSearch from "./components/common/ArchitectInputSearch.vue";
-import Chartkick from 'vue-chartkick'
-import Chart from 'chart.js'
+
+import Chartkick from "vue-chartkick";
+import Chart from "chart.js";
 
 createApp(App)
   .use(VueAgile)

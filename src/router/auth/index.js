@@ -1,6 +1,6 @@
-import AuthForm from "../../components/auth/AuthForm.vue";
-import ForgotPassword from "../../views/ForgotPassword.vue";
 import ForgotPasswordRoutes from "./forgotpassword";
+const ForgotPassword = () => import("../../views/ForgotPassword.vue");
+const AuthForm = () => import("../../components/auth/AuthForm.vue");
 
 export default [
   {

@@ -1,6 +1,7 @@
-import UserList from "../../../views/Admin/Users/UserList.vue";
-import UserAdd from "../../../views/Admin/Users/UserAdd.vue";
-import UserEdit from "../../../views/Admin/Users/UserEdit.vue";
+const UserEdit = () => import("../../../views/Admin/Users/UserEdit.vue");
+const UserAdd = () => import("../../../views/Admin/Users/UserAdd.vue");
+const UserList = () => import("../../../views/Admin/Users/UserList.vue");
+
 
 export default [
   {

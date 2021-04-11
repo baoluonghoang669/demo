@@ -63,7 +63,7 @@ export default {
         });
         this.$router.replace({ name: "Auth" });
       } catch (err) {
-        this.error = err.response.data.error || this.$t("fail");
+        this.error = err || this.$t("fail");
       }
       this.loading = false;
     },

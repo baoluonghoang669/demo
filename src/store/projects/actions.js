@@ -1,11 +1,10 @@
-import axios from "axios";
 import router from "../../router/index";
+import http from "../../helpers/http";
+import FileSaver from "file-saver";
 
 export default {
   async fetchListProjects({ commit }) {
-    const url = process.env.VUE_APP_GET_PROJECTS;
-
-    const response = await axios.get(url);
+    const response = await http.get("projects");
     const responseData = response.data.data;
     if (responseData.success === false) {
       //error
@@ -16,17 +15,18 @@ export default {
 
   //update project's photo
   async uploadPhoto({ commit }, files) {
-    let url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}/photo`;
-
     let formData = new FormData();
     formData.append("file", files);
 
-    const response = await axios.put(url, formData, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await http.put(
+      `projects/${router.currentRoute.value.params.id}/photo`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
 
     if (response.success === false) {
       return;
@@ -36,13 +36,7 @@ export default {
   },
 
   async sortProjects({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}?sort=${payload}`;
-
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.get(`projects?sort=${payload}`);
     const responseData = response.data.data;
 
     if (responseData.success === false) {
@@ -54,9 +48,7 @@ export default {
 
   //Get projects belongs to it's category
   async fetchProjectsForCategory({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_CATEGORIES}/${payload}/projects`;
-
-    const response = await axios.get(url);
+    const response = await http.get(`categories/${payload}/projects`);
     const responseData = response.data.data;
     if (responseData.success === false) {
       //error
@@ -66,9 +58,7 @@ export default {
   },
 
   async fetchDetailProject({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${payload}`;
-
-    const response = await axios.get(url);
+    const response = await http.get(`projects/${payload}`);
     const responseData = response.data.data;
     if (responseData.success === false) {
       //error
@@ -79,8 +69,6 @@ export default {
 
   //Update project by id
   async onUpdateProject({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${router.currentRoute.value.params.id}`;
-
     const detailProject = {
       name: payload.name,
       description: payload.description,
@@ -90,11 +78,10 @@ export default {
       area: payload.area,
     };
 
-    const response = await axios.put(url, detailProject, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.put(
+      `projects/${router.currentRoute.value.params.id}`,
+      detailProject
+    );
 
     if (response.data.data.success === false) {
       //error
@@ -104,13 +91,7 @@ export default {
   },
 
   async onDeleteProject({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_PROJECTS}/${payload}`;
-
-    const response = await axios.delete(url, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.delete(`projects/${payload}`);
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -121,10 +102,6 @@ export default {
   },
 
   async onAddProject({ commit }, payload) {
-    const url = `${process.env.VUE_APP_GET_CATEGORIES}/${localStorage.getItem(
-      "category"
-    )}/projects`;
-
     const project = {
       name: payload.name,
       description: payload.description,
@@ -136,11 +113,10 @@ export default {
       area: payload.area,
     };
 
-    const response = await axios.post(url, project, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
+    const response = await http.post(
+      `categories/${localStorage.getItem("category")}/projects`,
+      project
+    );
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -148,5 +124,25 @@ export default {
     }
 
     commit("ADD_PROJECT", project);
+  },
+  async getExcelFiles({ commit }) {
+    const response = await http.get("projects/export", {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, "projects.csv");
+
+    commit(responseData);
+  },
+
+  async getExcelFileById({ commit }, payload) {
+    const response = await http.get(`projects/export/${payload}`, {
+      responseType: "blob",
+    });
+    const responseData = response.data;
+
+    FileSaver.saveAs(responseData, `project_${payload}.csv`);
+    commit(responseData);
   },
 };

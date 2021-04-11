@@ -14,6 +14,15 @@
               placeholder="Search by comment..."
             />
           </architect-input-search>
+          <div class="related-btn">
+            <button
+              type="button"
+              class="btn btn-success"
+              @click="onExportExcels"
+            >
+              Export CSV
+            </button>
+          </div>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
             <div
@@ -77,6 +86,10 @@
                         class="far fa-trash-alt"
                         @click="onDelete(review._id)"
                       ></i>
+                      <i
+                        class="fas fa-file-export"
+                        @click="onExport(review._id)"
+                      ></i>
                     </td>
                   </tr>
                 </tbody>
@@ -139,13 +152,31 @@ export default {
         this.err = error;
       }
     },
+
+    async onExport(id) {
+      try {
+        await this.$store.dispatch("reviews/getExcelFileById", id);
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
+    async onExportExcels() {
+      try {
+        await this.$store.dispatch("reviews/getExcelFiles");
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+    },
   },
 };
 </script>
 <style scoped>
-
+.btn-success:hover {
+  border-color: #28a745;
+}
 .fa {
-cursor: pointer;}
+  cursor: pointer;
+}
 .flex-edit {
   display: flex;
   justify-content: center;
@@ -157,5 +188,23 @@ cursor: pointer;}
   left: 58%;
   transform: translateY(-35px);
   outline: none;
+}
+
+.fa:hover,
+.fas:hover,
+.far:hover {
+  transform: scale(0.9);
+}
+
+.fa-file-export {
+  color: rgb(39, 131, 198);
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.related-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
 }
 </style>

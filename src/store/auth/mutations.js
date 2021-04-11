@@ -30,6 +30,6 @@ export default {
   UPDATE_ADDRESS: (state, payload) => (state.user.address = payload),
   UPDATE_BIRTHDAY: (state, payload) => (state.user.birthday = payload),
   UPDATE_CITY: (state, payload) => (state.user.city = payload),
-  UPDATE_COUNTRY: (state, payload) => (state.user.country = payload),
+  UPDATE_PROVINCE: (state, payload) => (state.user.province = payload),
   UPDATE_AVATAR: (state, payload) => (state.user.avatar = payload),
 };

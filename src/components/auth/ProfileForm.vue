@@ -112,6 +112,28 @@
                   required
                 />
               </div>
+              <div class="col-md-12">
+                <label class="labels">City</label>
+                <input
+                  type="text"
+                  name="birthday"
+                  class="form-control"
+                  placeholder="City"
+                  v-model="city"
+                  required
+                />
+              </div>
+              <div class="col-md-12">
+                <label class="labels">Province</label>
+                <input
+                  type="text"
+                  name="province"
+                  class="form-control"
+                  placeholder="Province"
+                  v-model="province"
+                  required
+                />
+              </div>
             </div>
             <div class="mt-5 text-center">
               <button class="btn btn-primary fixed-button" type="submit">
@@ -184,6 +206,22 @@ export default {
         this.$store.commit("auth/UPDATE_BIRTHDAY", value);
       },
     },
+    city: {
+      get() {
+        return this.$store.state.auth.user.city;
+      },
+      set(value) {
+        this.$store.commit("auth/UPDATE_CITY", value);
+      },
+    },
+    province: {
+      get() {
+        return this.$store.state.auth.user.province;
+      },
+      set(value) {
+        this.$store.commit("auth/UPDATE_PROVINCE", value);
+      },
+    },
     role: {
       get() {
         return this.$store.state.auth.user.role;
@@ -222,6 +260,8 @@ export default {
         phone: this.phone,
         address: this.address,
         birthday: this.birthday,
+        city: this.city,
+        province: this.province
       };
       try {
         await this.$store
@@ -262,7 +302,7 @@ export default {
         this.error = err.response.data.error || "Fail to update"
       }
       this.loading = false;
-    }
+    },
   },
 };
 </script>

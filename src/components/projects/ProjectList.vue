@@ -1,9 +1,17 @@
 <template>
   <div>
-    <p class="container">{{ $t("type-home") }} : {{ projects.length }}</p>
+    <h4 class="container">{{ $t("type-home") }} : {{ projects.length }}</h4>
+    <architect-input-search class="fix-search-projects">
+      <input
+        type="text"
+        v-model="search"
+        class="form-control"
+        placeholder="Search by name..."
+      />
+    </architect-input-search>
     <div class="projects_inner">
       <div
-        v-for="project in projects"
+        v-for="project in researchProjects"
         :key="project.id"
         class="projects_column arc urban"
       >
@@ -31,6 +39,11 @@
 import ArchitectButton from "../common/ArchitectButton.vue";
 export default {
   components: { ArchitectButton },
+  data() {
+    return {
+      search: "",
+    };
+  },
   created() {
     this.fetchProjects();
   },
@@ -40,6 +53,15 @@ export default {
     },
     checkProjects() {
       return this.$store.getters["projects/checkProjects"];
+    },
+    researchProjects() {
+      if (this.search) {
+        return this.projects.filter((project) => {
+          return project.name.startsWith(this.search);
+        });
+      } else {
+        return this.projects;
+      }
     },
   },
   methods: {
@@ -56,5 +78,8 @@ export default {
 <style scoped>
 .fix-img-fluid {
   height: 470px !important;
+}
+.fix-search-projects {
+  width: 28% !important;
 }
 </style>

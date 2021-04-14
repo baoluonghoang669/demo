@@ -89,8 +89,7 @@
     <header class="full_header content-white mobile_menu">
       <div class="float-left">
         <router-link class="logo" to="/"
-          ><img src="../../assets/images/logo/logo-white.png" alt=""
-        /></router-link>
+          ><img class="fix-responsive-logo" src="../../assets/images/logo/1-removebg-preview.png" /></router-link>
         <router-link class="phone" to="/"
           ><i class="lnr lnr-phone-handset"></i> (+84) 902 985 987</router-link
         >
@@ -235,6 +234,10 @@ export default {
 <style scoped>
 /*custom modal teleport with responsive menu*/
 /* transition animation */
+.fix-responsive-logo {
+  width: 100px;
+  height: 80px;
+}
 select {
   outline: none;
   background: transparent;
@@ -453,6 +456,9 @@ li {
 }
 /* Home Full Menu css
 ============================================================================================ */
+.logo {
+
+}
 .header_menu_area {
   position: absolute;
   left: 0px;

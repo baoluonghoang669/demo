@@ -127,11 +127,11 @@ export default {
     };
   },
   watch: {
-    "ruleForm.city": function(city) {
-      localStorage.setItem("city", city);
+    "ruleForm.city": function(id) {
+      this.getProvinces(id);
     },
   },
-  mounted() {
+  created() {
     this.getCities();
     this.getProvinces();
   },
@@ -175,16 +175,14 @@ export default {
       }
       this.loading = false;
     },
-
     clearError() {
       this.error = null;
     },
-
     getCities() {
       return this.$store.dispatch("userAdmin/getCity");
     },
-    getProvinces() {
-      return this.$store.dispatch("userAdmin/getProvice");
+    getProvinces(id) {
+      return this.$store.dispatch("userAdmin/getProvice", id);
     },
   },
 };

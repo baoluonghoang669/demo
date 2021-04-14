@@ -2210,6 +2210,9 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     margin-bottom: 21px;
     padding-left: 5px;
     padding-right: 5px; }
+  .text_box {
+    left: 50%;
+  }
   .navbar-search-form {
     display: none; }
   .navbar-nav .dropdown-item .dropdown-menu,

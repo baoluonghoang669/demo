@@ -106,11 +106,8 @@ export default {
     commit("GET_CITY", responseData);
   },
 
-  async getProvice({ commit }) {
-    const url = `https://vapi.vnappmob.com/api/province/district/${localStorage.getItem(
-      "city"
-    )}`;
-    console.log(url);
+  async getProvice({ commit }, payload) {
+    const url = `https://vapi.vnappmob.com/api/province/district/${payload}`;
     const response = await axios.get(url);
     const responseData = response.data;
 

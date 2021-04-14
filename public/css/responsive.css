@@ -136,7 +136,7 @@
 	.home_slider .text_box {
 		width: 100%;
 		right: 0;
-    left: 0;
+    left: 50%;
 		padding: 2rem;
 	}
 	.home_slider .text_box .text_1 p{
@@ -394,6 +394,9 @@
 	}
 	.full_header {
 		padding: 18px 15px;
+		display: flex;
+    justify-content: space-between;
+    align-items: center;
 	}
 	.inter_content p {
 		margin-bottom: 40px;
@@ -765,6 +768,14 @@
 	.meet_team_area {
 		padding-top: 70px;
 		padding-bottom: 70px;
+	}
+}
+@media(max-width: 768px){
+	.home_slider .text_box {
+    left: 50% !important;
+	}
+	.interior {
+		left: 30% !important;
 	}
 }
 @media(max-width: 480px){

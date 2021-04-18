@@ -131,7 +131,7 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, "projects.csv");
+    FileSaver.saveAs(responseData, "projects.xlsx");
 
     commit(responseData);
   },
@@ -142,7 +142,18 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, `project_${payload}.csv`);
+    FileSaver.saveAs(responseData, `project_${payload}.xlsx`);
     commit(responseData);
+  },
+
+  async importExcels({ commit }, payload) {
+    const response = await http.post(`projects/import`, payload, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    const responseData = response.data.data;
+    console.log(responseData);
+    commit("SET_PROJECTS", responseData);
   },
 };

@@ -106,7 +106,7 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, "categories.csv");
+    FileSaver.saveAs(responseData, "categories.xlsx");
 
     commit(responseData);
   },
@@ -117,7 +117,7 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, `category_${payload}.csv`);
+    FileSaver.saveAs(responseData, `category_${payload}.xlsx`);
     commit(responseData);
   },
 };

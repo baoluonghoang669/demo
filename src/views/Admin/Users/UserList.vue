@@ -22,12 +22,24 @@
             />
           </architect-input-search>
           <div class="related-btn">
+            <label class="fix-flex"
+              >Excel File:
+              <input
+                type="file"
+                id="file"
+                ref="file"
+                v-on:change="handleFileUpload()"
+              />
+            </label>
+            <button type="button" class="btn btn-info" @click="onImportExcels">
+              Import Excel
+            </button>
             <button
               type="button"
               class="btn btn-success"
               @click="onExportExcels"
             >
-              Export CSV
+              Export Excel
             </button>
           </div>
           <div class="card-body">
@@ -141,6 +153,7 @@ export default {
       err: null,
       loading: false,
       search: "",
+      file: "",
     };
   },
   created() {
@@ -211,10 +224,33 @@ export default {
         this.err = error || "Fail to get";
       }
     },
+    async onImportExcels() {
+      if (this.file === "") {
+        alert("Please import a excel file");
+        return;
+      }
+      this.loading = true;
+      let formData = new FormData();
+      formData.append("file", this.file);
+      try {
+        await this.$store.dispatch("userAdmin/importExcels", formData);
+      } catch (error) {
+        this.err = error || this.$t("fail");
+      }
+      this.loading = false;
+    },
+    handleFileUpload() {
+      this.file = this.$refs.file.files[0];
+    },
   },
 };
 </script>
 <style scoped>
+.fix-flex {
+  display: flex;
+  align-items: center;
+}
+
 .btn-success:hover {
   border-color: #28a745;
 }

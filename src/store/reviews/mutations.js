@@ -19,5 +19,4 @@ export default {
   UPDATE_RATING: (state, payload) => (state.detailReview.rating = payload),
   UPDATE_PROJECT: (state, payload) =>
     (state.detailReview.project._id = payload),
-
 };

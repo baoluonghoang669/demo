@@ -27,7 +27,7 @@
               class="btn btn-success"
               @click="onExportExcels"
             >
-              Export CSV
+              Export Excel
             </button>
           </div>
           <div class="card-body">
@@ -110,6 +110,7 @@ export default {
     return {
       loading: false,
       search: "",
+      file: ""
     };
   },
   created() {

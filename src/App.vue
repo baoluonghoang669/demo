@@ -13,6 +13,7 @@
 <script>
 import TheFooter from "./components/layouts/TheFooter.vue";
 import TheHeader from "./components/layouts/TheHeader.vue";
+
 export default {
   components: { TheHeader, TheFooter },
   computed: {
@@ -46,7 +47,6 @@ export default {
 .fa-undo-alt {
   color: #263a4f;
 }
-
 a {
   text-decoration: none;
   cursor: pointer;

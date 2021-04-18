@@ -89,7 +89,10 @@
     <header class="full_header content-white mobile_menu">
       <div class="float-left">
         <router-link class="logo" to="/"
-          ><img class="fix-responsive-logo" src="../../assets/images/logo/1-removebg-preview.png" /></router-link>
+          ><img
+            class="fix-responsive-logo"
+            src="../../assets/images/logo/1-removebg-preview.png"
+        /></router-link>
         <router-link class="phone" to="/"
           ><i class="lnr lnr-phone-handset"></i> (+84) 902 985 987</router-link
         >
@@ -234,10 +237,6 @@ export default {
 <style scoped>
 /*custom modal teleport with responsive menu*/
 /* transition animation */
-.fix-responsive-logo {
-  width: 100px;
-  height: 80px;
-}
 select {
   outline: none;
   background: transparent;
@@ -256,15 +255,12 @@ a {
   opacity: 0;
   transform: scale(0.8);
 }
-
 .dialog-enter-active {
   transition: all 0.3s ease-out;
 }
-
 .dialog-leave-active {
   transition: all 0.3s ease-in;
 }
-
 .dialog-enter-to,
 .dialog-leave-from {
   opacity: 1;
@@ -277,12 +273,10 @@ a {
   color: #fff;
   margin: 0 5px;
 }
-
 .social-list .icon:hover {
   transform: translateY(-5px);
   transition: 0.3s all ease;
 }
-
 .menu-footer {
   position: absolute;
   bottom: 10%;
@@ -290,25 +284,20 @@ a {
   flex-direction: column;
   text-align: center;
 }
-
 .fix-nav-tel {
   width: 27%;
   transform: translate(-10px, 8px);
 }
-
 .fix-tel {
   color: #fff;
 }
-
 .fix-tel:hover {
   color: #a3cc01 !important;
 }
-
 .fa-times:hover {
   transform: translateY(-5px);
   transition: 0.3s ease all;
 }
-
 .modal {
   position: absolute;
   top: 0;
@@ -321,7 +310,6 @@ a {
   align-items: center;
   justify-content: center;
 }
-
 .content-modal {
   position: absolute;
   right: 0;
@@ -336,7 +324,6 @@ a {
   padding: 5px;
   z-index: 9999;
 }
-
 .content-modal i {
   position: absolute;
   top: 0;
@@ -345,36 +332,30 @@ a {
   cursor: pointer;
   color: #fff;
 }
-
 .responsive-nav {
   position: absolute;
   top: 5%;
   display: flex;
   left: 0;
 }
-
 .responsive-tel {
   position: absolute;
   top: 5%;
   display: flex;
   left: 30%;
 }
-
 .responsive-nav li a {
   color: #fff;
   padding: 0 9px;
 }
-
 .responsive-right {
   position: absolute;
   top: 4%;
   display: flex;
 }
-
 .responsive-right .flag {
   transform: translate(-5px, 5px);
 }
-
 .responsive-menu {
   position: absolute;
   top: 10%;
@@ -382,83 +363,65 @@ a {
   padding: 0;
   text-align: center;
 }
-
 .responsive-menu li {
   margin: 10px 0;
   border-bottom: 1px solid #fff;
 }
-
 .responsive-menu li:hover {
   background: #263a4f;
   color: #fff;
 }
-
 .responsive-menu li a {
   color: #fff;
 }
-
 .responsive-menu li a:hover {
   color: #a3cc01;
   transition: 0.3s all ease;
 }
-
 /*============ end custom modal =============*/
-
 li {
   list-style-type: none;
 }
 .vuei18n {
   border-radius: 5%;
 }
-
 .flag-icon-us.flag-icon-squared {
   background-position: center;
   background-size: cover;
   position: center;
 }
-
 .flag-icon.flag-icon-squared {
   width: 1em;
   height: 1rem;
   transform: translate(-6px, 0px);
 }
-
 .fix-nav {
   flex-wrap: nowrap;
   margin-right: 40px;
   width: 16%;
 }
-
 .fix-nav li {
   padding: 0 5px;
 }
-
 .fix-nav li a {
   text-decoration: none;
   color: #fff;
 }
-
 .fix-nav li a:hover {
   color: #a3cc01;
 }
-
 .fix-img {
   height: 17px;
   transform: translateY(3px);
 }
-
 .fix-dark li a {
   color: #263a4f;
 }
-
 .fix-white li a {
   color: #fff;
 }
 /* Home Full Menu css
 ============================================================================================ */
-.logo {
-
-}
 .header_menu_area {
   position: absolute;
   left: 0px;
@@ -466,32 +429,26 @@ li {
   z-index: 30;
   top: 0px;
 }
-
 .header_menu_area .navbar.navbar-expand-lg {
   background: transparent !important;
   padding: 45px 75px 0px 75px;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .navbar-brand img {
   display: inline-block;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .navbar-brand img + img {
   display: none;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav {
   display: block;
   width: 100%;
   float: none;
   margin-left: 5.7%;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li {
   display: inline-block;
   margin-right: 50px;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li a {
   font-family: "Heebo", sans-serif;
   color: #fff;
@@ -501,7 +458,6 @@ li {
   transition: color 400ms linear 0s;
   line-height: 35px;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -509,7 +465,6 @@ li {
   a.router-link-exact-active {
   color: #a3cc01;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.fix-nav
@@ -517,15 +472,12 @@ li {
   a.router-link-exact-active {
   color: #a3cc01;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li a:after {
   display: none;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav li:last-child {
   margin-right: 0px;
 }
-
 @media (min-width: 992px) {
   .header_menu_area
     .navbar.navbar-expand-lg
@@ -555,7 +507,6 @@ li {
     opacity: 0;
   }
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -565,7 +516,6 @@ li {
   margin-right: 0px;
   display: block;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -587,7 +537,6 @@ li {
   font-size: 14px;
   border-bottom: 1px solid #f1f1f1;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -597,7 +546,6 @@ li {
   a:before {
   display: none;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -607,7 +555,6 @@ li {
   a {
   border-bottom: 0px;
 }
-
 @media (min-width: 992px) {
   .header_menu_area
     .navbar.navbar-expand-lg
@@ -619,22 +566,18 @@ li {
     opacity: 1;
   }
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right {
   display: inline-block;
   max-width: 100px;
   width: 100%;
   margin-left: 0px;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li {
   display: inline-block;
 }
-
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right li a {
   color: #999999;
 }
-
 .header_menu_area
   .navbar.navbar-expand-lg
   .nav.navbar-nav.navbar-right
@@ -647,18 +590,15 @@ li {
   a {
   color: #fff;
 }
-
 .header_menu_area.navbar_fixed .navbar.navbar-expand-lg {
   padding-top: 0px;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .navbar-brand
   img {
   display: none;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .navbar-brand
@@ -666,14 +606,12 @@ li {
   + img {
   display: inline-block;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .navbar-toggler
   span {
   background: #263a4f;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -685,7 +623,6 @@ li {
   -o-transition: color all 400ms ease;
   transition: color all 400ms ease;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -693,7 +630,6 @@ li {
   > a {
   color: #a3cc01;
 }
-
 .header_menu_area.white_menu.navbar_fixed
   .navbar.navbar-expand-lg
   .nav.navbar-nav
@@ -701,11 +637,9 @@ li {
   > a {
   color: #a3cc01;
 }
-
 .dark_menu {
   background: #263a4f;
 }
-
 .dark_menu .navbar.navbar-expand-lg {
   background: #263a4f !important;
   padding: 45px 75px 37px 75px;
@@ -714,7 +648,6 @@ li {
   width: 100%;
   z-index: 9999;
 }
-
 .header_menu_area.is_sticky {
   position: fixed;
   top: 0;
@@ -729,26 +662,21 @@ li {
   -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1);
 }
-
 .dark_menu .navbar.navbar-expand-lg .navbar-brand {
   padding-top: 0px;
 }
-
 .dark_menu .navbar.navbar-expand-lg .nav.navbar-nav li a {
   color: #fff;
 }
-
 .dark_menu .navbar.navbar-expand-lg .nav.navbar-nav li:hover a,
 .dark_menu .navbar.navbar-expand-lg .nav.navbar-nav li.active a {
   color: #a3cc01;
 }
-
 .fix-main-logo {
   width: 130px;
   height: 30px;
   transform: translateY(-55px);
 }
-
 .fix-main-logo img {
   max-width: 100%;
   height: auto;

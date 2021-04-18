@@ -1,7 +1,6 @@
 import router from "../../router/index";
 import http from "../../helpers/http";
 import FileSaver from "file-saver";
-
 export default {
   //get all reviews of users
   async fetchAllReviews({ commit }) {
@@ -53,7 +52,10 @@ export default {
       rating: payload.rating,
     };
 
-    const response = await http.put(`reviews/${router.currentRoute.value.params.id}`, detailReview);
+    const response = await http.put(
+      `reviews/${router.currentRoute.value.params.id}`,
+      detailReview
+    );
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -82,7 +84,10 @@ export default {
       rating: payload.rating,
     };
 
-    const response = await http.post(`projects/${router.currentRoute.value.params.id}/reviews`, userReview);
+    const response = await http.post(
+      `projects/${router.currentRoute.value.params.id}/reviews`,
+      userReview
+    );
 
     const responseData = response.data.data;
     if (responseData.success === false) {
@@ -98,7 +103,7 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, "reviews.csv");
+    FileSaver.saveAs(responseData, "reviews.xlsx");
 
     commit(responseData);
   },
@@ -109,7 +114,7 @@ export default {
     });
     const responseData = response.data;
 
-    FileSaver.saveAs(responseData, `review_${payload}.csv`);
+    FileSaver.saveAs(responseData, `review_${payload}.xlsx`);
     commit(responseData);
   },
 };

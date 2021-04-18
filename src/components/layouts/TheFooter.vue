@@ -188,10 +188,15 @@
         </li>
       </ul>
     </div>
+    <div class="chatbot">
+      <chatbot></chatbot>
+    </div>
   </div>
 </template>
 <script>
-export default {};
+import chatbot from '../chatbot/chatbot.vue';
+export default {
+  components: { chatbot },};
 </script>
 <style scoped>
 /*fix social icon */

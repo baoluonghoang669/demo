@@ -73,7 +73,7 @@
               class="vuei18n"
               v-model="check"
               id="check"
-              @change="handleChange($event)"
+              @`cha`nge="handleChange($event)"
             >
               <option value="us">
                 English

@@ -73,7 +73,12 @@
             </p>
           </div>
           <div class="villa_slider">
-            <carousel :items-to-show="1" :wrapAround="true" :transition="1000">
+            <carousel
+              :items-to-show="1"
+              :currentSlide="0"
+              :wrapAround="true"
+              :transition="500"
+            >
               <slide v-for="slide in 2" :key="slide">
                 <div
                   class="item"

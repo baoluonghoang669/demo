@@ -14,23 +14,27 @@ import ArchitectProjectItem from "./components/common/ArchitectProjectItem.vue";
 import ArchitectDialog from "./components/common/ArchitectDialog.vue";
 import ArchitectLoading from "./components/common/ArchitectLoading.vue";
 import ArchitectInputSearch from "./components/common/ArchitectInputSearch.vue";
+import CardSearchForm from "./components/common/CardSearchForm.vue";
+import SearchForm from "./components/common/IndexSearchForm.vue";
 
 import Chartkick from "vue-chartkick";
 import Chart from "chart.js";
 
 createApp(App)
-  .use(VueAgile)
-  .use(store)
-  .use(i18n)
-  .use(FlagIcon)
-  .use(VueSmoothScroll)
-  .use(router)
-  .use(ElementPlus)
-  .use(Chartkick.use(Chart))
-  .component("architect-button", ArchitectButton)
-  .component("architect-advertise-label", ArchitectAdvertiseLabel)
-  .component("architect-project-item", ArchitectProjectItem)
-  .component("architect-dialog", ArchitectDialog)
-  .component("architect-loading", ArchitectLoading)
-  .component("architect-input-search", ArchitectInputSearch)
-  .mount("#app");
+    .use(VueAgile)
+    .use(store)
+    .use(i18n)
+    .use(FlagIcon)
+    .use(VueSmoothScroll)
+    .use(router)
+    .use(ElementPlus)
+    .use(Chartkick.use(Chart))
+    .component("architect-button", ArchitectButton)
+    .component("architect-advertise-label", ArchitectAdvertiseLabel)
+    .component("architect-project-item", ArchitectProjectItem)
+    .component("architect-dialog", ArchitectDialog)
+    .component("architect-loading", ArchitectLoading)
+    .component("architect-input-search", ArchitectInputSearch)
+    .component("card-search-form", CardSearchForm)
+    .component("search-form", SearchForm)
+    .mount("#app");

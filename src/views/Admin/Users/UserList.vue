@@ -13,14 +13,14 @@
           >
             Add User
           </router-link>
-          <architect-input-search>
-            <input
-              type="text"
-              v-model="search"
-              class="form-control"
-              placeholder="Search by name..."
-            />
-          </architect-input-search>
+          <card-search-form>
+            <search-form
+              :inputs="searchFormData.inputs"
+              :handleSearch="handleSearch"
+              :handleClear="handleClear"
+            >
+            </search-form>
+          </card-search-form>
           <div class="related-btn">
             <label class="fix-flex"
               >Excel File:
@@ -146,7 +146,6 @@
 </template>
 <script>
 export default {
-  components: {},
   data() {
     return {
       show: false,
@@ -154,6 +153,8 @@ export default {
       loading: false,
       search: "",
       file: "",
+      formSearch: {},
+      total: 0,
     };
   },
   created() {
@@ -177,8 +178,76 @@ export default {
         return this.users;
       }
     },
+    searchFormData: function() {
+      return {
+        inputs: [
+          {
+            inputType: "input",
+            label: "Name",
+            name: "name",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Email",
+            name: "email",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "select",
+            label: "City",
+            name: "city",
+            attributes: { clearable: true, filterable: true },
+            trim: true,
+            optionValueField: "value",
+            optionLabelField: "label",
+          },
+          {
+            inputType: "input",
+            label: "Address",
+            name: "address",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Phone",
+            name: "phone",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {},
+        ],
+      };
+    },
+  },
+  async mounted() {
+    await this.eventRefresh();
   },
   methods: {
+    async eventRefresh(page) {
+      this.loading = true;
+      await this.$store.dispatch("userAdmin/index", {
+        page: page || 1,
+        ...this.formSearch,
+      });
+      this.total = this.users.totalCount;
+      this.loading = false;
+    },
+    async handleSearch(form, refs) {
+      this.formSearch = form;
+      await this.eventRefresh();
+      refs.validate((valid) => {
+        console.log(valid);
+      });
+    },
+    async handleClear(form, refs) {
+      await this.$store.dispatch("userAdmin/index", { page: 1 });
+      refs.resetFields();
+      this.total = this.users.totalCount;
+    },
     onOpen() {
       this.show = true;
     },
@@ -287,5 +356,12 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+}
+
+.btn-info {
+  background-color: #409eff;
+}
+.btn {
+  font-size: 12px;
 }
 </style>

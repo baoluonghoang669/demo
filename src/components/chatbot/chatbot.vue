@@ -8,7 +8,6 @@
         <div class="title-chatbot">
           <h3 class="text-center">Architecture ChatBot</h3>
           <p class="fas fa-hide" @click="onHide">_</p>
-          <!-- <i class="fas fa-times" @click="onClose"></i> -->
           <el-popover
             class="mockup"
             placement="top"

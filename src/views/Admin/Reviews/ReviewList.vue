@@ -6,14 +6,9 @@
           <div class="card-header">
             <h4 class="card-title">All Reviews</h4>
           </div>
-          <architect-input-search>
-            <input
-              type="text"
-              v-model="search"
-              class="form-control"
-              placeholder="Search by comment..."
-            />
-          </architect-input-search>
+          <card-search-form>
+            <search-form :inputs="searchFormData.inputs"> </search-form>
+          </card-search-form>
           <div class="related-btn">
             <button
               type="button"
@@ -118,6 +113,57 @@ export default {
     this.fetchAllReviews();
   },
   computed: {
+    searchFormData: function() {
+      return {
+        inputs: [
+          {
+            inputType: "input",
+            label: "Name",
+            name: "name",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Description",
+            name: "description",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "select",
+            label: "Cost",
+            name: "cost",
+            attributes: { clearable: true, filterable: true },
+            trim: true,
+            optionValueField: "value",
+            optionLabelField: "label",
+          },
+          {
+            inputType: "input",
+            label: "Categories",
+            name: "categories",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Address",
+            name: "address",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Area",
+            name: "area",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {},
+        ],
+      };
+    },
     reviews() {
       return this.$store.getters["reviews/getReviews"];
     },
@@ -172,6 +218,12 @@ export default {
 };
 </script>
 <style scoped>
+.btn-info {
+  background-color: #409eff;
+}
+.btn {
+  font-size: 12px;
+}
 .btn-success:hover {
   border-color: #28a745;
 }

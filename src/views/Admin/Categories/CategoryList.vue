@@ -13,14 +13,14 @@
           >
             Add Category
           </router-link>
-          <architect-input-search>
-            <input
-              type="text"
-              v-model="search"
-              class="form-control"
-              placeholder="Search by name..."
-            />
-          </architect-input-search>
+          <card-search-form>
+            <search-form
+              :inputs="searchFormData.inputs"
+              :handleSearch="handleSearch"
+              :handleClear="handleClear"
+            >
+            </search-form>
+          </card-search-form>
           <div class="related-btn">
             <button
               type="button"
@@ -32,10 +32,7 @@
           </div>
           <div class="card-body">
             <div v-if="loading"><architect-loading></architect-loading></div>
-            <div
-              class="table-responsive"
-              v-else-if="!loading && categories && categories.length > 0"
-            >
+            <div class="table-responsive" v-else-if="!loading && categories">
               <table class="table table-bordered">
                 <thead class=" text-primary">
                   <th>
@@ -72,8 +69,11 @@
                     <td>
                       {{ category.description }}
                     </td>
-                    <td>
+                    <td v-if="category.projects">
                       {{ category.projects.length }}
+                    </td>
+                    <td v-else>
+                      No projects
                     </td>
                     <td style="width: 80px">
                       <architect-button
@@ -110,13 +110,35 @@ export default {
     return {
       loading: false,
       search: "",
-      file: ""
+      file: "",
+      formSearch: {},
+      total: 0,
     };
   },
   created() {
     this.fetchCategories();
   },
   computed: {
+    searchFormData: function() {
+      return {
+        inputs: [
+          {
+            inputType: "input",
+            label: "Name",
+            name: "name",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Description",
+            name: "description",
+            attributes: { clearable: true },
+            trim: true,
+          },
+        ],
+      };
+    },
     categories() {
       return this.$store.getters["categories/getCategories"];
     },
@@ -130,7 +152,31 @@ export default {
       }
     },
   },
+  async mounted() {
+    await this.eventRefresh();
+  },
   methods: {
+    async eventRefresh(page) {
+      this.loading = true;
+      await this.$store.dispatch("categories/index", {
+        page: page || 1,
+        ...this.formSearch,
+      });
+      this.total = this.categories.totalCount;
+      this.loading = false;
+    },
+    async handleSearch(form, refs) {
+      this.formSearch = form;
+      await this.eventRefresh();
+      refs.validate((valid) => {
+        console.log(valid);
+      });
+    },
+    async handleClear(form, refs) {
+      await this.$store.dispatch("categories/index", { page: 1 });
+      refs.resetFields();
+      this.total = this.categories.totalCount;
+    },
     async onDelete(id) {
       try {
         await this.$store.dispatch("categories/onDeleteCategory", id);
@@ -216,5 +262,11 @@ export default {
 
 .btn-success:hover {
   border-color: #28a745;
+}
+.btn-info {
+  background-color: #409eff;
+}
+.btn {
+  font-size: 12px;
 }
 </style>

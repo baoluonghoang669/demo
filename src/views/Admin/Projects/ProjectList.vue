@@ -14,14 +14,9 @@
             Add Project
           </router-link>
 
-          <architect-input-search>
-            <input
-              type="text"
-              v-model="search"
-              class="form-control"
-              placeholder="Search by name..."
-            />
-          </architect-input-search>
+          <card-search-form>
+            <search-form :inputs="searchFormData.inputs"> </search-form>
+          </card-search-form>
           <div class="related-btn">
             <label class="fix-flex"
               >Excel File:
@@ -154,6 +149,57 @@ export default {
     this.fetchListProjects();
   },
   computed: {
+    searchFormData: function() {
+      return {
+        inputs: [
+          {
+            inputType: "input",
+            label: "Name",
+            name: "name",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Description",
+            name: "description",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "select",
+            label: "Cost",
+            name: "cost",
+            attributes: { clearable: true, filterable: true },
+            trim: true,
+            optionValueField: "value",
+            optionLabelField: "label",
+          },
+          {
+            inputType: "input",
+            label: "Categories",
+            name: "categories",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Address",
+            name: "address",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {
+            inputType: "input",
+            label: "Area",
+            name: "area",
+            attributes: { clearable: true },
+            trim: true,
+          },
+          {},
+        ],
+      };
+    },
     projects() {
       return this.$store.getters["projects/getProjects"];
     },
@@ -301,5 +347,11 @@ export default {
 }
 .btn-success:hover {
   border-color: #28a745;
+}
+.btn-info {
+  background-color: #409eff;
+}
+.btn {
+  font-size: 12px;
 }
 </style>

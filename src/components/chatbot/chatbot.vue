@@ -20,10 +20,10 @@
             </p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="visible = false"
-                >Cancel</el-button
+                >{{$t("cancel")}}</el-button
               >
               <el-button type="primary" size="mini" @click="onClose"
-                >Confirm</el-button
+                >{{$t("confirm")}}</el-button
               >
             </div>
             <template #reference>
@@ -67,18 +67,16 @@
                         />
                       </div>
                       <div v-if="msgData.msg !== ''">
-                        <chat-loading
+                        <!-- <chat-loading
                           v-if="loading && msgData.sender === 'bot'"
-                        ></chat-loading>
-                        <template v-else>
-                          <p v-if="!msgData.msg.includes('https')">
-                            {{ msgData.msg }}
-                          </p>
-                          <a v-else :href="msgData.msg">{{ msgData.msg }}</a>
-                          <span class="time_date">
-                            {{ timestamp }} | Today</span
-                          >
-                        </template>
+                        ></chat-loading> -->
+                        <!-- <template v-else> -->
+                        <p v-if="!msgData.msg.includes('https')">
+                          {{ msgData.msg }}
+                        </p>
+                        <a v-else :href="msgData.msg">{{ msgData.msg }}</a>
+                        <span class="time_date"> {{ timestamp }} | Today</span>
+                        <!-- </template> -->
                       </div>
                     </div>
                   </div>
@@ -110,9 +108,7 @@
   </teleport>
 </template>
 <script>
-import ChatLoading from "../common/ChatLoading.vue";
 export default {
-  components: { ChatLoading },
   data() {
     return {
       show: false,
@@ -418,7 +414,7 @@ img {
 }
 .msg_history {
   overflow: auto;
-  height: 265px;
+  height: 356px;
   padding: 0 20px;
 }
 

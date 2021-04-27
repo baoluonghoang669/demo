@@ -22,6 +22,7 @@
             </search-form>
           </card-search-form>
           <div class="related-btn">
+            <b class="fix-quantity">Quantity: {{ categories.length }}</b>
             <button
               type="button"
               class="btn btn-success"

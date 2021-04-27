@@ -22,6 +22,7 @@
             </search-form>
           </card-search-form>
           <div class="related-btn">
+            <b class="fix-quantity">Quantity: {{ users.length }}</b>
             <label class="fix-flex"
               >Excel File:
               <input

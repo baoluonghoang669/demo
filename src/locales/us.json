@@ -120,5 +120,7 @@
     "interior": "Interior - Architecture",
 
     "end-chat": "Are you sure you want to End the chat?",
-    "text-end-chat": "You will be logged out of this chat. You can re-login at any time."
+    "text-end-chat": "You will be logged out of this chat. You can re-login at any time.",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
 }

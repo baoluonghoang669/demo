@@ -120,5 +120,7 @@
     "interior": "Kiến trúc - Nội Thất ",
 
     "end-chat": "Bạn có chắc chắn muốn Kết thúc đoạn chat không?",
-    "text-end-chat": "Bạn sẽ bị đăng xuất khỏi đoạn chat này. Bạn có thể đăng nhập lại bất cứ lúc nào."
+    "text-end-chat": "Bạn sẽ bị đăng xuất khỏi đoạn chat này. Bạn có thể đăng nhập lại bất cứ lúc nào.",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận"
 }

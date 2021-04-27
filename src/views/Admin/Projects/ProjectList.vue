@@ -15,9 +15,15 @@
           </router-link>
 
           <card-search-form>
-            <search-form :inputs="searchFormData.inputs"> </search-form>
+            <search-form
+              :inputs="searchFormData.inputs"
+              :handleSearch="handleSearch"
+              :handleClear="handleClear"
+            >
+            </search-form>
           </card-search-form>
           <div class="related-btn">
+            <b class="fix-quantity">Quantity: {{ projects.length }}</b>
             <label class="fix-flex"
               >Excel File:
               <input
@@ -93,8 +99,11 @@
                     <td v-if="project">
                       {{ project.description }}
                     </td>
-                    <td v-if="project">
+                    <td v-if="project.categories">
                       {{ project.categories.name }}
+                    </td>
+                    <td v-else>
+                      No category
                     </td>
                     <td>
                       {{ project.architecture }}
@@ -143,6 +152,8 @@ export default {
       search: "",
       error: null,
       file: "",
+      formSearch: {},
+      total: 0,
     };
   },
   created() {
@@ -167,21 +178,19 @@ export default {
             trim: true,
           },
           {
-            inputType: "select",
+            inputType: "input",
             label: "Cost",
             name: "cost",
             attributes: { clearable: true, filterable: true },
             trim: true,
-            optionValueField: "value",
-            optionLabelField: "label",
           },
-          {
-            inputType: "input",
-            label: "Categories",
-            name: "categories",
-            attributes: { clearable: true },
-            trim: true,
-          },
+          // {
+          //   inputType: "input",
+          //   label: "Categories",
+          //   name: "categories",
+          //   attributes: { clearable: true },
+          //   trim: true,
+          // },
           {
             inputType: "input",
             label: "Address",
@@ -196,7 +205,6 @@ export default {
             attributes: { clearable: true },
             trim: true,
           },
-          {},
         ],
       };
     },
@@ -213,7 +221,31 @@ export default {
       }
     },
   },
+  async mounted() {
+    await this.eventRefresh();
+  },
   methods: {
+    async eventRefresh(page) {
+      this.loading = true;
+      await this.$store.dispatch("projects/index", {
+        page: page || 1,
+        ...this.formSearch,
+      });
+      this.total = this.projects.totalCount;
+      this.loading = false;
+    },
+    async handleSearch(form, refs) {
+      this.formSearch = form;
+      await this.eventRefresh();
+      refs.validate((valid) => {
+        console.log(valid);
+      });
+    },
+    async handleClear(form, refs) {
+      await this.$store.dispatch("projects/index", { page: 1 });
+      refs.resetFields();
+      this.total = this.projects.totalCount;
+    },
     async onDelete(id) {
       try {
         await this.$store.dispatch("projects/onDeleteProject", id);
@@ -354,4 +386,5 @@ export default {
 .btn {
   font-size: 12px;
 }
+
 </style>

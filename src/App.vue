@@ -42,13 +42,10 @@ export default {
 @import "./assets/vendors/linear-icon/style.css";
 @import "./assets/vendors/ionicons/css/ionicons.min.css";
 @import "./assets/vendors/elegant-icon/style.css";
-@import "https://fonts.gstatic.com";
 @import "https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap";
 @import "https://use.fontawesome.com/releases/v5.0.7/css/all.css";
 @import "https://fonts.googleapis.com/css?family=Montserrat:400,700,200";
-@import "https://fonts.gstatic.com";
-@import "https://fonts.gstatic.com";
 .fa-undo-alt {
   color: #263a4f;
 }
@@ -88,5 +85,14 @@ a:hover {
 .animate-leave-to {
   transform: translateY(30px);
   opacity: 0;
+}
+
+.fix-quantity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  left: 2%;
+  margin-top: 15px;
 }
 </style>

@@ -2,7 +2,12 @@
   <div>
     <h4 class="container">{{ $t("type-home") }} : {{ projects.length }}</h4>
     <card-search-form class="container">
-      <search-form :inputs="searchFormData.inputs"> </search-form>
+      <search-form
+        :inputs="searchFormData.inputs"
+        :handleSearch="handleSearch"
+        :handleClear="handleClear"
+      >
+      </search-form>
     </card-search-form>
     <div class="projects_inner">
       <div
@@ -37,6 +42,8 @@ export default {
   data() {
     return {
       search: "",
+      formSearch: {},
+      total: 0,
     };
   },
   created() {
@@ -61,21 +68,19 @@ export default {
             trim: true,
           },
           {
-            inputType: "select",
+            inputType: "input",
             label: "Cost",
             name: "cost",
             attributes: { clearable: true, filterable: true },
             trim: true,
-            optionValueField: "value",
-            optionLabelField: "label",
           },
-          {
-            inputType: "input",
-            label: "Categories",
-            name: "categories",
-            attributes: { clearable: true },
-            trim: true,
-          },
+          // {
+          //   inputType: "input",
+          //   label: "Categories",
+          //   name: "categories",
+          //   attributes: { clearable: true },
+          //   trim: true,
+          // },
           {
             inputType: "input",
             label: "Address",
@@ -110,7 +115,31 @@ export default {
       }
     },
   },
+  async mounted() {
+    await this.eventRefresh();
+  },
   methods: {
+    async eventRefresh(page) {
+      this.loading = true;
+      await this.$store.dispatch("projects/index", {
+        page: page || 1,
+        ...this.formSearch,
+      });
+      this.total = this.projects.totalCount;
+      this.loading = false;
+    },
+    async handleSearch(form, refs) {
+      this.formSearch = form;
+      await this.eventRefresh();
+      refs.validate((valid) => {
+        console.log(valid);
+      });
+    },
+    async handleClear(form, refs) {
+      await this.$store.dispatch("projects/index", { page: 1 });
+      refs.resetFields();
+      this.total = this.projects.totalCount;
+    },
     async fetchProjects() {
       try {
         await this.$store.dispatch("projects/fetchListProjects");

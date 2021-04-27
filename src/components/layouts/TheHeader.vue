@@ -73,7 +73,7 @@
               class="vuei18n"
               v-model="check"
               id="check"
-              @`cha`nge="handleChange($event)"
+              @change="handleChange($event)"
             >
               <option value="us">
                 English
@@ -218,7 +218,6 @@ export default {
       this.$i18n.locale = e.target.value;
       this.$store.commit("auth/SET_LANGUAGES", e.target.value);
     },
-
     //responsive menu
     openMenu() {
       this.modalOpen = true;
@@ -226,7 +225,6 @@ export default {
     closeMenu() {
       this.modalOpen = false;
     },
-
     //logout
     logout() {
       return this.$store.dispatch("auth/logout");

@@ -97,8 +97,8 @@ export default {
 };
 </script>
 <style scoped>
-@import "../../../public/css/dashboard/paper-dashboard.css";
-@import "../../../public/css/dashboard/bootstrap.min.css";
+@import "../../../src/assets/css/dashboard/bootstrap.min.css";
+@import "../../../src/assets/css/dashboard/paper-dashboard.css";
 .fas {
   cursor: pointer;
 }

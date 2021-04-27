@@ -11,10 +11,13 @@
           <el-popover
             class="mockup"
             placement="top"
-            :width="160"
+            :width="431"
             v-model:visible="visible"
           >
-            <p>Are you sure to delete this conversation?</p>
+            <b>{{ $t("end-chat") }}</b>
+            <p>
+              {{ $t("text-end-chat") }}
+            </p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="visible = false"
                 >Cancel</el-button
@@ -68,7 +71,10 @@
                           v-if="loading && msgData.sender === 'bot'"
                         ></chat-loading>
                         <template v-else>
-                          <p>{{ msgData.msg }}</p>
+                          <p v-if="!msgData.msg.includes('https')">
+                            {{ msgData.msg }}
+                          </p>
+                          <a v-else :href="msgData.msg">{{ msgData.msg }}</a>
                           <span class="time_date">
                             {{ timestamp }} | Today</span
                           >
@@ -175,6 +181,7 @@ export default {
       try {
         const msgRes = await this.$store.dispatch("auth/onSendChat", data);
         this.form.push({ msg: msgRes, sender: "bot" });
+        console.log(msgRes);
         this.form.msg = "";
         chatboxEl.scrollTo(0, chatboxEl.scrollHeight);
       } catch (error) {
@@ -203,16 +210,17 @@ export default {
   align-items: center;
 }
 .form-chatbot {
-  border-radius: 2%;
+  border-radius: 3%;
   display: block;
   border: none;
   width: 30%;
   position: fixed;
-  right: 0;
-  bottom: 0%;
+  right: 2%;
+  bottom: 2%;
   z-index: 2000;
-  height: 400px;
+  height: 500px;
   background-color: #263a4f;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /**/
@@ -444,6 +452,15 @@ img {
   width: 100%;
 }
 
+.isBot > div > a {
+  background: #ebebeb none repeat scroll 0 0;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 0 8px;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+
 .isUser > div > p {
   background: #a3cc01 none repeat scroll 0 0;
   border-radius: 3px;
@@ -456,7 +473,7 @@ img {
 
 .fa-times {
   position: absolute;
-  top: 5.5%;
+  top: 4%;
   right: 3%;
   color: white;
   cursor: pointer;
@@ -469,7 +486,7 @@ img {
 
 .fa-hide {
   position: absolute;
-  top: 3%;
+  top: 2%;
   right: 8%;
   font-size: 20px;
   color: #fff;
@@ -490,15 +507,17 @@ img {
 }
 .title-chatbot {
   background-color: #a3cc01;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
 }
 /* btn-chatbot*/
 .btn-open-chatbot {
-  right: 1%;
+  right: 3%;
   position: fixed;
   z-index: 9999;
-  bottom: 2%;
+  bottom: 4%;
   border-radius: 50%;
-  padding: 9px;
+  padding: 12px;
   background-color: #a3cc01;
   border: none;
   outline: none;
@@ -556,7 +575,7 @@ img {
   width: 200px;
 }
 
-.el-popover {
+.el-popper {
   z-index: 9999;
   position: absolute;
   right: 0;

@@ -7,7 +7,12 @@
             <h4 class="card-title">All Reviews</h4>
           </div>
           <card-search-form>
-            <search-form :inputs="searchFormData.inputs"> </search-form>
+            <search-form
+              :inputs="searchFormData.inputs"
+              :handleSearch="handleSearch"
+              :handleClear="handleClear"
+            >
+            </search-form>
           </card-search-form>
           <div class="related-btn">
             <button
@@ -79,8 +84,28 @@
 
                       <i
                         class="far fa-trash-alt"
-                        @click="onDelete(review._id)"
+                        @click="dialogVisible = true"
                       ></i>
+                      <el-dialog
+                        title="Notification"
+                        v-model="dialogVisible"
+                        width="30%"
+                        :before-close="handleClose"
+                      >
+                        <span>Do you want to delete this review ?</span>
+                        <template #footer>
+                          <span class="dialog-footer">
+                            <el-button @click="dialogVisible = false"
+                              >Cancel</el-button
+                            >
+                            <el-button
+                              type="primary"
+                              @click="onDelete(review._id)"
+                              >Confirm</el-button
+                            >
+                          </span>
+                        </template>
+                      </el-dialog>
                       <i
                         class="fas fa-file-export"
                         @click="onExport(review._id)"
@@ -107,6 +132,9 @@ export default {
       err: null,
       search: "",
       file: "",
+      dialogVisible: false,
+      formSearch: {},
+      total: 0,
     };
   },
   created() {
@@ -118,49 +146,27 @@ export default {
         inputs: [
           {
             inputType: "input",
-            label: "Name",
-            name: "name",
+            label: "Rating",
+            name: "rating",
             attributes: { clearable: true },
             trim: true,
           },
           {
             inputType: "input",
-            label: "Description",
-            name: "description",
+            label: "Comment",
+            name: "comment",
             attributes: { clearable: true },
             trim: true,
           },
           {
             inputType: "select",
-            label: "Cost",
-            name: "cost",
+            label: "Project",
+            name: "project",
             attributes: { clearable: true, filterable: true },
             trim: true,
             optionValueField: "value",
             optionLabelField: "label",
           },
-          {
-            inputType: "input",
-            label: "Categories",
-            name: "categories",
-            attributes: { clearable: true },
-            trim: true,
-          },
-          {
-            inputType: "input",
-            label: "Address",
-            name: "address",
-            attributes: { clearable: true },
-            trim: true,
-          },
-          {
-            inputType: "input",
-            label: "Area",
-            name: "area",
-            attributes: { clearable: true },
-            trim: true,
-          },
-          {},
         ],
       };
     },
@@ -177,13 +183,46 @@ export default {
       }
     },
   },
+  async mounted() {
+    await this.eventRefresh();
+  },
   methods: {
+    async eventRefresh(page) {
+      this.loading = true;
+      await this.$store.dispatch("reviews/index", {
+        page: page || 1,
+        ...this.formSearch,
+      });
+      this.total = this.reviews.totalCount;
+      this.loading = false;
+    },
+    async handleSearch(form, refs) {
+      this.formSearch = form;
+      await this.eventRefresh();
+      refs.validate((valid) => {
+        console.log(valid);
+      });
+    },
+    async handleClear(form, refs) {
+      await this.$store.dispatch("reviews/index", { page: 1 });
+      refs.resetFields();
+      this.total = this.reviews.totalCount;
+    },
+    handleClose(done) {
+      this.$confirm("Are you sure to close this dialog?")
+        .then(() => {
+          done();
+          this.dialogVisible = false;
+        })
+        .catch(() => {});
+    },
     async onDelete(id) {
       try {
         await this.$store.dispatch("reviews/onDeleteReview", id);
       } catch (error) {
         this.err = error;
       }
+      this.dialogVisible = false;
     },
     async fetchAllReviews() {
       try {
@@ -259,5 +298,9 @@ export default {
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
+}
+.dialog-footer {
+  display: flex;
+  justify-content: center;
 }
 </style>

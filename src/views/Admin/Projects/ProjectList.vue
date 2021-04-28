@@ -54,7 +54,6 @@
                 <thead class=" text-primary">
                   <th class="th-name">
                     Name
-                    <i class="fa fa-fw fa-sort" @click="sortProjects(name)"></i>
                   </th>
                   <th>
                     Image
@@ -73,18 +72,16 @@
                   </th>
                   <th>
                     Cost
-                    <i class="fa fa-fw fa-sort" @click="sortProjects(cost)"></i>
                   </th>
                   <th>
                     Area
-                    <i class="fa fa-fw fa-sort" @click="sortProjects(area)"></i>
                   </th>
 
                   <th>
                     Edit
                   </th>
                 </thead>
-                <tbody v-for="project in researchProjects" :key="project.id">
+                <tbody v-for="project in projects" :key="project.id">
                   <tr>
                     <td v-if="project">
                       {{ project.name }}
@@ -149,11 +146,11 @@ export default {
   data() {
     return {
       loading: false,
-      search: "",
       error: null,
       file: "",
       formSearch: {},
       total: 0,
+      categories: null,
     };
   },
   created() {
@@ -184,19 +181,15 @@ export default {
             attributes: { clearable: true, filterable: true },
             trim: true,
           },
-          // {
-          //   inputType: "input",
-          //   label: "Categories",
-          //   name: "categories",
-          //   attributes: { clearable: true },
-          //   trim: true,
-          // },
           {
-            inputType: "input",
-            label: "Address",
-            name: "address",
+            inputType: "select",
+            label: "Categories",
+            name: "categoriesName",
             attributes: { clearable: true },
             trim: true,
+            optionValueField: "value",
+            optionLabelField: "label",
+            optionList: this.categories,
           },
           {
             inputType: "input",
@@ -211,18 +204,10 @@ export default {
     projects() {
       return this.$store.getters["projects/getProjects"];
     },
-    researchProjects() {
-      if (this.search) {
-        return this.projects.filter((project) => {
-          return project.name.startsWith(this.search);
-        });
-      } else {
-        return this.projects;
-      }
-    },
   },
   async mounted() {
     await this.eventRefresh();
+    await this.fetchCategories();
   },
   methods: {
     async eventRefresh(page) {
@@ -233,6 +218,13 @@ export default {
       });
       this.total = this.projects.totalCount;
       this.loading = false;
+    },
+    async fetchCategories() {
+      const res = await this.$store.dispatch("categories/fetchListCategories");
+      this.categories = res.map((item) => ({
+        label: item.name,
+        value: item.name,
+      }));
     },
     async handleSearch(form, refs) {
       this.formSearch = form;
@@ -261,13 +253,6 @@ export default {
         this.error = err;
       }
       this.loading = false;
-    },
-    async sortProjects(name) {
-      try {
-        await this.$store.dispatch("projects/sortProjects", name);
-      } catch (err) {
-        this.error = err;
-      }
     },
     async onExport(id) {
       try {
@@ -386,5 +371,4 @@ export default {
 .btn {
   font-size: 12px;
 }
-
 </style>

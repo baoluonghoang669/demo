@@ -26,17 +26,6 @@ export default {
         commit("SET_REVIEWS", responseData);
     },
 
-    async sortReviews({ commit }, payload) {
-        const response = await http.get(`reviews?sort=${payload}`);
-        const responseData = response.data.data;
-
-        if (responseData.success === false) {
-            return;
-        }
-
-        commit("SET_REVIEWS", responseData);
-    },
-
     //get detail review of a user
     async fetchReviewById({ commit }, payload) {
         const response = await http.get(`reviews/${payload}`);

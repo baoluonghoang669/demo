@@ -26,18 +26,6 @@ export default {
         commit("SET_CATEGORIES", responseData);
     },
 
-    //Sort
-    async sortCategories({ commit }, payload) {
-        const response = await http.get(`categories?sort=${payload}`);
-        const responseData = response.data.data;
-
-        if (responseData.success === false) {
-            return;
-        }
-
-        commit("SET_CATEGORIES", responseData);
-    },
-
     //Get detail of a category
     async fetchDetailCategory({ commit }, payload) {
         const response = await http.get(`categories/${payload}`);
@@ -136,5 +124,13 @@ export default {
             })
         );
         if (!response.error) commit("SET_DATA_CATEGORY", response);
+    },
+
+    async fetchListCategories() {
+        const response = await http.get("categories").then(
+            (res) => res.data.data,
+            () => null
+        );
+        if (response) return response;
     },
 };

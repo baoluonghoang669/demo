@@ -35,17 +35,6 @@ export default {
         commit("UPDATE_PHOTO", response.data.data);
     },
 
-    async sortProjects({ commit }, payload) {
-        const response = await http.get(`projects?sort=${payload}`);
-        const responseData = response.data.data;
-
-        if (responseData.success === false) {
-            //error
-        }
-
-        commit("SET_PROJECTS", responseData);
-    },
-
     //Get projects belongs to it's category
     async fetchProjectsForCategory({ commit }, payload) {
         const response = await http.get(`categories/${payload}/projects`);
@@ -170,7 +159,6 @@ export default {
                 },
             })
         );
-        console.log(response);
         if (!response.error) commit("SET_DATA_PROJECT", response);
     },
 };

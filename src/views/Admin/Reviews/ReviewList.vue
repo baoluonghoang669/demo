@@ -34,34 +34,21 @@
                 <thead class=" text-primary">
                   <th>
                     Comment
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortReviews(comment)"
-                    ></i>
                   </th>
                   <th>
                     Rating
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortReviews(rating)"
-                    ></i>
                   </th>
                   <th>
                     Related Projects
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortReviews(project)"
-                    ></i>
                   </th>
                   <th>
-                    UserId
-                    <i class="fa fa-fw fa-sort" @click="sortReviews(user)"></i>
+                    User
                   </th>
                   <th>
                     Edit
                   </th>
                 </thead>
-                <tbody v-for="review in researchReviews" :key="review.id">
+                <tbody v-for="review in reviews" :key="review.id">
                   <tr>
                     <td>
                       {{ review.comment }}
@@ -72,10 +59,11 @@
                     <td v-if="review.project">
                       {{ review.project.name }}
                     </td>
-                    <td v-else></td>
-                    <td>
-                      {{ review.user }}
+                    <td v-else>No project!</td>
+                    <td v-if="review.user">
+                      {{ review.user.name }}
                     </td>
+                    <td v-else>No user!</td>
                     <td class="flex-edit">
                       <architect-button
                         link
@@ -131,7 +119,6 @@ export default {
     return {
       loading: false,
       err: null,
-      search: "",
       file: "",
       dialogVisible: false,
       formSearch: {},
@@ -159,29 +146,11 @@ export default {
             attributes: { clearable: true },
             trim: true,
           },
-          {
-            inputType: "select",
-            label: "Project",
-            name: "project",
-            attributes: { clearable: true, filterable: true },
-            trim: true,
-            optionValueField: "value",
-            optionLabelField: "label",
-          },
         ],
       };
     },
     reviews() {
       return this.$store.getters["reviews/getReviews"];
-    },
-    researchReviews() {
-      if (this.search) {
-        return this.reviews.filter((review) => {
-          return review.comment.startsWith(this.search);
-        });
-      } else {
-        return this.reviews;
-      }
     },
   },
   async mounted() {
@@ -228,13 +197,6 @@ export default {
     async fetchAllReviews() {
       try {
         await this.$store.dispatch("reviews/fetchAllReviews");
-      } catch (error) {
-        this.err = error;
-      }
-    },
-    async sortReviews(name) {
-      try {
-        await this.$store.dispatch("reviews/sortReviews", name);
       } catch (error) {
         this.err = error;
       }

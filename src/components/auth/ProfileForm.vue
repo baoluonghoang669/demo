@@ -32,7 +32,7 @@
             <img class="rounded-circle mt-5" :src="avatar" />
           </div>
           <input type="file" ref="file" id="file" @change="onFileChange" name="file">
-          <input type=submit button class="change-avatar" value="Upload avatar">
+          <input type=submit button class="change-avatar" :value="update">
         </form>
       </div>
       <form @submit.prevent="onSave()" class="col-md-8" v-if="user">
@@ -120,8 +120,11 @@
                   class="form-control"
                   placeholder="City"
                   v-model="city"
-                  required
+                  disabled
                 />
+                  <!-- <select name="cars" id="cars" v-model="city">
+                    <option :value="city" >{{city}}</option>
+                  </select> -->
               </div>
               <div class="col-md-12">
                 <label class="labels">Province</label>
@@ -131,7 +134,7 @@
                   class="form-control"
                   placeholder="Province"
                   v-model="province"
-                  required
+                  disabled
                 />
               </div>
             </div>
@@ -161,6 +164,9 @@ export default {
     this.fetchDetailUser();
   },
   computed: {
+    update() {
+      return this.$t("upload")
+    },
     avatar: {
       get() {
         return this.$store.state.auth.user.avatar;
@@ -242,7 +248,10 @@ export default {
       return this.$store.getters["auth/user"];
     },
   },
+    async mounted() {
+  },
   methods: {
+
     // Fetch detail user when logged in
     async fetchDetailUser() {
       try {

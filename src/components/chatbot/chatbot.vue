@@ -19,12 +19,12 @@
               {{ $t("text-end-chat") }}
             </p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="visible = false"
-                >{{$t("cancel")}}</el-button
-              >
-              <el-button type="primary" size="mini" @click="onClose"
-                >{{$t("confirm")}}</el-button
-              >
+              <el-button size="mini" type="text" @click="visible = false">{{
+                $t("cancel")
+              }}</el-button>
+              <el-button type="primary" size="mini" @click="onClose">{{
+                $t("confirm")
+              }}</el-button>
             </div>
             <template #reference>
               <i class="fas fa-times" @click="visible"></i>

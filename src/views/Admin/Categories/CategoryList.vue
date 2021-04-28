@@ -44,10 +44,6 @@
                   </th>
                   <th>
                     Description
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortCategories(description)"
-                    ></i>
                   </th>
                   <th style="width: 160px;">
                     Related Projects
@@ -56,10 +52,7 @@
                     Edit
                   </th>
                 </thead>
-                <tbody
-                  v-for="category in researchCategories"
-                  :key="category.id"
-                >
+                <tbody v-for="category in categories" :key="category.id">
                   <tr>
                     <td>
                       {{ category.name }}
@@ -110,7 +103,6 @@ export default {
   data() {
     return {
       loading: false,
-      search: "",
       file: "",
       formSearch: {},
       total: 0,
@@ -143,15 +135,6 @@ export default {
     categories() {
       return this.$store.getters["categories/getCategories"];
     },
-    researchCategories() {
-      if (this.search) {
-        return this.categories.filter((category) => {
-          return category.name.startsWith(this.search);
-        });
-      } else {
-        return this.categories;
-      }
-    },
   },
   async mounted() {
     await this.eventRefresh();
@@ -181,13 +164,6 @@ export default {
     async onDelete(id) {
       try {
         await this.$store.dispatch("categories/onDeleteCategory", id);
-      } catch (error) {
-        this.err = error;
-      }
-    },
-    async sortCategories(name) {
-      try {
-        await this.$store.dispatch("categories/sortCategories", name);
       } catch (error) {
         this.err = error;
       }

@@ -53,37 +53,24 @@
                 <thead class=" text-primary">
                   <th>
                     Name
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(name)"></i>
                   </th>
                   <th>
                     Email
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(email)"></i>
                   </th>
                   <th>
                     Address
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(address)"></i>
                   </th>
                   <th>
                     Birthday
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortUsers(birthday)"
-                    ></i>
                   </th>
                   <th>
                     Phone
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(phone)"></i>
                   </th>
                   <th>
                     City
-                    <i class="fa fa-fw fa-sort" @click="sortUsers(city)"></i>
                   </th>
                   <th>
                     Province
-                    <i
-                      class="fa fa-fw fa-sort"
-                      @click="sortUsers(province)"
-                    ></i>
                   </th>
                   <th>
                     Role
@@ -92,7 +79,7 @@
                     Edit
                   </th>
                 </thead>
-                <tbody v-for="user in researchUsers" :key="user.id">
+                <tbody v-for="user in users" :key="user.id">
                   <tr>
                     <td>
                       {{ user.name }}
@@ -152,10 +139,10 @@ export default {
       show: false,
       err: null,
       loading: false,
-      search: "",
       file: "",
       formSearch: {},
       total: 0,
+      cities: null,
     };
   },
   created() {
@@ -169,15 +156,6 @@ export default {
   computed: {
     users() {
       return this.$store.getters["userAdmin/getUsers"];
-    },
-    researchUsers() {
-      if (this.search) {
-        return this.users.filter((user) => {
-          return user.name.startsWith(this.search);
-        });
-      } else {
-        return this.users;
-      }
     },
     searchFormData: function() {
       return {
@@ -204,6 +182,7 @@ export default {
             trim: true,
             optionValueField: "value",
             optionLabelField: "label",
+            optionList: this.cities,
           },
           {
             inputType: "input",
@@ -226,8 +205,16 @@ export default {
   },
   async mounted() {
     await this.eventRefresh();
+    await this.fetchCities();
   },
   methods: {
+    async fetchCities() {
+      const res = await this.$store.dispatch("userAdmin/getCities");
+      this.cities = res.map((item) => ({
+        label: item.province_name,
+        value: item.province_name,
+      }));
+    },
     async eventRefresh(page) {
       this.loading = true;
       await this.$store.dispatch("userAdmin/index", {
@@ -270,14 +257,6 @@ export default {
       } catch (error) {
         this.err = error;
         this.loading = false;
-      }
-    },
-    async sortUsers(name) {
-      try {
-        await this.$store.dispatch("userAdmin/sortUsers", name);
-        this.loading = false;
-      } catch (error) {
-        this.err = error || "Fail to sort";
       }
     },
     async onExport(id) {

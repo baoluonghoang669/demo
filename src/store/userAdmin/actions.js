@@ -16,17 +16,6 @@ export default {
         commit("SET_USERS", responseData);
     },
 
-    async sortUsers({ commit }, payload) {
-        const response = await http.get(`users?sort=${payload}`);
-        const responseData = response.data.data;
-
-        if (responseData.success === false) {
-            //error
-        }
-
-        commit("SET_USERS", responseData);
-    },
-
     async fetchUserById({ commit }, payload) {
         const response = await http.get(`users/${payload}`);
 
@@ -105,6 +94,16 @@ export default {
         const responseData = response.data;
 
         commit("GET_CITY", responseData);
+    },
+
+    async getCities() {
+        const response = await axios
+            .get("https://vapi.vnappmob.com/api/province")
+            .then(
+                (res) => res.data.results,
+                () => null
+            );
+        if (response) return response;
     },
 
     async getProvice({ commit }, payload) {

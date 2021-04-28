@@ -9,11 +9,13 @@
       >
       </search-form>
     </card-search-form>
-    <div class="projects_inner">
+    <div class="projects_inner infinite-list-wrapper" style="overflow:auto">
       <div
-        v-for="project in researchProjects"
+        v-for="project in projects"
         :key="project.id"
-        class="projects_column arc urban"
+        class="projects_column arc urban list"
+        v-infinite-scroll="load"
+        infinite-scroll-disabled="disabled"
       >
         <architect-project-item>
           <img class="img-fluid fix-img-fluid" :src="project.photo" alt="" />
@@ -32,6 +34,8 @@
           </div>
         </architect-project-item>
       </div>
+      <p v-if="loading">Loading...</p>
+      <p v-if="noMore">No more</p>
     </div>
   </div>
 </template>
@@ -44,12 +48,20 @@ export default {
       search: "",
       formSearch: {},
       total: 0,
+      categories: null,
+      loading: false,
     };
   },
-  created() {
-    this.fetchProjects();
-  },
+  // created() {
+  //   this.fetchProjects();
+  // },
   computed: {
+    noMore() {
+      return this.projects.length >= 10;
+    },
+    disabled() {
+      return this.loading || this.noMore;
+    },
     searchFormData: function() {
       return {
         inputs: [
@@ -74,19 +86,15 @@ export default {
             attributes: { clearable: true, filterable: true },
             trim: true,
           },
-          // {
-          //   inputType: "input",
-          //   label: "Categories",
-          //   name: "categories",
-          //   attributes: { clearable: true },
-          //   trim: true,
-          // },
           {
-            inputType: "input",
-            label: "Address",
-            name: "address",
+            inputType: "select",
+            label: "Categories",
+            name: "categoriesName",
             attributes: { clearable: true },
             trim: true,
+            optionValueField: "value",
+            optionLabelField: "label",
+            optionList: this.categories,
           },
           {
             inputType: "input",
@@ -95,7 +103,6 @@ export default {
             attributes: { clearable: true },
             trim: true,
           },
-          {},
         ],
       };
     },
@@ -105,20 +112,27 @@ export default {
     checkProjects() {
       return this.$store.getters["projects/checkProjects"];
     },
-    researchProjects() {
-      if (this.search) {
-        return this.projects.filter((project) => {
-          return project.name.startsWith(this.search);
-        });
-      } else {
-        return this.projects;
-      }
-    },
   },
   async mounted() {
+    await this.fetchProjects();
+    await this.fetchCategories();
     await this.eventRefresh();
   },
   methods: {
+    load() {
+      this.loading = true;
+      setTimeout(() => {
+        this.projects.length += 2;
+        this.loading = false;
+      }, 2000);
+    },
+    async fetchCategories() {
+      const res = await this.$store.dispatch("categories/fetchListCategories");
+      this.categories = res.map((item) => ({
+        label: item.name,
+        value: item.name,
+      }));
+    },
     async eventRefresh(page) {
       this.loading = true;
       await this.$store.dispatch("projects/index", {

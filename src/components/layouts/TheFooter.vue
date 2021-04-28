@@ -194,9 +194,10 @@
   </div>
 </template>
 <script>
-import chatbot from '../chatbot/chatbot.vue';
+import chatbot from "../chatbot/chatbot.vue";
 export default {
-  components: { chatbot },};
+  components: { chatbot },
+};
 </script>
 <style scoped>
 /*fix social icon */

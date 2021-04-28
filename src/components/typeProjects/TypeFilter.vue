@@ -1,13 +1,22 @@
 <template>
   <div class="float-md-right">
-    <p class="btn-all" @click="fetchListProjects()">All</p>
+    <p
+      class="btn-all"
+      @click="fetchListProjects()"
+      :class="!isActive && 'active'"
+    >
+      All
+    </p>
 
     <div
       class="portfolio_filter list"
       v-for="category in categories"
       :key="category.id"
     >
-      <p @click="fetchProjectsForCategory(category.id)">
+      <p
+        @click="fetchProjectsForCategory(category.id)"
+        :class="isActive === category.id && 'active'"
+      >
         {{ category.name }}
       </p>
     </div>
@@ -18,6 +27,7 @@ export default {
   data() {
     return {
       err: null,
+      isActive: null,
     };
   },
   created() {
@@ -41,6 +51,7 @@ export default {
       }
     },
     async fetchListProjects() {
+      this.isActive = null;
       try {
         await this.$store.dispatch("projects/fetchListProjects");
       } catch (error) {
@@ -48,6 +59,7 @@ export default {
       }
     },
     async fetchProjectsForCategory(id) {
+      this.isActive = id;
       try {
         await this.$store.dispatch("projects/fetchProjectsForCategory", id);
       } catch (error) {
@@ -89,6 +101,9 @@ p:hover {
 
 p:hover,
 p:active {
+  color: #a3cc01;
+}
+.active {
   color: #a3cc01;
 }
 </style>

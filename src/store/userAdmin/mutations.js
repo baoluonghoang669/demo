@@ -23,7 +23,7 @@ export default {
     UPDATE_BIRTHDAY: (state, payload) => (state.detailUser.birthday = payload),
     UPDATE_CITY: (state, payload) => (state.detailUser.city = payload),
     UPDATE_PROVINCE: (state, payload) => (state.detailUser.province = payload),
-
+    UPDATE_ROLE: (state, payload) => (state.detailUser.role = payload),
     //Search
     SET_DATA_USER(state, data) {
         return (state.users = Object.freeze(data));

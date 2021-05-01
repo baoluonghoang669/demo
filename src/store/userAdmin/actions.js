@@ -36,6 +36,7 @@ export default {
             address: payload.address,
             birthday: payload.birthday,
             city: payload.city,
+            role: payload.role,
             country: payload.country,
         };
 

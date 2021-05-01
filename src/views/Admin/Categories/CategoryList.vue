@@ -49,7 +49,7 @@
                     Related Projects
                   </th>
                   <th>
-                    Edit
+                    Actions
                   </th>
                 </thead>
                 <tbody v-for="category in categories" :key="category.id">
@@ -78,10 +78,14 @@
                         class="edit-btn"
                         ><i class="far fa-edit"></i
                       ></architect-button>
-                      <i
-                        class="far fa-trash-alt"
-                        @click="onDelete(category._id)"
-                      ></i>
+                      <el-popconfirm
+                        title="Are you sure to delete this category?"
+                        @confirm="onConfirm(category._id)"
+                      >
+                        <template #reference>
+                          <i class="far fa-trash-alt"></i>
+                        </template>
+                      </el-popconfirm>
                       <i
                         class="fas fa-file-export"
                         @click="onExport(category._id)"
@@ -140,6 +144,9 @@ export default {
     await this.eventRefresh();
   },
   methods: {
+    async onConfirm(id) {
+      await this.onDelete(id);
+    },
     async eventRefresh(page) {
       this.loading = true;
       await this.$store.dispatch("categories/index", {

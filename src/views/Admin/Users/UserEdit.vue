@@ -66,7 +66,7 @@
           </el-col>
         </el-form-item>
         <el-form-item label="Role">
-          <el-radio-group v-model="role">
+          <el-radio-group v-model="role" @input="changeValue">
             <el-radio label="user"></el-radio>
             <el-radio label="admin"></el-radio>
           </el-radio-group>
@@ -141,6 +141,9 @@ export default {
       get() {
         return this.$store.state.userAdmin.detailUser.role;
       },
+      set(value) {
+        this.$store.commit("userAdmin/UPDATE_ROLE", value);
+      },
     },
     city: {
       get() {
@@ -172,6 +175,10 @@ export default {
     getProvinces() {
       return this.$store.dispatch("userAdmin/getProvice");
     },
+    changeValue(data) {
+      this.role = data.target.value;
+      console.log(this.role);
+    },
     async fetchUserById() {
       try {
         await this.$store.dispatch(
@@ -192,6 +199,7 @@ export default {
         address: this.address,
         birthday: this.birthday,
         city: this.city,
+        role: this.role,
         country: this.country,
       };
       try {
@@ -232,6 +240,7 @@ label {
 .fixed-button {
   background-color: #263a4f;
   border: none;
+  font-size: 15px !important;
 }
 
 .fixed-button:hover {

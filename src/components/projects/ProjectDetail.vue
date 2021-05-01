@@ -61,7 +61,6 @@
           </div>
         </div>
       </section>
-      <!--================End Project Details Area =================-->
 
       <!--================Project Villa Area =================-->
       <section class="project_villa_area">
@@ -73,25 +72,14 @@
             </p>
           </div>
           <div class="villa_slider">
-            <carousel
-              :items-to-show="1"
-              :currentSlide="0"
-              :wrapAround="true"
-              :transition="500"
-            >
-              <slide v-for="slide in 2" :key="slide">
-                <div
-                  class="item"
-                  v-for="project in projects.relatedPhoto"
-                  :key="project._id"
-                >
-                  <img class="fix-img-slider" :src="project" alt="" />
-                </div>
-              </slide>
-              <template #addons>
-                <navigation />
-              </template>
-            </carousel>
+            <el-carousel height="610px">
+              <el-carousel-item
+                v-for="project in projects.relatedPhoto"
+                :key="project._id"
+              >
+                <img class="fix-img-slider" :src="project" alt="" />
+              </el-carousel-item>
+            </el-carousel>
           </div>
           <div class="villa_reviews" v-if="reviews">
             <h2>{{ reviews.length }} {{ $t("comment") }}</h2>
@@ -101,24 +89,52 @@
               :key="review.id"
             >
               <div class="comment_item">
-                <img :src="review.user.avatar" class="avatar" alt="img" />
-                <div class="comment_content" v-if="review.user">
+                <img
+                  v-if="review.user"
+                  :src="review.user.avatar"
+                  class="avatar"
+                  alt="img"
+                />
+                <form class="comment_content" v-if="review.user">
                   <h4>{{ review.user.name }}</h4>
-                  <p>
-                    {{ review.comment }}
-                  </p>
+
+                  <p>{{ review.comment }}</p>
+
                   <h5>{{ $t("rating") }}: {{ review.rating }}/10</h5>
-                  <small>{{ review.createdAt }}</small>
-                </div>
+                  <small>{{
+                    formatDate(review.createdAt, "DD/MM/YYYY HH:mm")
+                  }}</small>
+                </form>
+                <p @click="dialogVisible = true" v-if="isAuth">
+                  <i class="far fa-trash-alt"></i>
+                </p>
+                <el-dialog
+                  title="Notification"
+                  v-model="dialogVisible"
+                  width="30%"
+                  :before-close="handleClose"
+                >
+                  <span>Are you sure to delete this comment ?</span>
+                  <template #footer>
+                    <span class="dialog-footer">
+                      <el-button @click="dialogVisible = false"
+                        >Cancel</el-button
+                      >
+                      <el-button type="primary" @click="onDelete(review._id)"
+                        >Yes</el-button
+                      >
+                    </span>
+                  </template>
+                </el-dialog>
               </div>
             </div>
           </div>
-
           <comment-form></comment-form>
           <b
             >{{ $t("menu.contact") }}:
             <a class="fix-tel" href="tel:+0902985987">(+84)902 985 987</a></b
           >
+
           <project-related
             v-if="projects.categories"
             :category="projects.categories.id"
@@ -133,26 +149,33 @@
 </template>
 <script>
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
+import { formatDate } from "../../helpers/common";
 import TheFooter from "../layouts/TheFooter.vue";
 import TheHeader from "../layouts/TheHeader.vue";
 import ProjectRelated from "./ProjectRelated.vue";
 import CommentForm from "../comment/CommentForm.vue";
 export default {
   components: {
-    Carousel,
-    Slide,
-    Navigation,
     TheFooter,
     TheHeader,
     ProjectRelated,
     CommentForm,
   },
-  created() {
-    this.fetchDetailProject();
+  async mounted() {
+    await this.fetchDetailProject();
   },
-
+  data() {
+    return {
+      loading: false,
+      detail: null,
+      dialogVisible: false,
+      formatDate,
+    };
+  },
   computed: {
+    isAuth() {
+      return this.$store.getters["auth/isAuth"];
+    },
     projects() {
       return this.$store.getters["projects/getProjectsDetail"];
     },
@@ -161,6 +184,14 @@ export default {
     },
   },
   methods: {
+    handleClose(done) {
+      this.$confirm("Are you sure to close this dialog?")
+        .then(() => {
+          done();
+          this.dialogVisible = false;
+        })
+        .catch(() => {});
+    },
     async fetchDetailProject() {
       try {
         this.$store.dispatch(
@@ -170,6 +201,14 @@ export default {
       } catch (err) {
         this.error = err;
       }
+    },
+    onDelete(id) {
+      try {
+        this.$store.dispatch("reviews/onDeleteReview", id);
+      } catch (err) {
+        this.error = err;
+      }
+      this.dialogVisible = false;
     },
   },
 };
@@ -223,13 +262,13 @@ export default {
 }
 .comment_item {
   display: flex;
-  align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px 0;
 }
 
 .comment_content {
   padding-left: 40px;
+  flex-grow: 1;
 }
 
 .comment_content h4 {
@@ -259,5 +298,37 @@ export default {
 
 #comment {
   height: 100px;
+}
+
+/* ui-element */
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 150px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+
+.el-icon--right {
+  width: 20px;
+}
+
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409eff;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.far {
+  cursor: pointer;
 }
 </style>

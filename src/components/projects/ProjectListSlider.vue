@@ -11,53 +11,38 @@
       </div>
     </div>
     <div class="fillter_slider owl-carousel">
-      <carousel :items-to-show="4" :transition="500">
-        <slide v-for="slide in 12" :key="slide">
-          <div
-            v-for="project in projects"
-            :key="project.id"
-            class="item arc urban"
-          >
-            <architect-project-item>
-              <img class="fix-image-slide" :src="project.photo" alt="" />
-              <div class="hover">
+      <el-carousel :interval="4000" type="card" height="570px">
+        <el-carousel-item v-for="project in projects" :key="project.id">
+          <architect-project-item class="medium">
+            <img class="fix-image-slide" :src="project.photo" alt="" />
+            <div class="hover">
+              <architect-button link :path="'/project/' + project.id"
+                ><i class="ion-android-arrow-forward"></i
+              ></architect-button>
+              <div class="project_text">
+                <h5>{{ $t("area") }}: {{ project.area }}m<sup>2</sup></h5>
+                <h5>{{ $t("architect") }}: {{ project.architecture }}</h5>
                 <architect-button link :path="'/project/' + project.id"
-                  ><i class="ion-android-arrow-forward"></i
-                ></architect-button>
-                <div class="project_text">
-                  <h5>{{ $t("area") }}: {{ project.area }}m<sup>2</sup></h5>
-                  <h5>{{ $t("architect") }}: {{ project.architecture }}</h5>
-                  <architect-button link :path="'/project/' + project.id"
-                    ><h4>{{ project.name }}</h4></architect-button
-                  >
-                  <h4 v-if="project.averageRating > 0">
-                    {{ $t("rating") }}: {{ project.averageRating }}
-                  </h4>
-                </div>
+                  ><h4>{{ project.name }}</h4></architect-button
+                >
+                <h4 v-if="project.averageRating > 0">
+                  {{ $t("rating") }}: {{ project.averageRating }}
+                </h4>
               </div>
-            </architect-project-item>
-          </div>
-        </slide>
-        <template #addons>
-          <navigation />
-          <pagination />
-        </template>
-      </carousel>
+            </div>
+          </architect-project-item>
+        </el-carousel-item>
+      </el-carousel>
     </div>
   </div>
 </template>
 <script>
 import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Navigation, Pagination } from "vue3-carousel";
 import TypeFilter from "../typeProjects/TypeFilter.vue";
 
 export default {
   components: {
-    Carousel,
-    Slide,
-    Navigation,
     TypeFilter,
-    Pagination,
   },
   data() {
     return {
@@ -91,7 +76,25 @@ export default {
   text-align: left;
 }
 .fix-image-slide {
-  width: 476px !important;
+  width: 100%;
   height: 570px !important;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
+}
+.el-carousel__indicators--outside {
+  display: none;
 }
 </style>

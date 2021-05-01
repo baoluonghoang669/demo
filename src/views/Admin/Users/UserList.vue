@@ -76,7 +76,7 @@
                     Role
                   </th>
                   <th>
-                    Edit
+                    Actions
                   </th>
                 </thead>
                 <tbody v-for="user in users" :key="user.id">
@@ -91,7 +91,7 @@
                       {{ user.address }}
                     </td>
                     <td>
-                      {{ user.birthday }}
+                      {{ formatDate(user.birthday, "DD/MM/YYYY HH:mm") }}
                     </td>
                     <td>
                       {{ user.phone }}
@@ -112,10 +112,14 @@
                         class="edit-btn"
                         ><i class="far fa-edit"></i
                       ></architect-button>
-                      <i
-                        class="far fa-trash-alt"
-                        @click="onDelete(user._id)"
-                      ></i>
+                      <el-popconfirm
+                        title="Are you sure to delete this user?"
+                        @confirm="onConfirm(user._id)"
+                      >
+                        <template #reference>
+                          <i class="far fa-trash-alt"></i>
+                        </template>
+                      </el-popconfirm>
                       <i
                         class="fas fa-file-export"
                         @click="onExport(user._id)"
@@ -133,6 +137,7 @@
   </div>
 </template>
 <script>
+import { formatDate } from "../../../helpers/common";
 export default {
   data() {
     return {
@@ -143,6 +148,7 @@ export default {
       formSearch: {},
       total: 0,
       cities: null,
+      formatDate,
     };
   },
   created() {
@@ -208,6 +214,9 @@ export default {
     await this.fetchCities();
   },
   methods: {
+    async onConfirm(id) {
+      await this.onDelete(id);
+    },
     async fetchCities() {
       const res = await this.$store.dispatch("userAdmin/getCities");
       this.cities = res.map((item) => ({

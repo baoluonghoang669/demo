@@ -97,9 +97,7 @@ export default {
         this.formIsInvalid = true;
         return;
       }
-
       this.loading = true;
-
       try {
         await this.$store.dispatch("auth/onLogin", {
           email: this.email,
@@ -110,7 +108,8 @@ export default {
 
         this.$router.replace(redirectTo);
       } catch (err) {
-        this.error = err.response.data.error || "Fail to authenticate.";
+        console.log(err);
+        this.error = this.$t("fail-authenticate");
       }
       this.loading = false;
     },

@@ -42,7 +42,7 @@
               <a href="mailto:luonglinham@gmail.com">luonglinham@gmail.com</a>
               <a
                 class="map_btn"
-                href="https://www.google.com/maps/place/%E0%A6%B0%E0%A6%BE%E0%A6%B6%E0%A6%BF%E0%A6%AF%E0%A6%BC%E0%A6%BE/@49.7916688,68.7571364,3z/data=!3m1!4b1!4m5!3m4!1s0x453c569a896724fb:0x1409fdf86611f613!8m2!3d61.52401!4d105.318756"
+                href="https://www.google.com/maps/place/k55,+11+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+M%E1%BB%B9+An,+Ng%C5%A9+H%C3%A0nh+S%C6%A1n,+%C4%90%C3%A0+N%E1%BA%B5ng+550000,+Vi%E1%BB%87t+Nam/@16.052955,108.2350313,17z/data=!3m1!4b1!4m5!3m4!1s0x314219d7dc514d97:0xa8d71291f45e6850!8m2!3d16.052955!4d108.23722"
                 target="_blank"
                 >{{ $t("map") }} <i class="ion-chevron-right"></i
               ></a>

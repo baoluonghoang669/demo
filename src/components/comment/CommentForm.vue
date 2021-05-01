@@ -20,7 +20,7 @@
           <div class="comment_title">
             <h2>{{ $t("leave-review") }}</h2>
           </div>
-          <form
+          <!-- <form
             class="row comment_fro m"
             @submit.prevent="sendComment()"
             novalidate="novalidate"
@@ -64,7 +64,44 @@
                 >{{ $t("post-comment") }}</architect-button
               >
             </div>
-          </form>
+          </form> -->
+          <el-form
+            :model="ruleForm"
+            status-icon
+            :rules="rules"
+            ref="ruleForm"
+            label-width="120px"
+            class="demo-ruleForm"
+          >
+            <el-form-item
+              label="Comment"
+              prop="comment"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Please input comment',
+                  trigger: 'blur',
+                },
+              ]"
+            >
+              <el-input v-model="ruleForm.comment"></el-input>
+            </el-form-item>
+            <el-form-item label="Rating" prop="rating">
+              <el-input
+                type="number"
+                v-model.number="ruleForm.rating"
+              ></el-input>
+            </el-form-item>
+            <div class="text-left">
+              <el-button
+                v-if="isAuth"
+                type="primary"
+                id="btn-submit"
+                @click="submitForm('ruleForm')"
+                >{{ $t("post-comment") }}</el-button
+              >
+            </div>
+          </el-form>
         </div>
       </div>
     </section>
@@ -78,11 +115,32 @@
 <script>
 export default {
   data() {
+    var checkRating = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error("Please input the rating"));
+      }
+      setTimeout(() => {
+        if (!Number.isInteger(value)) {
+          callback(new Error("Please input digits"));
+        } else {
+          if (value > 10) {
+            callback(new Error("Rating must be less than 10"));
+          } else {
+            callback();
+          }
+        }
+      }, 1000);
+    };
     return {
-      comment: "",
-      rating: "",
+      ruleForm: {
+        comment: "",
+        rating: "",
+      },
       loading: false,
       error: null,
+      rules: {
+        rating: [{ validator: checkRating, trigger: "blur" }],
+      },
     };
   },
   created() {
@@ -108,12 +166,21 @@ export default {
         this.error = err;
       }
     },
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.sendComment();
+        } else {
+          return false;
+        }
+      });
+    },
     async sendComment() {
       this.loading = true;
 
       const data = {
-        comment: this.comment,
-        rating: this.rating,
+        comment: this.ruleForm.comment,
+        rating: this.ruleForm.rating,
       };
 
       try {
@@ -121,8 +188,8 @@ export default {
           .dispatch("reviews/addUserReview", data)
           .then(() => this.fetchDetailReview())
           .then(() => {
-            this.comment = "";
-            this.rating = "";
+            this.ruleForm.comment = "";
+            this.ruleForm.rating = "";
           });
       } catch (err) {
         this.error = this.$t("notify-comment");
@@ -163,5 +230,18 @@ export default {
   transition: all 400ms linear 0s;
   letter-spacing: 0.35px;
   text-transform: uppercase;
+}
+
+.text-left {
+  text-align: left;
+  margin-left: 11%;
+}
+
+#btn-submit {
+  background-color: #263a4f;
+  border: none;
+}
+#btn-submit:hover {
+  background-color: #a3cc01 !important;
 }
 </style>

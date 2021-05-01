@@ -16,10 +16,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="navbar-nav">
           <li class="nav-item btn-rotate dropdown">
-            <architect-button link class="notify" :name="'Messages'">
-              <i class="far fa-bell"></i>
-              <p class="notification-messages">{{ checkMessages }}</p>
-            </architect-button>
+            <div class="notify">
+              <i class="far fa-bell" plain @click="open"></i>
+              <p class="notification-messages">{{ isReadedMessages }}</p>
+            </div>
           </li>
           <li class="nav-item">
             <architect-button link class="nav-link btn-rotate" :name="'Home'">
@@ -32,6 +32,7 @@
   </nav>
 </template>
 <script>
+import { h } from "vue";
 import ArchitectButton from "../../common/ArchitectButton.vue";
 export default {
   components: { ArchitectButton },
@@ -39,8 +40,8 @@ export default {
     this.fetchAllMessage();
   },
   computed: {
-    checkMessages() {
-      return this.$store.getters["messages/checkMessages"];
+    isReadedMessages() {
+      return this.$store.getters["messages/isReadedMessages"];
     },
   },
   methods: {
@@ -50,6 +51,16 @@ export default {
       } catch (err) {
         this.error = err;
       }
+    },
+    open() {
+      this.$notify({
+        title: "Notification",
+        message: h(
+          "i",
+          { style: "color: teal" },
+          `You just received ${this.isReadedMessages} new messages`
+        ),
+      });
     },
   },
 };
@@ -89,6 +100,10 @@ a,
 .fa-bell {
   transform: translateY(6px);
   color: #fff;
+}
+
+.notify {
+  cursor: pointer;
 }
 
 .notify:hover {

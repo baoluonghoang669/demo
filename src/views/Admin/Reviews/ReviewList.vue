@@ -45,7 +45,7 @@
                     User
                   </th>
                   <th>
-                    Edit
+                    Actions
                   </th>
                 </thead>
                 <tbody v-for="review in reviews" :key="review.id">
@@ -70,31 +70,14 @@
                         :path="'/dashboard/reviews/editReview/' + review._id"
                         ><i class="far fa-edit"></i
                       ></architect-button>
-
-                      <i
-                        class="far fa-trash-alt"
-                        @click="dialogVisible = true"
-                      ></i>
-                      <el-dialog
-                        title="Notification"
-                        v-model="dialogVisible"
-                        width="30%"
-                        :before-close="handleClose"
+                      <el-popconfirm
+                        title="Are you sure to delete this review?"
+                        @confirm="onConfirm(review._id)"
                       >
-                        <span>Do you want to delete this review ?</span>
-                        <template #footer>
-                          <span class="dialog-footer">
-                            <el-button @click="dialogVisible = false"
-                              >Cancel</el-button
-                            >
-                            <el-button
-                              type="primary"
-                              @click="onDelete(review._id)"
-                              >Confirm</el-button
-                            >
-                          </span>
+                        <template #reference>
+                          <i class="far fa-trash-alt"></i>
                         </template>
-                      </el-dialog>
+                      </el-popconfirm>
                       <i
                         class="fas fa-file-export"
                         @click="onExport(review._id)"
@@ -157,6 +140,9 @@ export default {
     await this.eventRefresh();
   },
   methods: {
+    async onConfirm(id) {
+      await this.onDelete(id);
+    },
     async eventRefresh(page) {
       this.loading = true;
       await this.$store.dispatch("reviews/index", {
@@ -245,12 +231,6 @@ export default {
   outline: none;
 }
 
-.fa:hover,
-.fas:hover,
-.far:hover {
-  transform: scale(0.9);
-}
-
 .fa-file-export {
   color: rgb(39, 131, 198);
   margin-left: 5px;
@@ -265,5 +245,11 @@ export default {
 .dialog-footer {
   display: flex;
   justify-content: center;
+}
+.fa-trash-alt {
+  padding: 0 4px;
+}
+.fix-dialog {
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 </style>

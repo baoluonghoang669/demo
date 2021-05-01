@@ -78,7 +78,7 @@
                   </th>
 
                   <th>
-                    Edit
+                    Actions
                   </th>
                 </thead>
                 <tbody v-for="project in projects" :key="project.id">
@@ -108,9 +108,7 @@
                     <td>
                       {{ project.client }}
                     </td>
-                    <td>
-                      {{ project.cost }}
-                    </td>
+                    <td>{{ project.cost }} vnd</td>
                     <td>{{ project.area }} m<sup>2</sup></td>
                     <td style="width: 80px">
                       <architect-button
@@ -119,10 +117,14 @@
                         class="edit-btn"
                         ><i class="far fa-edit"></i
                       ></architect-button>
-                      <i
-                        class="far fa-trash-alt"
-                        @click="onDelete(project._id)"
-                      ></i>
+                      <el-popconfirm
+                        title="Are you sure to delete this project?"
+                        @confirm="onConfirm(project._id)"
+                      >
+                        <template #reference>
+                          <i class="far fa-trash-alt"></i>
+                        </template>
+                      </el-popconfirm>
                       <i
                         class="fas fa-file-export"
                         @click="onExport(project._id)"
@@ -210,6 +212,9 @@ export default {
     await this.fetchCategories();
   },
   methods: {
+    async onConfirm(id) {
+      await this.onDelete(id);
+    },
     async eventRefresh(page) {
       this.loading = true;
       await this.$store.dispatch("projects/index", {

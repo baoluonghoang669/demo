@@ -13,9 +13,7 @@
       <div
         v-for="project in projects"
         :key="project.id"
-        class="projects_column arc urban list"
-        v-infinite-scroll="load"
-        infinite-scroll-disabled="disabled"
+        class="projects_column arc urban"
       >
         <architect-project-item>
           <img class="img-fluid fix-img-fluid" :src="project.photo" alt="" />
@@ -34,15 +32,12 @@
           </div>
         </architect-project-item>
       </div>
-      <p v-if="loading">Loading...</p>
-      <p v-if="noMore">No more</p>
     </div>
   </div>
 </template>
 <script>
-import ArchitectButton from "../common/ArchitectButton.vue";
 export default {
-  components: { ArchitectButton },
+  components: {},
   data() {
     return {
       search: "",
@@ -56,12 +51,6 @@ export default {
   //   this.fetchProjects();
   // },
   computed: {
-    noMore() {
-      return this.projects.length >= 10;
-    },
-    disabled() {
-      return this.loading || this.noMore;
-    },
     searchFormData: function() {
       return {
         inputs: [
@@ -119,13 +108,6 @@ export default {
     await this.eventRefresh();
   },
   methods: {
-    load() {
-      this.loading = true;
-      setTimeout(() => {
-        this.projects.length += 2;
-        this.loading = false;
-      }, 2000);
-    },
     async fetchCategories() {
       const res = await this.$store.dispatch("categories/fetchListCategories");
       this.categories = res.map((item) => ({

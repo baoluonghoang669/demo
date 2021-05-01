@@ -45,7 +45,7 @@
                   </div>
                   <div class="received_msg">
                     <div class="received_withd_msg">
-                      <p>Hello. Can I help you ?</p>
+                      <p>{{ $t("help-you") }}</p>
                       <span class="time_date"> {{ timestamp }} AM | Today</span>
                     </div>
                   </div>
@@ -71,12 +71,32 @@
                           v-if="loading && msgData.sender === 'bot'"
                         ></chat-loading> -->
                         <!-- <template v-else> -->
-                        <p v-if="!msgData.msg.includes('https')">
+                        <p v-if="msgData.msg.includes('http')">
+                          {{
+                            msgData.msg.slice(0, msgData.msg.indexOf(":") + 1)
+                          }}
+
+                          <a
+                            :href="
+                              msgData.msg.slice(
+                                msgData.msg.indexOf(':') + 1,
+                                msgData.msg.length
+                              )
+                            "
+                            >{{
+                              msgData.msg.slice(
+                                msgData.msg.indexOf(":") + 1,
+                                msgData.msg.length
+                              )
+                            }}</a
+                          >
+                        </p>
+                        <p v-else>
                           {{ msgData.msg }}
                         </p>
-                        <a v-else :href="msgData.msg">{{ msgData.msg }}</a>
                         <span class="time_date"> {{ timestamp }} | Today</span>
                         <!-- </template> -->
+                        <!-- -->
                       </div>
                     </div>
                   </div>
@@ -145,10 +165,10 @@ export default {
       this.show = false;
     },
     onClose() {
+      this.visible = false;
       this.show = false;
       this.form = this.$store.getters["auth/clearListMessages"];
       this.clearData = true;
-      //clear form when user delete chatbot
     },
 
     getNow() {
@@ -177,7 +197,6 @@ export default {
       try {
         const msgRes = await this.$store.dispatch("auth/onSendChat", data);
         this.form.push({ msg: msgRes, sender: "bot" });
-        console.log(msgRes);
         this.form.msg = "";
         chatboxEl.scrollTo(0, chatboxEl.scrollHeight);
       } catch (error) {
@@ -353,7 +372,7 @@ img {
 }
 .mesgs {
   float: left;
-  padding: 15px 0px 0 0px;
+  padding: 2px 0px 0 0px;
   width: 100%;
 }
 
@@ -414,7 +433,7 @@ img {
 }
 .msg_history {
   overflow: auto;
-  height: 356px;
+  height: 372px;
   padding: 0 20px;
 }
 

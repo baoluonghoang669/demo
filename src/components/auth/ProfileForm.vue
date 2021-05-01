@@ -160,8 +160,8 @@ export default {
       fileUpload: null,
     };
   },
-  created() {
-    this.fetchDetailUser();
+  async mounted() {
+    await this.fetchDetailUser();
   },
   computed: {
     update() {
@@ -248,8 +248,7 @@ export default {
       return this.$store.getters["auth/user"];
     },
   },
-    async mounted() {
-  },
+
   methods: {
 
     // Fetch detail user when logged in
@@ -353,6 +352,7 @@ export default {
   border-radius: 5%;
   transition: 0.3s all ease;
   padding: 5px;
+  cursor: pointer;
 }
 
 .change-avatar:hover {

@@ -117,12 +117,17 @@
 
     "page-not-found": "Không tìm thấy trang",
     "error-found": "Trang này không được tìm thấy - hãy quay lại trang chủ của chúng tôi",
-    "interior": "Kiến trúc - Nội Thất ",
+    "interior": "Kiến trúc - Nội Thất",
+    "house": "Kiến trúc - Nhà Cửa",
+    "building": "Kiến trúc - Xây dựng",
+    "architecture-company": "Công ty kiến trúc",
 
     "end-chat": "Bạn có chắc chắn muốn Kết thúc đoạn chat không?",
     "text-end-chat": "Bạn sẽ bị đăng xuất khỏi đoạn chat này. Bạn có thể đăng nhập lại bất cứ lúc nào.",
     "cancel": "Hủy",
     "confirm": "Xác nhận",
-    "upload": "Cập nhật"
+    "upload": "Cập nhật",
 
+    "help-you": "Xin chào. Tôi có thể giúp gì cho bạn ? ",
+    "fail-authenticate": "Tên đăng nhập hoặc mật khẩu không hợp lệ. Vui lòng nhập lại."
 }

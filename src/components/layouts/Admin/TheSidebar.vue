@@ -2,7 +2,7 @@
   <div class="sidebar">
     <div class="logo">
       <a class="simple-text logo-normal" v-if="user && isAuth">
-        Hello {{ user.name }}
+        Admin Dashboard
       </a>
     </div>
     <div class="sidebar-wrapper">

@@ -117,11 +117,17 @@
 
     "page-not-found": "Page not found",
     "error-found": "This page could not be found - maybe check out all our",
-    "interior": "Interior - Architecture",
+    "interior": "Architecture - Interior",
+    "house": "Architecture - House",
+    "building": "Architecture - Building",
+    "architecture-company": "Architecture company",
 
     "end-chat": "Are you sure you want to End the chat?",
     "text-end-chat": "You will be logged out of this chat. You can re-login at any time.",
     "cancel": "Cancel",
     "confirm": "Confirm",
-    "upload": "Upload image"
+    "upload": "Upload image",
+
+    "help-you": "Hello. Can I help you ? ",
+    "fail-authenticate": "Email or password is incorrect. Please enter again."
 }

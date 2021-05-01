@@ -135,6 +135,7 @@ label {
 .fixed-button {
   background-color: #263a4f;
   border: none;
+    font-size: 15px !important;
 }
 
 .fixed-button:hover {

@@ -191,7 +191,6 @@ export default {
       err: null,
     };
   },
-
   watch: {
     isAuth() {
       return this.$store.getters["auth/isAuth"];

@@ -2,14 +2,40 @@
   <div>
     <!--================Slider Home Area =================-->
     <section class="home_slider">
-      <div
+      <el-carousel
+        :interval="4000"
+        arrow="always"
+        height="1000px"
+        width="1920px"
+      >
+        <el-carousel-item v-for="source in sourceBanner" :key="source">
+          <img
+            :src="source.img"
+            alt="banner"
+            data-bgposition="center center"
+            data-bgfit="cover"
+            data-bgrepeat="no-repeat"
+            class="rev-slidebg"
+            data-bgparallax="10"
+            data-no-retina
+          />
+          <div class="text_box">
+            <div class="tp-caption tp-resizeme text_1">
+              <p>{{ source.title }}<br />{{ source.company }}</p>
+            </div>
+          </div>
+          <div class="interior">
+            <p>{{ source.interior }}</p>
+          </div>
+        </el-carousel-item>
+      </el-carousel>
+      <!-- <div
         id="home_full_slider"
         class="rev_slider fullscreenbanner"
         data-version="5.3.1.6"
       >
-        <!-- MAIN IMAGE -->
         <img
-          src="./../assets/images/slider1.jpg"
+          src="http://paul-themes.com/html/intria/intria-demo/intria/light/img/home-slider/slider-1.jpg"
           alt="banner"
           data-bgposition="center center"
           data-bgfit="cover"
@@ -18,17 +44,10 @@
           data-bgparallax="10"
           data-no-retina
         />
-      </div>
-      <div class="text_box">
-        <div class="tp-caption tp-resizeme text_1">
-          <p>{{ $t("troc") }}<br />{{ $t("company") }}</p>
-        </div>
-      </div>
+      </div> -->
+
       <div class="year">
         <router-link to="">2021</router-link>
-      </div>
-      <div class="interior">
-        <p>{{ $t("interior") }}</p>
       </div>
     </section>
     <!--=============-->
@@ -158,6 +177,38 @@ import TypeList from "../components/typeProjects/TypeList.vue";
 export default {
   name: "Home",
   components: { CommentList, TypeList, ProjectListSlider },
+  data() {
+    return {
+      sourceBanner: [
+        {
+          img:
+            "http://paul-themes.com/html/intria/intria-demo/intria/light/img/home-slider/slider-1.jpg",
+          interior: "Architecture - Interior",
+          title: "Troc studio",
+          company: "Architecture Company",
+        },
+        {
+          img:
+            "http://paul-themes.com/html/intria/intria-demo/intria/light/img/home-slider/slider-2.jpg",
+          interior: "Architecture - House",
+          title: "Troc studio",
+          company: "Architecture Company",
+        },
+        {
+          img:
+            "http://paul-themes.com/html/intria/intria-demo/intria/light/img/home-slider/slider-3.jpg",
+          interior: "Architecture - Building",
+          title: "Troc studio",
+          company: "Architecture Company",
+        },
+      ],
+    };
+  },
+  computed: {
+    // sourceBanners() {
+    //   return this.$store.getters["projects/getTitleHeader"];
+    // },
+  },
 };
 </script>
 
@@ -220,7 +271,7 @@ export default {
 
 .home_slider .text_box {
   position: absolute;
-  left: 40%;
+  left: 46%;
   z-index: 25;
   top: 46%;
   transform: translate(-50%, -50%);
@@ -269,5 +320,20 @@ export default {
 
 h4:hover {
   color: #263a4f !important;
+}
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 18px;
+  opacity: 0.75;
+  line-height: 300px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>

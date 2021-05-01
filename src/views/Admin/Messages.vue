@@ -1,6 +1,10 @@
 <template>
   <div class="content">
     <div class="row">
+      <el-calendar v-model="value"> </el-calendar>
+    </div>
+    <br />
+    <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
@@ -30,7 +34,12 @@
                             - </b
                           >{{ message.message }}</span
                         >
-                        <div><b>Send time: </b> {{ message.createdAt }}</div>
+                        <div>
+                          <b>Send time: </b
+                          >{{
+                            formatDate(message.createdAt, "DD/MM/YYYY HH:mm")
+                          }}
+                        </div>
                       </div>
                       <form>
                         <div v-if="message.isContacted === true">
@@ -56,10 +65,13 @@
   </div>
 </template>
 <script>
+import { formatDate } from "../../helpers/common.js";
 export default {
   data() {
     return {
       error: null,
+      value: new Date(),
+      formatDate,
     };
   },
   created() {
@@ -129,5 +141,8 @@ export default {
 .btn-primary:hover {
   background-color: #a3cc01 !important;
   transition: 0.3s all ease;
+}
+.alert-primary {
+  background-color: #263a4f !important;
 }
 </style>

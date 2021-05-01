@@ -8,8 +8,6 @@
         alt=""
       />
     </section>
-    <!--================End Post Gallery Slider Area =================-->
-
     <!--================About Studio Area =================-->
     <section class="about_studio_area">
       <div class="container">

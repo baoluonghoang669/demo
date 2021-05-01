@@ -68,6 +68,18 @@ export default {
         commit("DELETE_REVIEW", payload);
     },
 
+    //delete review of a user
+    // async onUpdateReview({ commit }, payload) {
+    //     const response = await http.put(`reviews/${payload}`);
+
+    //     const responseData = response.data.data;
+    //     if (responseData.success === false) {
+    //         return;
+    //     }
+
+    //     commit("DELETE_REVIEW", payload);
+    // },
+
     //add review when user post a comment
     async addUserReview({ commit }, payload) {
         const userReview = {

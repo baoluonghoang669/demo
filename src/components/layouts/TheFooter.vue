@@ -50,24 +50,28 @@
             </div>
             <ul class="list">
               <li>
-                <architect-button link :name="'Home'">{{
-                  $t("menu.home")
-                }}</architect-button>
+                <a
+                  href="https://www.facebook.com/TROC-Studio-111045133645249"
+                  >{{ $t("menu.home") }}</a
+                >
               </li>
               <li>
-                <architect-button link :name="'About'">{{
-                  $t("menu.about")
-                }}</architect-button>
+                <a
+                  href="https://www.facebook.com/TROC-Studio-111045133645249"
+                  >{{ $t("menu.about") }}</a
+                >
               </li>
               <li>
-                <architect-button link :name="'Contact'">{{
-                  $t("menu.contact")
-                }}</architect-button>
+                <a
+                  href="https://www.facebook.com/TROC-Studio-111045133645249"
+                  >{{ $t("menu.contact") }}</a
+                >
               </li>
               <li>
-                <architect-button link :name="'Project'">{{
-                  $t("menu.project")
-                }}</architect-button>
+                <a
+                  href="https://www.facebook.com/TROC-Studio-111045133645249"
+                  >{{ $t("menu.project") }}</a
+                >
               </li>
             </ul>
           </div>
@@ -231,5 +235,9 @@ export default {
 
 .social_icon .list li {
   padding: 5px;
+}
+
+a:hover {
+  color: #a3cc01 !important;
 }
 </style>

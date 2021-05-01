@@ -115,7 +115,7 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-search-location"></i>
+                  <i class="fas fa-envelope"></i>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -156,29 +156,7 @@
             ></pie-chart>
           </div>
         </div>
-        <div class="card ">
-          <div class="card-header ">
-            <h5 class="card-title">
-              Company Management Chart (Column Chart)
-            </h5>
-            <p class="card-category">Update 24 Hours</p>
-          </div>
-          <div class="card-body ">
-            <column-chart
-              :data="[
-                ['Projects', projects],
-                ['Users', users],
-                ['Categories', categories],
-                ['Reviews', reviews],
-                ['Messages', messages],
-              ]"
-            ></column-chart>
-          </div>
-        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12"></div>
     </div>
   </div>
 </template>

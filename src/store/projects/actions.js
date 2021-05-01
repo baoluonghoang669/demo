@@ -142,7 +142,6 @@ export default {
             },
         });
         const responseData = response.data.data;
-        console.log(responseData);
         commit("SET_PROJECTS", responseData);
     },
 

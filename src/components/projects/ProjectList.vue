@@ -9,6 +9,9 @@
       >
       </search-form>
     </card-search-form>
+    <div v-if="!projects || projects.length < 0">
+      <architect-loading></architect-loading>
+    </div>
     <div class="projects_inner infinite-list-wrapper" style="overflow:auto">
       <div
         v-for="project in projects"
@@ -137,11 +140,13 @@ export default {
       this.total = this.projects.totalCount;
     },
     async fetchProjects() {
+      this.loading = true;
       try {
         await this.$store.dispatch("projects/fetchListProjects");
       } catch (error) {
         this.err = error || "Fail to fetch";
       }
+      this.loading = false;
     },
   },
 };

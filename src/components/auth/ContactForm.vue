@@ -158,7 +158,7 @@ export default {
           .dispatch("messages/onSendMessage", message)
           .then(() => (this.notify = "Your message is successfully sent !"));
       } catch (err) {
-        this.error = "Fail to send. Your email sent messages to us!";
+        this.error = err.response.data.error || "Fail to send!";
         this.loading = false;
       }
       this.name = "";

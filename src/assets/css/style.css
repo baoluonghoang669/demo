@@ -1750,7 +1750,7 @@ i:before {
     letter-spacing: .21px;
     font-weight: "Heebo", sans-serif;
     font-weight: normal;
-    max-width: 320px;
+    width: 320px;
     margin-bottom: 30px;
 }
 

@@ -240,4 +240,13 @@ export default {
 a:hover {
   color: #a3cc01 !important;
 }
+@media (max-width: 576px) {
+  .footer_widgets {
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+}
 </style>

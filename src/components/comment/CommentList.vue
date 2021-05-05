@@ -40,4 +40,10 @@ export default {
   components: { Carousel, Slide },
 };
 </script>
-<style scoped></style>
+<style scoped>
+@media (max-width: 576px) {
+  .carousel__slide {
+    flex-wrap: wrap !important;
+  }
+}
+</style>

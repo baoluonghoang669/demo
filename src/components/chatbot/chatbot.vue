@@ -228,7 +228,7 @@ export default {
   border-radius: 3%;
   display: block;
   border: none;
-  width: 30%;
+  width: 400px;
   position: fixed;
   right: 2%;
   bottom: 2%;

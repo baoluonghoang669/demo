@@ -35,7 +35,7 @@
         {{ $t("valid-form") }}
       </p>
       <div class="button-group">
-        <div v-if="checkClick">
+        <div v-if="checkClick" class="fix-btn-group">
           <button type="submit" id="btn-login" v-if="checkClick == 1">
             {{ $t("login") }}
           </button>
@@ -60,6 +60,7 @@
           </button>
         </div>
         <architect-button
+          class="fix-btn-group-two"
           link
           typeClass="btn-link-hover"
           :path="'/auth/forgotpassword'"
@@ -229,5 +230,18 @@ form .input-group input {
 .inValid {
   width: 392px;
   color: red;
+}
+@media (max-width: 992px) {
+  .form-auth {
+    margin-top: 30%;
+  }
+}
+@media (max-width: 576px) {
+  .fix-btn-group {
+    flex-basis: 60%;
+  }
+  .fix-btn-group-two {
+    flex-basis: 40%;
+  }
 }
 </style>

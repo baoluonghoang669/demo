@@ -129,5 +129,6 @@
     "upload": "Cập nhật",
 
     "help-you": "Xin chào. Tôi có thể giúp gì cho bạn ? ",
-    "fail-authenticate": "Tên đăng nhập hoặc mật khẩu không hợp lệ. Vui lòng nhập lại."
+    "fail-authenticate": "Tên đăng nhập hoặc mật khẩu không hợp lệ. Vui lòng nhập lại.",
+    "login-to-post-comment": "Đăng nhập để bình luận"
 }

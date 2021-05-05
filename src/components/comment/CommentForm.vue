@@ -20,51 +20,6 @@
           <div class="comment_title">
             <h2>{{ $t("leave-review") }}</h2>
           </div>
-          <!-- <form
-            class="row comment_fro m"
-            @submit.prevent="sendComment()"
-            novalidate="novalidate"
-          >
-            <div class="form-group col-md-12">
-              <textarea
-                class="form-control fix-textarea"
-                id="comment"
-                rows="1"
-                name="comment"
-                placeholder="Comment"
-                v-model="comment"
-                required
-              ></textarea>
-            </div>
-            <div class="form-group p_star col-md-6">
-              <input
-                type="number"
-                class="form-control"
-                id="rating"
-                name="rating"
-                placeholder="Rating/10"
-                min="1"
-                max="10"
-                v-model.number="rating"
-                required
-              />
-            </div>
-            <div class="form-group col-md-12">
-              <architect-button value="value" type="submit" v-if="isAuth">{{
-                $t("post-comment")
-              }}</architect-button>
-              <architect-button
-                link
-                :path="'/auth'"
-                :query="linkQuery"
-                value="value"
-                type="submit"
-                typeClass=" form-control fix_btn"
-                v-else
-                >{{ $t("post-comment") }}</architect-button
-              >
-            </div>
-          </form> -->
           <el-form
             :model="ruleForm"
             status-icon
@@ -99,6 +54,11 @@
                 id="btn-submit"
                 @click="submitForm('ruleForm')"
                 >{{ $t("post-comment") }}</el-button
+              >
+              <el-button v-else type="primary" id="btn-submit"
+                ><router-link to="/auth">{{
+                  $t("login-to-post-comment")
+                }}</router-link></el-button
               >
             </div>
           </el-form>
@@ -243,5 +203,8 @@ export default {
 }
 #btn-submit:hover {
   background-color: #a3cc01 !important;
+}
+a {
+  color: #fff;
 }
 </style>

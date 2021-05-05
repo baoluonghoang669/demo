@@ -66,6 +66,7 @@ a:hover {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .animate-enter-from {
   transform: translateY(-30px);
   opacity: 0;
@@ -95,4 +96,19 @@ a:hover {
   left: 2%;
   margin-top: 15px;
 }
+
+@media (max-width: 576px)  {
+  .clients_slider {
+    flex-direction: column;
+  }
+  .clients_slider .item {
+    padding: 15px;
+  }
+}
+@media (max-width: 768px) {
+  .el-carousel__indicators--outside {
+    display: none !important;
+  }
+}
+
 </style>

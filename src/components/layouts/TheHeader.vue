@@ -19,6 +19,7 @@
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          @click="openMenu"
         >
           <span></span>
           <span></span>
@@ -86,23 +87,6 @@
     </header>
 
     <!-- Menu Header responsive at mobile screen -->
-    <header class="full_header content-white mobile_menu">
-      <div class="float-left">
-        <router-link class="logo" to="/"
-          ><img
-            class="fix-responsive-logo"
-            src="../../assets/images/logo/1-removebg-preview.png"
-        /></router-link>
-        <router-link class="phone" to="/"
-          ><i class="lnr lnr-phone-handset"></i> (+84) 902 985 987</router-link
-        >
-      </div>
-      <div class="float-right">
-        <div class="bar_menu">
-          <i class="lnr lnr-menu" @click="openMenu"></i>
-        </div>
-      </div>
-    </header>
 
     <!-- teleport -->
     <teleport to="body">
@@ -308,7 +292,7 @@ a {
   justify-content: center;
 }
 .content-modal {
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   display: flex;
@@ -561,6 +545,12 @@ li {
     visibility: visible;
     top: 35px;
     opacity: 1;
+  }
+  .full_header.content-white .float-left .logo img {
+    display: none;
+  }
+  .full_header {
+    display: none !important;
   }
 }
 .header_menu_area .navbar.navbar-expand-lg .nav.navbar-nav.navbar-right {

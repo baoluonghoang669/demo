@@ -129,5 +129,6 @@
     "upload": "Upload image",
 
     "help-you": "Hello. Can I help you ? ",
-    "fail-authenticate": "Email or password is incorrect. Please enter again."
+    "fail-authenticate": "Email or password is incorrect. Please enter again.",
+    "login-to-post-comment": "Login to comment"
 }

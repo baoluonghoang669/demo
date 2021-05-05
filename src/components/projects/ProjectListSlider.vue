@@ -95,6 +95,6 @@ export default {
   background-color: #d3dce6;
 }
 .el-carousel__indicators--outside {
-  display: none;
+  display: none !important;
 }
 </style>

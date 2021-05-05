@@ -160,10 +160,10 @@
         left: 0px;
     }
     .dark_menu .navbar-toggler span {
-        background: #263a4f;
+        background: white;
     }
     .dark_menu .navbar-toggler {
-        margin-right: 15px;
+        transform: translateX(-40px);
     }
     .navbar-toggler span:first-child {
         top: 0px;
@@ -469,9 +469,9 @@
     .full_10_box:after {
         display: none;
     }
-    .header_menu_area {
+    /* .header_menu_area {
         display: none;
-    }
+    } */
     .side_menu .close-menu {
         right: 30px;
         top: 30px;
@@ -782,14 +782,17 @@
 
 @media(max-width: 768px) {
     .home_slider .text_box {
-        left: 50% !important;
+        left: 45% !important;
     }
     .interior {
-        left: 30% !important;
+        left: 28% !important;
     }
 }
 
 @media(max-width: 480px) {
+    .home_slider .text_box {
+        font-size: 18px;
+    }
     .studio_text h3 {
         font-size: 32px;
         line-height: 40px;

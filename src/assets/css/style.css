@@ -1822,6 +1822,8 @@ i:before {
 
 .br_btn.white:hover {
     color: #a3cc01;
+    transform: scale(0.9);
+    transition: 0.2 all ease-out;
 }
 
 .br_btn.white:hover:before {
@@ -1844,6 +1846,7 @@ i:before {
 
 .view_btn.white:hover {
     color: #263a4f;
+    transform: scale(0.9);
 }
 
 .see_btn {

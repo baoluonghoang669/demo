@@ -102,8 +102,10 @@ p:hover {
 p:hover,
 p:active {
   color: #a3cc01;
+  border-bottom: 2px solid #a3cc01;
 }
 .active {
   color: #a3cc01;
+  border-bottom: 2px solid #a3cc01;
 }
 </style>

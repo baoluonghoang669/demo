@@ -420,8 +420,8 @@ img {
   font-size: 17px;
   height: 33px;
   position: absolute;
-  right: 6px;
-  top: 3px;
+  right: 4px;
+  top: 2px;
   width: 33px;
   outline: none;
 }

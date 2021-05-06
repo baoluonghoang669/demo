@@ -42,10 +42,13 @@
               <el-input v-model="ruleForm.comment"></el-input>
             </el-form-item>
             <el-form-item label="Rating" prop="rating">
-              <el-input
-                type="number"
-                v-model.number="ruleForm.rating"
-              ></el-input>
+              <el-input-number
+                v-model="ruleForm.rating"
+                controls-position="right"
+                @change="handleChange"
+                :min="1"
+                :max="10"
+              ></el-input-number>
             </el-form-item>
             <div class="text-left">
               <el-button
@@ -75,22 +78,6 @@
 <script>
 export default {
   data() {
-    var checkRating = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("Please input the rating"));
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error("Please input digits"));
-        } else {
-          if (value > 10) {
-            callback(new Error("Rating must be less than 10"));
-          } else {
-            callback();
-          }
-        }
-      }, 1000);
-    };
     return {
       ruleForm: {
         comment: "",
@@ -99,7 +86,7 @@ export default {
       loading: false,
       error: null,
       rules: {
-        rating: [{ validator: checkRating, trigger: "blur" }],
+        rating: [{ required: true }],
       },
     };
   },

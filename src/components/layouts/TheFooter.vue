@@ -230,7 +230,7 @@ export default {
 }
 
 .social_icon .list li a:hover {
-  background-color: #a3cc01;
+  transform: scale(0.9);
 }
 
 .social_icon .list li {

@@ -5,7 +5,7 @@
       @click="fetchListProjects()"
       :class="!isActive && 'active'"
     >
-      All
+      Tất cả
     </p>
 
     <div

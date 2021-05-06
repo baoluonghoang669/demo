@@ -35,11 +35,15 @@
         <el-form-item label="Address" prop="address">
           <el-input v-model="ruleForm.address"></el-input>
         </el-form-item>
-        <el-form-item label="Phone Number" prop="phone">
+        <el-form-item label="Phone" prop="phone">
           <el-input type="number" v-model.number="ruleForm.phone"></el-input>
         </el-form-item>
         <el-form-item label="Password" prop="password">
-          <el-input type="password" v-model="ruleForm.password"></el-input>
+          <el-input
+            type="password"
+            v-model="ruleForm.password"
+            minlength="6"
+          ></el-input>
         </el-form-item>
         <el-form-item label="Birthday" prop="birthday">
           <el-col>
@@ -51,7 +55,7 @@
             ></el-date-picker>
           </el-col>
         </el-form-item>
-        <el-form-item label="State/Region/City" prop="city">
+        <el-form-item label="Region/City" prop="city">
           <el-select
             v-model="ruleForm.city"
             placeholder="please select your city"
@@ -66,7 +70,7 @@
         </el-form-item>
         <el-form-item label="Provinces" prop="provinces">
           <el-select
-            v-model="ruleForm.provinces"
+            v-model="ruleForm.province"
             placeholder="please select your province"
           >
             <el-option
@@ -78,7 +82,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="Role" prop="role">
-          <el-radio-group v-model="ruleForm.role">
+          <el-radio-group v-model="ruleForm.role" style="margin-top: 10px">
             <el-radio label="user"></el-radio>
             <el-radio label="admin"></el-radio>
           </el-radio-group>
@@ -107,7 +111,7 @@ export default {
         birthday: "",
         phone: "",
         city: this.cities,
-        provinces: this.provinces,
+        province: this.provinces,
         role: "",
         password: "",
       },
@@ -120,7 +124,7 @@ export default {
         birthday: { required: true, message: "Please input birthday" },
         phone: { required: true, message: "Please input phone" },
         city: { required: true, message: "Please input city" },
-        provinces: { required: true, message: "Please input province" },
+        province: { required: true, message: "Please input province" },
         role: { required: true, message: "Please input role" },
         password: { required: true, message: "Please input password" },
       },
@@ -131,9 +135,9 @@ export default {
       this.getProvinces(id);
     },
   },
-  created() {
-    this.getCities();
-    this.getProvinces();
+  async mounted() {
+    await this.getCities();
+    await this.getProvinces();
   },
   computed: {
     cities() {
@@ -162,7 +166,7 @@ export default {
         birthday: this.ruleForm.birthday,
         phone: this.ruleForm.phone,
         city: this.ruleForm.city,
-        country: this.ruleForm.country,
+        province: this.ruleForm.province,
         role: this.ruleForm.role,
         password: this.ruleForm.password,
       };
@@ -171,7 +175,7 @@ export default {
 
         this.$router.replace({ name: "UserList" });
       } catch (err) {
-        this.error = err.response.data.error || this.$t("fail");
+        this.error = err.message || this.$t("fail");
       }
       this.loading = false;
     },

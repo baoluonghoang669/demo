@@ -37,7 +37,7 @@ export default {
             birthday: payload.birthday,
             city: payload.city,
             role: payload.role,
-            country: payload.country,
+            province: payload.province,
         };
 
         const response = await http.put(
@@ -72,7 +72,7 @@ export default {
             birthday: payload.birthday,
             phone: payload.phone,
             city: payload.city,
-            country: payload.country,
+            province: payload.province,
             role: payload.role,
             password: payload.password,
         };

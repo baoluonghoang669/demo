@@ -63,19 +63,15 @@
         <el-form-item label="Client" prop="client">
           <el-input v-model="ruleForm.client" required></el-input>
         </el-form-item>
-        <el-form-item label="Cost" prop="cost">
+        <el-form-item label="Project Cost" prop="cost">
           <el-input
             type="cost"
             v-model.number="ruleForm.cost"
             required
           ></el-input>
         </el-form-item>
-        <el-form-item label="Area" prop="area">
-          <el-input
-            type="area"
-            v-model="ruleForm.area"
-            required
-          ></el-input>
+        <el-form-item label="Land Area" prop="area">
+          <el-input type="area" v-model="ruleForm.area" required></el-input>
         </el-form-item>
         <div class="text-center">
           <el-button
@@ -158,11 +154,11 @@ export default {
         area: this.ruleForm.area,
       };
       try {
-        await this.$store.dispatch("projects/onAddProject", project);
-
-        this.$router.replace({ name: "ProjectList" });
+        await this.$store
+          .dispatch("projects/onAddProject", project)
+          .then(() => this.$router.replace({ name: "ProjectList" }));
       } catch (err) {
-        this.error = err.response.data.error || this.$t("fail");
+        this.error = this.$t("fail");
       }
       this.loading = false;
     },

@@ -117,13 +117,6 @@ export default {
         inputs: [
           {
             inputType: "input",
-            label: "Rating",
-            name: "rating",
-            attributes: { clearable: true },
-            trim: true,
-          },
-          {
-            inputType: "input",
             label: "Comment",
             name: "comment",
             attributes: { clearable: true },

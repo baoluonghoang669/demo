@@ -29,7 +29,7 @@
                 ><h4>{{ project.name }}</h4></architect-button
               >
               <h4 v-if="project.averageRating > 0">
-                Rating: {{ project.averageRating }}
+                {{ $t("rating") }}: {{ project.averageRating }}
               </h4>
             </div>
           </div>
@@ -50,37 +50,34 @@ export default {
       loading: false,
     };
   },
-  // created() {
-  //   this.fetchProjects();
-  // },
   computed: {
     searchFormData: function() {
       return {
         inputs: [
           {
             inputType: "input",
-            label: "Name",
+            label: this.$t("name"),
             name: "name",
             attributes: { clearable: true },
             trim: true,
           },
           {
             inputType: "input",
-            label: "Description",
+            label: this.$t("description"),
             name: "description",
             attributes: { clearable: true },
             trim: true,
           },
           {
             inputType: "input",
-            label: "Cost",
+            label: this.$t("cost-project"),
             name: "cost",
             attributes: { clearable: true, filterable: true },
             trim: true,
           },
           {
             inputType: "select",
-            label: "Categories",
+            label: this.$t("category-project"),
             name: "categoriesName",
             attributes: { clearable: true },
             trim: true,
@@ -90,7 +87,7 @@ export default {
           },
           {
             inputType: "input",
-            label: "Area",
+            label: this.$t("area-project"),
             name: "area",
             attributes: { clearable: true },
             trim: true,

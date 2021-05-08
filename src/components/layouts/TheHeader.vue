@@ -668,4 +668,10 @@ li {
   max-width: 100%;
   height: auto;
 }
+
+@media (max-width: 600px) {
+  .responsive-tel {
+    left: 35%;
+  }
+}
 </style>

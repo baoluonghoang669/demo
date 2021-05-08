@@ -130,5 +130,13 @@
 
     "help-you": "Hello. Can I help you ? ",
     "fail-authenticate": "Email or password is incorrect. Please enter again.",
-    "login-to-post-comment": "Login to comment"
+    "login-to-post-comment": "Login to comment",
+
+    "description": "Description",
+    "name": "Project Name",
+    "cost-project": "Project Cost",
+    "category-project": "Category",
+    "area-project": "Project Area",
+    "search": "Search",
+    "clear": "Clear"
 }

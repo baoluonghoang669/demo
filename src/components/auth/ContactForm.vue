@@ -61,7 +61,7 @@
                     class="form-control"
                     id="name"
                     name="name"
-                    placeholder="Your name"
+                    placeholder="Name"
                     v-model="name"
                     required
                   />
@@ -84,7 +84,7 @@
                     name="phone"
                     id="phone"
                     rows="1"
-                    placeholder="Your phone number"
+                    placeholder="Phone number"
                     v-model="phone"
                     required
                   />

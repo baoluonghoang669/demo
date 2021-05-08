@@ -104,14 +104,14 @@
       <div style="text-align: right">
         <el-form-item class="float-right" style="margin-right: 0">
           <el-button @click="handleClear(form, $refs['form'])" size="mini">{{
-            clearText
+            $t("clear")
           }}</el-button>
           <el-button
             type="primary"
             @click="handleSearch(form, $refs['form'])"
             size="mini"
           >
-            {{ searchText }}</el-button
+            {{ $t("search") }}</el-button
           >
         </el-form-item>
       </div>
@@ -126,8 +126,6 @@ export default {
     inputs: { type: Array, required: true },
     handleSearch: { type: Function, required: false },
     handleClear: { type: Function, required: false },
-    clearText: { type: String, default: "Xóa" },
-    searchText: { type: String, default: "Tìm kiếm" },
     rules: { type: Object },
   },
   data() {

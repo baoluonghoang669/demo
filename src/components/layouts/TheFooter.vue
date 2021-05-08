@@ -249,4 +249,10 @@ a:hover {
     text-align: center;
   }
 }
+
+@media (max-width: 768px) {
+  .social_icon {
+    left: 4%;
+  }
+}
 </style>

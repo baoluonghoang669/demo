@@ -197,14 +197,6 @@ export default {
             attributes: { clearable: true },
             trim: true,
           },
-          {
-            inputType: "input",
-            label: "Phone",
-            name: "phone",
-            attributes: { clearable: true },
-            trim: true,
-          },
-          {},
         ],
       };
     },

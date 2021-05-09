@@ -7,7 +7,9 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-project-diagram"></i>
+                  <router-link :to="{ name: 'ProjectList' }"
+                    ><i class="fas fa-project-diagram"></i
+                  ></router-link>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -34,7 +36,9 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-users-cog"></i>
+                  <router-link :to="{ name: 'UserList' }"
+                    ><i class="fas fa-users-cog"></i
+                  ></router-link>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -61,7 +65,9 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-certificate"></i>
+                  <router-link :to="{ name: 'CategoryList' }"
+                    ><i class="fas fa-certificate"></i
+                  ></router-link>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -88,7 +94,9 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-search-location"></i>
+                  <router-link :to="{ name: 'ReviewList' }"
+                    ><i class="fas fa-search-location"></i
+                  ></router-link>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -115,7 +123,9 @@
             <div class="row">
               <div class="col-5 col-md-4">
                 <div class="icon-big text-center icon-warning">
-                  <i class="fas fa-envelope"></i>
+                  <router-link :to="{ name: 'Messages' }"
+                    ><i class="fas fa-envelope"></i
+                  ></router-link>
                 </div>
               </div>
               <div class="col-7 col-md-8">
@@ -240,5 +250,11 @@ export default {
 
 .sidebar .sidebar-wrapper {
   width: 259px;
+}
+a {
+  color: #263a4f;
+}
+a:hover i {
+  transform: scale(1.1);
 }
 </style>

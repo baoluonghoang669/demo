@@ -177,13 +177,6 @@ export default {
             trim: true,
           },
           {
-            inputType: "input",
-            label: "Cost",
-            name: "cost",
-            attributes: { clearable: true, filterable: true },
-            trim: true,
-          },
-          {
             inputType: "select",
             label: "Categories",
             name: "categoriesName",
@@ -193,13 +186,6 @@ export default {
             optionLabelField: "label",
             optionList: this.categories,
           },
-          {
-            inputType: "input",
-            label: "Area",
-            name: "area",
-            attributes: { clearable: true },
-            trim: true,
-          },
         ],
       };
     },
@@ -208,8 +194,7 @@ export default {
     },
   },
   async mounted() {
-    await this.eventRefresh();
-    await this.fetchCategories();
+    await Promise.all([this.eventRefresh(), this.fetchCategories()]);
   },
   methods: {
     async onConfirm(id) {

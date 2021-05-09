@@ -23,16 +23,20 @@
       </div>
       <el-form @submit.prevent="onSave()" label-width="120px" class="demo-">
         <el-form-item label="Username">
-          <el-input v-model="name"></el-input>
+          <el-input v-model="name" disabled></el-input>
         </el-form-item>
         <el-form-item label="Email">
           <el-input v-model="email" disabled></el-input>
         </el-form-item>
-        <el-form-item label="Phone Number">
-          <el-input v-model.number="phone"></el-input>
+        <el-form-item label="Phone">
+          <el-input v-model.number="phone" disabled></el-input>
         </el-form-item>
         <el-form-item label="City">
-          <el-select v-model="city" placeholder="please select your city">
+          <el-select
+            v-model="city"
+            placeholder="please select your city"
+            disabled
+          >
             <el-option
               :label="city.province_name"
               :value="city.province_name"
@@ -45,6 +49,7 @@
           <el-select
             v-model="province"
             placeholder="please select your province"
+            disabled
           >
             <el-option
               :label="province.district_name"
@@ -62,6 +67,7 @@
               placeholder="Pick a date"
               v-model="birthday"
               style="width: 100%;"
+              disabled
             ></el-date-picker>
           </el-col>
         </el-form-item>
@@ -72,7 +78,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="Address">
-          <el-input type="textarea" v-model="address"></el-input>
+          <el-input type="textarea" v-model="address" disabled></el-input>
         </el-form-item>
         <div class="text-center">
           <button class="btn btn-primary fixed-button" type="submit">

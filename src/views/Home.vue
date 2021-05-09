@@ -113,9 +113,9 @@
               <div class="date">
                 <p>{{ $t("day1") }}</p>
               </div>
-              <h4>
+              <a href="https://www.facebook.com/TROC-Studio-111045133645249">
                 {{ $t("prize1") }}
-              </h4>
+              </a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -124,29 +124,35 @@
                 <div class="date">
                   <p>{{ $t("day2") }}</p>
                 </div>
-                <h4>{{ $t("prize2") }}</h4>
+                <a href="https://homehome.vn/gioi-thieu/"
+                  >{{ $t("prize2") }}
+                </a>
               </div>
               <div class="press_item">
                 <div class="date">
                   <p>{{ $t("day3") }}</p>
                 </div>
-                <h4>
+                <a
+                  href="https://www.kientrucnca.com/gioi-thieu/gioi-thieu-cong-ty-109.html"
+                >
                   {{ $t("prize3") }}
-                </h4>
+                </a>
               </div>
               <div class="press_item">
                 <div class="date">
                   <p>{{ $t("day4") }}</p>
                 </div>
-                <h4>{{ $t("prize4") }}</h4>
+                <a href="https://vnhome.vn/m/mau-thiet-ke-biet-thu-dep-6">{{
+                  $t("prize4")
+                }}</a>
               </div>
               <div class="press_item">
                 <div class="date">
                   <p>{{ $t("day5") }}</p>
                 </div>
-                <h4>
+                <a href="https://vnhome.vn/mn/du-an-7">
                   {{ $t("prize5") }}
-                </h4>
+                </a>
               </div>
             </div>
           </div>
@@ -335,5 +341,19 @@ h4:hover {
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+
+a {
+  font-size: 24px;
+  line-height: 30px;
+  color: #263a4f;
+  font-family: Heebo, sans-serif;
+  font-weight: 700;
+  margin-bottom: 0;
+  transition: all 0.1s linear 0s;
+}
+
+a:hover {
+  color: #a3cc01;
 }
 </style>

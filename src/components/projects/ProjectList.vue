@@ -69,13 +69,6 @@ export default {
             trim: true,
           },
           {
-            inputType: "input",
-            label: this.$t("cost-project"),
-            name: "cost",
-            attributes: { clearable: true, filterable: true },
-            trim: true,
-          },
-          {
             inputType: "select",
             label: this.$t("category-project"),
             name: "categoriesName",
@@ -84,13 +77,6 @@ export default {
             optionValueField: "value",
             optionLabelField: "label",
             optionList: this.categories,
-          },
-          {
-            inputType: "input",
-            label: this.$t("area-project"),
-            name: "area",
-            attributes: { clearable: true },
-            trim: true,
           },
         ],
       };
@@ -103,9 +89,11 @@ export default {
     },
   },
   async mounted() {
-    await this.fetchProjects();
-    await this.fetchCategories();
-    await this.eventRefresh();
+    await Promise.all([
+      this.eventRefresh(),
+      this.fetchProjects(),
+      this.fetchCategories(),
+    ]);
   },
   methods: {
     async fetchCategories() {

@@ -23,7 +23,6 @@
           <el-form
             :model="ruleForm"
             status-icon
-            :rules="rules"
             ref="ruleForm"
             label-width="120px"
             class="demo-ruleForm"
@@ -43,11 +42,18 @@
             </el-form-item>
             <el-form-item label="Rating" prop="rating">
               <el-input-number
-                v-model="ruleForm.rating"
+                v-model.number="ruleForm.rating"
                 controls-position="right"
                 @change="handleChange"
                 :min="1"
                 :max="10"
+                :rules="[
+                  {
+                    required: true,
+                    message: 'Please input rating',
+                    trigger: 'blur',
+                  },
+                ]"
               ></el-input-number>
             </el-form-item>
             <div class="text-left">
@@ -85,9 +91,6 @@ export default {
       },
       loading: false,
       error: null,
-      rules: {
-        rating: [{ required: true }],
-      },
     };
   },
   created() {
@@ -103,6 +106,9 @@ export default {
     },
   },
   methods: {
+    handleChange(value) {
+      this.ruleForm.rating = value;
+    },
     async fetchDetailReview() {
       try {
         this.$store.dispatch(

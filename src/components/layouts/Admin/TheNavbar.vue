@@ -32,8 +32,8 @@
   </nav>
 </template>
 <script>
-import { h } from "vue";
-import ArchitectButton from "../../common/ArchitectButton.vue";
+import { h } from 'vue';
+import ArchitectButton from '../../common/ArchitectButton.vue';
 export default {
   components: { ArchitectButton },
   created() {
@@ -41,23 +41,23 @@ export default {
   },
   computed: {
     isReadedMessages() {
-      return this.$store.getters["messages/isReadedMessages"];
+      return this.$store.getters['messages/isReadedMessages'];
     },
   },
   methods: {
     async fetchAllMessage() {
       try {
-        await this.$store.dispatch("messages/fetchAllMessage");
+        await this.$store.dispatch('messages/fetchAllMessage');
       } catch (err) {
         this.error = err;
       }
     },
     open() {
       this.$notify({
-        title: "Notification",
+        title: 'Notification',
         message: h(
-          "i",
-          { style: "color: teal" },
+          'i',
+          { style: 'color: teal' },
           `You just received ${this.isReadedMessages} new messages`
         ),
       });

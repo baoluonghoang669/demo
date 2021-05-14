@@ -95,30 +95,27 @@
   </div>
 </template>
 <script>
-import ArchitectButton from "../../../components/common/ArchitectButton.vue";
+import ArchitectButton from '../../../components/common/ArchitectButton.vue';
 export default {
   components: { ArchitectButton },
   data() {
     return {
       loading: false,
       err: null,
-      file: "",
+      file: '',
       dialogVisible: false,
       formSearch: {},
       total: 0,
     };
-  },
-  created() {
-    this.fetchAllReviews();
   },
   computed: {
     searchFormData: function() {
       return {
         inputs: [
           {
-            inputType: "input",
-            label: "Comment",
-            name: "comment",
+            inputType: 'input',
+            label: 'Comment',
+            name: 'comment',
             attributes: { clearable: true },
             trim: true,
           },
@@ -126,19 +123,19 @@ export default {
       };
     },
     reviews() {
-      return this.$store.getters["reviews/getReviews"];
+      return this.$store.getters['reviews/getReviews'];
     },
   },
   async mounted() {
-    await this.eventRefresh();
+    await Promise.all([this.eventRefresh(), this.fetchAllReviews()]);
   },
   methods: {
-    async onConfirm(id) {
-      await this.onDelete(id);
+    onConfirm(id) {
+      this.onDelete(id);
     },
     async eventRefresh(page) {
       this.loading = true;
-      await this.$store.dispatch("reviews/index", {
+      await this.$store.dispatch('reviews/index', {
         page: page || 1,
         ...this.formSearch,
       });
@@ -153,12 +150,12 @@ export default {
       });
     },
     async handleClear(form, refs) {
-      await this.$store.dispatch("reviews/index", { page: 1 });
+      await this.$store.dispatch('reviews/index', { page: 1 });
       refs.resetFields();
       this.total = this.reviews.totalCount;
     },
     handleClose(done) {
-      this.$confirm("Are you sure to close this dialog?")
+      this.$confirm('Are you sure to close this dialog?')
         .then(() => {
           done();
           this.dialogVisible = false;
@@ -167,32 +164,34 @@ export default {
     },
     async onDelete(id) {
       try {
-        await this.$store.dispatch("reviews/onDeleteReview", id);
+        await this.$store.dispatch('reviews/onDeleteReview', id);
       } catch (error) {
         this.err = error;
       }
       this.dialogVisible = false;
     },
     async fetchAllReviews() {
+      this.loading = true;
       try {
-        await this.$store.dispatch("reviews/fetchAllReviews");
+        await this.$store.dispatch('reviews/fetchAllReviews');
       } catch (error) {
         this.err = error;
       }
+      this.loading = false;
     },
 
     async onExport(id) {
       try {
-        await this.$store.dispatch("reviews/getExcelFileById", id);
+        await this.$store.dispatch('reviews/getExcelFileById', id);
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
     async onExportExcels() {
       try {
-        await this.$store.dispatch("reviews/getExcelFiles");
+        await this.$store.dispatch('reviews/getExcelFiles');
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
   },

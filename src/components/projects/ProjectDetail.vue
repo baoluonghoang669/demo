@@ -14,10 +14,10 @@
       <section class="breadcrumb_link">
         <div class="container">
           <router-link :to="{ name: 'ProjectDetail' }">{{
-            $t("menu.home")
+            $t('menu.home')
           }}</router-link>
           <router-link :to="{ name: 'Project' }">{{
-            $t("menu.project")
+            $t('menu.project')
           }}</router-link>
         </div>
       </section>
@@ -28,21 +28,21 @@
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5 v-if="projects.categories">
-                  {{ $t("category") }}:
+                  {{ $t('category') }}:
                   <span>{{ projects.categories.name }}</span>
                 </h5>
                 <h5>
-                  {{ $t("client") }}: <span>{{ projects.client }}</span>
+                  {{ $t('client') }}: <span>{{ projects.client }}</span>
                 </h5>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5>
-                  {{ $t("completed") }}: <span>{{ projects.completeDay }}</span>
+                  {{ $t('completed') }}: <span>{{ projects.completeDay }}</span>
                 </h5>
                 <h5>
-                  {{ $t("architect") }}:
+                  {{ $t('architect') }}:
                   <span>{{ projects.architecture }}</span>
                 </h5>
               </div>
@@ -50,11 +50,11 @@
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5>
-                  {{ $t("area") }}:
+                  {{ $t('area') }}:
                   <span>{{ projects.area }} m<sup>2</sup></span>
                 </h5>
                 <h5 class="share_link">
-                  {{ $t("cost") }}: <span>{{ projects.cost }} vnd</span>
+                  {{ $t('cost') }}: <span>{{ projects.cost }} vnd</span>
                 </h5>
               </div>
             </div>
@@ -82,7 +82,7 @@
             </el-carousel>
           </div>
           <div class="villa_reviews" v-if="reviews">
-            <h2>{{ reviews.length }} {{ $t("comment") }}</h2>
+            <h2>{{ reviews.length }} {{ $t('comment') }}</h2>
             <div
               class="list_comments"
               v-for="review in reviews"
@@ -100,9 +100,9 @@
 
                   <p>{{ review.comment }}</p>
 
-                  <h5>{{ $t("rating") }}: {{ review.rating }}/10</h5>
+                  <h5>{{ $t('rating') }}: {{ review.rating }}/10</h5>
                   <small>{{
-                    formatDate(review.createdAt, "DD/MM/YYYY HH:mm")
+                    formatDate(review.createdAt, 'DD/MM/YYYY HH:mm')
                   }}</small>
                 </form>
                 <p @click="dialogVisible = true" v-if="isAuth">
@@ -114,15 +114,15 @@
                   width="30%"
                   :before-close="handleClose"
                 >
-                  <span>Are you sure to delete this comment ?</span>
+                  <span>{{ $t('make-sure') }}</span>
                   <template #footer>
                     <span class="dialog-footer">
-                      <el-button @click="dialogVisible = false"
-                        >Cancel</el-button
-                      >
-                      <el-button type="primary" @click="onDelete(review._id)"
-                        >Yes</el-button
-                      >
+                      <el-button @click="dialogVisible = false">{{
+                        $t('cancel')
+                      }}</el-button>
+                      <el-button type="primary" @click="onDelete(review._id)">{{
+                        $t('confirm')
+                      }}</el-button>
                     </span>
                   </template>
                 </el-dialog>
@@ -131,7 +131,7 @@
           </div>
           <comment-form></comment-form>
           <b
-            >{{ $t("menu.contact") }}:
+            >{{ $t('menu.contact') }}:
             <a class="fix-tel" href="tel:+0902985987">(+84)902 985 987</a></b
           >
 
@@ -148,12 +148,12 @@
   </div>
 </template>
 <script>
-import "vue3-carousel/dist/carousel.css";
-import { formatDate } from "../../helpers/common";
-import TheFooter from "../layouts/TheFooter.vue";
-import TheHeader from "../layouts/TheHeader.vue";
-import ProjectRelated from "./ProjectRelated.vue";
-import CommentForm from "../comment/CommentForm.vue";
+import 'vue3-carousel/dist/carousel.css';
+import { formatDate } from '../../helpers/common';
+import TheFooter from '../layouts/TheFooter.vue';
+import TheHeader from '../layouts/TheHeader.vue';
+import ProjectRelated from './ProjectRelated.vue';
+import CommentForm from '../comment/CommentForm.vue';
 export default {
   components: {
     TheFooter,
@@ -174,18 +174,18 @@ export default {
   },
   computed: {
     isAuth() {
-      return this.$store.getters["auth/isAuth"];
+      return this.$store.getters['auth/isAuth'];
     },
     projects() {
-      return this.$store.getters["projects/getProjectsDetail"];
+      return this.$store.getters['projects/getProjectsDetail'];
     },
     reviews() {
-      return this.$store.getters["reviews/getReviews"];
+      return this.$store.getters['reviews/getReviews'];
     },
   },
   methods: {
     handleClose(done) {
-      this.$confirm("Are you sure to close this dialog?")
+      this.$confirm('Are you sure to close this dialog?')
         .then(() => {
           done();
           this.dialogVisible = false;
@@ -193,18 +193,20 @@ export default {
         .catch(() => {});
     },
     async fetchDetailProject() {
+      this.loading = true;
       try {
         this.$store.dispatch(
-          "projects/fetchDetailProject",
+          'projects/fetchDetailProject',
           this.$route.params.id
         );
       } catch (err) {
         this.error = err;
       }
+      this.loading = false;
     },
     onDelete(id) {
       try {
-        this.$store.dispatch("reviews/onDeleteReview", id);
+        this.$store.dispatch('reviews/onDeleteReview', id);
       } catch (err) {
         this.error = err;
       }
@@ -256,7 +258,7 @@ export default {
 
 .villa_reviews h2 {
   color: #263a4f;
-  font-family: "Heebo", sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-weight: bold;
   font-size: 36px;
 }

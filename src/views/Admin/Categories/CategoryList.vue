@@ -107,29 +107,27 @@ export default {
   data() {
     return {
       loading: false,
-      file: "",
+      file: '',
       formSearch: {},
       total: 0,
+      err: null,
     };
-  },
-  created() {
-    this.fetchCategories();
   },
   computed: {
     searchFormData: function() {
       return {
         inputs: [
           {
-            inputType: "input",
-            label: "Name",
-            name: "name",
+            inputType: 'input',
+            label: 'Name',
+            name: 'name',
             attributes: { clearable: true },
             trim: true,
           },
           {
-            inputType: "input",
-            label: "Description",
-            name: "description",
+            inputType: 'input',
+            label: 'Description',
+            name: 'description',
             attributes: { clearable: true },
             trim: true,
           },
@@ -137,19 +135,19 @@ export default {
       };
     },
     categories() {
-      return this.$store.getters["categories/getCategories"];
+      return this.$store.getters['categories/getCategories'];
     },
   },
   async mounted() {
-    await this.eventRefresh();
+    await Promise.all([this.eventRefresh(), this.fetchCategories()]);
   },
   methods: {
-    async onConfirm(id) {
-      await this.onDelete(id);
+    onConfirm(id) {
+      this.onDelete(id);
     },
     async eventRefresh(page) {
       this.loading = true;
-      await this.$store.dispatch("categories/index", {
+      await this.$store.dispatch('categories/index', {
         page: page || 1,
         ...this.formSearch,
       });
@@ -164,13 +162,13 @@ export default {
       });
     },
     async handleClear(form, refs) {
-      await this.$store.dispatch("categories/index", { page: 1 });
+      await this.$store.dispatch('categories/index', { page: 1 });
       refs.resetFields();
       this.total = this.categories.totalCount;
     },
     async onDelete(id) {
       try {
-        await this.$store.dispatch("categories/onDeleteCategory", id);
+        await this.$store.dispatch('categories/onDeleteCategory', id);
       } catch (error) {
         this.err = error;
       }
@@ -179,24 +177,25 @@ export default {
       this.loading = true;
       try {
         await this.$store
-          .dispatch("categories/fetchAllCategories")
+          .dispatch('categories/fetchAllCategories')
           .then(() => (this.loading = false));
       } catch (error) {
-        this.loading = false;
+        this.err = error;
       }
+      this.loading = false;
     },
     async onExport(id) {
       try {
-        await this.$store.dispatch("categories/getExcelFileById", id);
+        await this.$store.dispatch('categories/getExcelFileById', id);
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
     async onExportExcels() {
       try {
-        await this.$store.dispatch("categories/getExcelFiles");
+        await this.$store.dispatch('categories/getExcelFiles');
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
   },

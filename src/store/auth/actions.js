@@ -1,11 +1,11 @@
-import router from "../../router";
-import http from "../../helpers/http";
-import axios from "axios";
+import router from '../../router';
+import http from '../../helpers/http';
+import axios from 'axios';
 
 export default {
     //Login
     async onLogin({ commit }, payload) {
-        const response = await http.post("auth/login", {
+        const response = await http.post('auth/login', {
             email: payload.email,
             password: payload.password,
             token: true,
@@ -16,13 +16,13 @@ export default {
         if (responseData.success === false) {
             return;
         }
-        localStorage.setItem("token", responseData.token);
-        localStorage.setItem("role", responseData.role);
-        localStorage.setItem("idUser", responseData.idUser);
+        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('role', responseData.role);
+        localStorage.setItem('idUser', responseData.idUser);
 
-        commit("SET_USER", responseData.data);
+        commit('SET_USER', responseData.data);
 
-        commit("SET_TOKEN", {
+        commit('SET_TOKEN', {
             token: responseData.token,
             role: responseData.role,
             id: responseData.idUser,
@@ -31,7 +31,7 @@ export default {
 
     //Register
     async onRegister({ commit }, payload) {
-        const response = await http.post("auth/register", {
+        const response = await http.post('auth/register', {
             email: payload.email,
             password: payload.password,
             token: true,
@@ -43,10 +43,10 @@ export default {
             return;
         }
 
-        localStorage.setItem("role", responseData.role);
-        localStorage.setItem("idUser", responseData.idUser);
+        localStorage.setItem('role', responseData.role);
+        localStorage.setItem('idUser', responseData.idUser);
 
-        commit("SET_TOKEN", {
+        commit('SET_TOKEN', {
             token: responseData.token,
             role: responseData.role,
             id: responseData.idUser,
@@ -55,14 +55,14 @@ export default {
 
     //Forgot password
     async onForgotPassword({ commit }, payload) {
-        const response = await http.post("auth/forgotpassword", {
+        const response = await http.post('auth/forgotpassword', {
             email: payload.email,
         });
         const responseData = response.data;
 
-        localStorage.setItem("resetToken", response.data.resetToken);
+        localStorage.setItem('resetToken', response.data.resetToken);
 
-        commit("SET_RESET_TOKEN", {
+        commit('SET_RESET_TOKEN', {
             token: responseData.resetToken,
         });
     },
@@ -74,19 +74,19 @@ export default {
         };
 
         const response = await http.put(
-            `auth/resetpassword/${localStorage.getItem("resetToken")}`,
+            `auth/resetpassword/${localStorage.getItem('resetToken')}`,
             password
         );
 
         const responseData = response.data.data;
         console.log(responseData);
 
-        commit("SET_RESET_PASSWORD", password);
+        commit('SET_RESET_PASSWORD', password);
     },
 
     //Fetch detail logged user
     async fetchDetailUser({ commit }) {
-        const response = await http.get("auth/me");
+        const response = await http.get('auth/me');
 
         const responseData = response.data.data;
 
@@ -94,7 +94,7 @@ export default {
             return;
         }
 
-        commit("SET_USER", responseData);
+        commit('SET_USER', responseData);
     },
 
     //update user detail profile
@@ -109,25 +109,25 @@ export default {
             country: payload.country,
         };
 
-        const response = http.put("auth/updatedetails", detailUser);
+        const response = http.put('auth/updatedetails', detailUser);
 
         if (response.success === false) {
             return;
         }
 
-        commit("SET_PROFILE_USER", detailUser);
+        commit('SET_PROFILE_USER', detailUser);
     },
 
     //update user's avatar
     async updateAvatar({ commit }, files) {
         let formData = new FormData();
-        formData.append("file", files);
+        formData.append('file', files);
 
         const response = await http.put(
-            `auth/${localStorage.getItem("idUser")}/avatar`,
+            `auth/${localStorage.getItem('idUser')}/avatar`,
             formData, {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         );
@@ -136,20 +136,20 @@ export default {
             return;
         }
 
-        commit("UPDATE_AVATAR", response.data.data);
+        commit('UPDATE_AVATAR', response.data.data);
     },
 
     //Logout
     async logout({ commit }) {
-        const response = await http.get("auth/logout");
+        const response = await http.get('auth/logout');
         const responseData = response.data;
 
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
-        localStorage.removeItem("idUser");
-        router.push("/auth");
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('idUser');
+        router.push('/auth');
 
-        commit("SET_TOKEN", {
+        commit('SET_TOKEN', {
             token: null,
             role: null,
             idUser: null,
@@ -160,11 +160,11 @@ export default {
     //Chat with chatbot
     async onSendChat({ commit }, payload) {
         return await axios
-            .post("http://065193b7d4dc.ngrok.io/get", payload, {
-                "Content-Type": `multipart/form-data`,
+            .post('http://localhost:5000/get', payload, {
+                'Content-Type': `multipart/form-data`,
             })
             .then((response) => {
-                commit("SET_HISTORY", response.data);
+                commit('SET_HISTORY', response.data);
                 return response.data;
             })
             .catch((error) => {

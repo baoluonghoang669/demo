@@ -91,7 +91,7 @@
                       {{ user.address }}
                     </td>
                     <td>
-                      {{ formatDate(user.birthday, "DD/MM/YYYY HH:mm") }}
+                      {{ formatDate(user.birthday, 'DD/MM/YYYY HH:mm') }}
                     </td>
                     <td>
                       {{ user.phone }}
@@ -137,63 +137,60 @@
   </div>
 </template>
 <script>
-import { formatDate } from "../../../helpers/common";
+import { formatDate } from '../../../helpers/common';
 export default {
   data() {
     return {
       show: false,
       err: null,
       loading: false,
-      file: "",
+      file: '',
       formSearch: {},
       total: 0,
       cities: null,
       formatDate,
     };
   },
-  created() {
-    this.fetchAllUsers();
-  },
   watch: {
     users() {
-      return this.$store.getters["userAdmin/getUsers"];
+      return this.$store.getters['userAdmin/getUsers'];
     },
   },
   computed: {
     users() {
-      return this.$store.getters["userAdmin/getUsers"];
+      return this.$store.getters['userAdmin/getUsers'];
     },
     searchFormData: function() {
       return {
         inputs: [
           {
-            inputType: "input",
-            label: "Name",
-            name: "name",
+            inputType: 'input',
+            label: 'Name',
+            name: 'name',
             attributes: { clearable: true },
             trim: true,
           },
           {
-            inputType: "input",
-            label: "Email",
-            name: "email",
+            inputType: 'input',
+            label: 'Email',
+            name: 'email',
             attributes: { clearable: true },
             trim: true,
           },
           {
-            inputType: "select",
-            label: "City",
-            name: "city",
+            inputType: 'select',
+            label: 'City',
+            name: 'city',
             attributes: { clearable: true, filterable: true },
             trim: true,
-            optionValueField: "value",
-            optionLabelField: "label",
+            optionValueField: 'value',
+            optionLabelField: 'label',
             optionList: this.cities,
           },
           {
-            inputType: "input",
-            label: "Address",
-            name: "address",
+            inputType: 'input',
+            label: 'Address',
+            name: 'address',
             attributes: { clearable: true },
             trim: true,
           },
@@ -202,15 +199,18 @@ export default {
     },
   },
   async mounted() {
-    await this.eventRefresh();
-    await this.fetchCities();
+    await Promise.all([
+      this.eventRefresh(),
+      this.fetchCities(),
+      this.fetchAllUsers(),
+    ]);
   },
   methods: {
-    async onConfirm(id) {
-      await this.onDelete(id);
+    onConfirm(id) {
+      this.onDelete(id);
     },
     async fetchCities() {
-      const res = await this.$store.dispatch("userAdmin/getCities");
+      const res = await this.$store.dispatch('userAdmin/getCities');
       this.cities = res.map((item) => ({
         label: item.province_name,
         value: item.province_name,
@@ -218,7 +218,7 @@ export default {
     },
     async eventRefresh(page) {
       this.loading = true;
-      await this.$store.dispatch("userAdmin/index", {
+      await this.$store.dispatch('userAdmin/index', {
         page: page || 1,
         ...this.formSearch,
       });
@@ -233,7 +233,7 @@ export default {
       });
     },
     async handleClear(form, refs) {
-      await this.$store.dispatch("userAdmin/index", { page: 1 });
+      await this.$store.dispatch('userAdmin/index', { page: 1 });
       refs.resetFields();
       this.total = this.users.totalCount;
     },
@@ -245,7 +245,7 @@ export default {
     },
     async onDelete(id) {
       try {
-        await this.$store.dispatch("userAdmin/onDeleteUser", id);
+        await this.$store.dispatch('userAdmin/onDeleteUser', id);
       } catch (error) {
         this.err = error;
       }
@@ -253,39 +253,39 @@ export default {
     async fetchAllUsers() {
       this.loading = true;
       try {
-        await this.$store.dispatch("userAdmin/fetchAllUsers");
+        await this.$store.dispatch('userAdmin/fetchAllUsers');
         this.loading = false;
       } catch (error) {
         this.err = error;
-        this.loading = false;
       }
+      this.loading = false;
     },
     async onExport(id) {
       try {
-        await this.$store.dispatch("userAdmin/getExcelFileById", id);
+        await this.$store.dispatch('userAdmin/getExcelFileById', id);
       } catch (error) {
-        this.err = error || "Fail to get";
+        this.err = error || 'Fail to get';
       }
     },
     async onExportExcels() {
       try {
-        await this.$store.dispatch("userAdmin/getExcelFiles");
+        await this.$store.dispatch('userAdmin/getExcelFiles');
       } catch (error) {
-        this.err = error || "Fail to get";
+        this.err = error || 'Fail to get';
       }
     },
     async onImportExcels() {
-      if (this.file === "") {
-        alert("Please import a excel file");
+      if (this.file === '') {
+        alert('Please import a excel file');
         return;
       }
       this.loading = true;
       let formData = new FormData();
-      formData.append("file", this.file);
+      formData.append('file', this.file);
       try {
-        await this.$store.dispatch("userAdmin/importExcels", formData);
+        await this.$store.dispatch('userAdmin/importExcels', formData);
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
       this.loading = false;
     },

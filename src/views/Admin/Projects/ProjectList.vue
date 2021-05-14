@@ -142,67 +142,68 @@
   </div>
 </template>
 <script>
-import ArchitectButton from "../../../components/common/ArchitectButton.vue";
+import ArchitectButton from '../../../components/common/ArchitectButton.vue';
 export default {
   components: { ArchitectButton },
   data() {
     return {
       loading: false,
       error: null,
-      file: "",
+      file: '',
       formSearch: {},
       total: 0,
       categories: null,
     };
-  },
-  created() {
-    this.fetchListProjects();
   },
   computed: {
     searchFormData: function() {
       return {
         inputs: [
           {
-            inputType: "input",
-            label: "Name",
-            name: "name",
+            inputType: 'input',
+            label: 'Name',
+            name: 'name',
             attributes: { clearable: true },
             trim: true,
           },
           {
-            inputType: "input",
-            label: "Description",
-            name: "description",
+            inputType: 'input',
+            label: 'Description',
+            name: 'description',
             attributes: { clearable: true },
             trim: true,
           },
           {
-            inputType: "select",
-            label: "Categories",
-            name: "categoriesName",
+            inputType: 'select',
+            label: 'Categories',
+            name: 'categoriesName',
             attributes: { clearable: true },
             trim: true,
-            optionValueField: "value",
-            optionLabelField: "label",
+            optionValueField: 'value',
+            optionLabelField: 'label',
             optionList: this.categories,
           },
         ],
       };
     },
     projects() {
-      return this.$store.getters["projects/getProjects"];
+      return this.$store.getters['projects/getProjects'];
     },
   },
   async mounted() {
-    await Promise.all([this.eventRefresh(), this.fetchCategories()]);
+    await Promise.all([
+      this.eventRefresh(),
+      this.fetchCategories(),
+      this.fetchListProjects(),
+    ]);
   },
   methods: {
-    async onConfirm(id) {
-      await this.onDelete(id);
+    onConfirm(id) {
+      this.onDelete(id);
     },
     async eventRefresh(page) {
       this.loading = true;
-      await this.$store.dispatch("projects/index", {
+      await this.$store.dispatch('projects/index', {
         page: page || 1,
         ...this.formSearch,
       });
@@ -210,7 +211,7 @@ export default {
       this.loading = false;
     },
     async fetchCategories() {
-      const res = await this.$store.dispatch("categories/fetchListCategories");
+      const res = await this.$store.dispatch('categories/fetchListCategories');
       this.categories = res.map((item) => ({
         label: item.name,
         value: item.name,
@@ -224,13 +225,13 @@ export default {
       });
     },
     async handleClear(form, refs) {
-      await this.$store.dispatch("projects/index", { page: 1 });
+      await this.$store.dispatch('projects/index', { page: 1 });
       refs.resetFields();
       this.total = this.projects.totalCount;
     },
     async onDelete(id) {
       try {
-        await this.$store.dispatch("projects/onDeleteProject", id);
+        await this.$store.dispatch('projects/onDeleteProject', id);
       } catch (error) {
         this.err = error;
       }
@@ -238,7 +239,7 @@ export default {
     async fetchListProjects() {
       this.loading = true;
       try {
-        await this.$store.dispatch("projects/fetchListProjects");
+        await this.$store.dispatch('projects/fetchListProjects');
       } catch (err) {
         this.error = err;
       }
@@ -246,30 +247,30 @@ export default {
     },
     async onExport(id) {
       try {
-        await this.$store.dispatch("projects/getExcelFileById", id);
+        await this.$store.dispatch('projects/getExcelFileById', id);
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
     async onExportExcels() {
       try {
-        await this.$store.dispatch("projects/getExcelFiles");
+        await this.$store.dispatch('projects/getExcelFiles');
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
     async onImportExcels() {
-      if (this.file === "") {
-        alert("Please import a excel file");
+      if (this.file === '') {
+        alert('Please import a excel file');
         return;
       }
       window.location.reload();
       let formData = new FormData();
-      formData.append("file", this.file);
+      formData.append('file', this.file);
       try {
-        await this.$store.dispatch("projects/importExcels", formData);
+        await this.$store.dispatch('projects/importExcels', formData);
       } catch (error) {
-        this.err = error || this.$t("fail");
+        this.err = error || this.$t('fail');
       }
     },
     handleFileUpload() {

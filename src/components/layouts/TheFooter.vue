@@ -4,16 +4,16 @@
       <div class="footer_widgets row m0">
         <aside class="f_widgets_item">
           <div class="f_title">
-            <h3>{{ $t("troc") }}</h3>
+            <h3>{{ $t('troc') }}</h3>
           </div>
         </aside>
         <aside class="f_widgets_item">
           <div class="f_contact">
             <div class="f_title">
-              <h3>{{ $t("menu.contact") }}</h3>
+              <h3>{{ $t('menu.contact') }}</h3>
             </div>
             <p>
-              {{ $t("detail-address") }}
+              {{ $t('detail-address') }}
             </p>
             <a href="mailto:luonglinham@gmail.com">luonglinham@gmail.com</a>
             <a href="tel:+0902985987">(+84) 902 985 987</a>
@@ -22,23 +22,23 @@
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>{{ $t("menu.about") }}</h3>
+              <h3>{{ $t('menu.about') }}</h3>
             </div>
             <ul class="list">
               <li>
-                <a
-                  href="https://www.facebook.com/TROC-Studio-111045133645249/"
-                  >{{ $t("fanpage") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('fanpage')
+                }}</router-link>
               </li>
               <li>
-                <a
-                  href="https://www.google.com/search?q=troc+studio&rlz=1C1CHBF_enVN852VN852&oq=troc+studio&aqs=chrome..69i57j35i39j69i60l6.1264j0j7&sourceid=chrome&ie=UTF-8"
-                  >{{ $t("information") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('information')
+                }}</router-link>
               </li>
               <li>
-                <a href="https://www.facebook.com/">{{ $t("menu.project") }}</a>
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('menu.project')
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -46,32 +46,28 @@
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>{{ $t("my-company") }}</h3>
+              <h3>{{ $t('my-company') }}</h3>
             </div>
             <ul class="list">
               <li>
-                <a
-                  href="https://www.facebook.com/TROC-Studio-111045133645249"
-                  >{{ $t("menu.home") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('menu.home')
+                }}</router-link>
               </li>
               <li>
-                <a
-                  href="https://www.facebook.com/TROC-Studio-111045133645249"
-                  >{{ $t("menu.about") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('menu.about')
+                }}</router-link>
               </li>
               <li>
-                <a
-                  href="https://www.facebook.com/TROC-Studio-111045133645249"
-                  >{{ $t("menu.contact") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('menu.contact')
+                }}</router-link>
               </li>
               <li>
-                <a
-                  href="https://www.facebook.com/TROC-Studio-111045133645249"
-                  >{{ $t("menu.project") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('menu.project')
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -79,24 +75,23 @@
         <aside class="f_widgets_item">
           <div class="f_link">
             <div class="f_title">
-              <h3>{{ $t("support") }}</h3>
+              <h3>{{ $t('support') }}</h3>
             </div>
             <ul class="list">
               <li>
-                <a href="http://ipc.danang.gov.vn/vi/du-an-keu-goi-dau-tu">{{
-                  $t("investors")
-                }}</a>
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('investors')
+                }}</router-link>
               </li>
               <li>
-                <a
-                  href="https://kinhnghiemdulichdn.com/thiet-ke-nha-da-nang/"
-                  >{{ $t("designers") }}</a
-                >
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('designers')
+                }}</router-link>
               </li>
               <li>
-                <a href="https://batdongsan.com.vn/bat-dong-san-da-nang">{{
-                  $t("estate")
-                }}</a>
+                <router-link :to="{ name: 'Home' }">{{
+                  $t('estate')
+                }}</router-link>
               </li>
             </ul>
           </div>
@@ -105,8 +100,8 @@
       <div class="footer_copyright">
         <div class="left_text">
           <p>
-            ©2017 <router-link to="#">{{ $t("troc") }}</router-link
-            >. {{ $t("rule") }}
+            ©2017 <router-link to="#">{{ $t('troc') }}</router-link
+            >. {{ $t('rule') }}
           </p>
         </div>
         <div class="middle_text">
@@ -133,12 +128,14 @@
         <div class="right_text">
           <ul class="list">
             <li>
-              <a href="https://www.facebook.com/TROC-Studio-111045133645249">{{
-                $t("homepage")
-              }}</a>
+              <router-link :to="{ name: 'Home' }">{{
+                $t('homepage')
+              }}</router-link>
             </li>
             <li>
-              <a href="https://www.facebook.com/">{{ $t("fanpage") }}</a>
+              <router-link :to="{ name: 'Home' }">{{
+                $t('fanpage')
+              }}</router-link>
             </li>
           </ul>
         </div>
@@ -198,7 +195,7 @@
   </div>
 </template>
 <script>
-import chatbot from "../chatbot/chatbot.vue";
+import chatbot from '../chatbot/chatbot.vue';
 export default {
   components: { chatbot },
 };

@@ -33,7 +33,7 @@
             <div class="left_contact_details">
               <h1>{{ $t("menu.contact") }}</h1>
               <h2>
-                <span>{{ $t("troc") }}</span> Việt Nam
+                <span>{{ $t("troc") }}</span> {{ $t("vn") }}
               </h2>
               <p>
                 {{ $t("detail-address") }}

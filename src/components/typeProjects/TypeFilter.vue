@@ -5,7 +5,7 @@
       @click="fetchListProjects()"
       :class="!isActive && 'active'"
     >
-      Tất cả
+      All
     </p>
 
     <div
@@ -36,34 +36,34 @@ export default {
   },
   computed: {
     categories() {
-      return this.$store.getters["categories/getCategories"];
+      return this.$store.getters['categories/getCategories'];
     },
     projects() {
-      return this.$store.getters["projects/getProjects"];
+      return this.$store.getters['projects/getProjects'];
     },
   },
   methods: {
     async fetchCategories() {
       try {
-        await this.$store.dispatch("categories/fetchCategories");
+        await this.$store.dispatch('categories/fetchCategories');
       } catch (error) {
-        this.err = error || "Fail to fetch";
+        this.err = error || 'Fail to fetch';
       }
     },
     async fetchListProjects() {
       this.isActive = null;
       try {
-        await this.$store.dispatch("projects/fetchListProjects");
+        await this.$store.dispatch('projects/fetchListProjects');
       } catch (error) {
-        this.err = error || "Fail to fetch";
+        this.err = error || 'Fail to fetch';
       }
     },
     async fetchProjectsForCategory(id) {
       this.isActive = id;
       try {
-        await this.$store.dispatch("projects/fetchProjectsForCategory", id);
+        await this.$store.dispatch('projects/fetchProjectsForCategory', id);
       } catch (error) {
-        this.err = error || "Fail to fetch";
+        this.err = error || 'Fail to fetch';
       }
     },
   },

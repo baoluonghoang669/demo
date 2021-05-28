@@ -14,16 +14,16 @@
             :width="431"
             v-model:visible="visible"
           >
-            <b>{{ $t("end-chat") }}</b>
+            <b>{{ $t('end-chat') }}</b>
             <p>
-              {{ $t("text-end-chat") }}
+              {{ $t('text-end-chat') }}
             </p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="visible = false">{{
-                $t("cancel")
+                $t('cancel')
               }}</el-button>
               <el-button type="primary" size="mini" @click="onClose">{{
-                $t("confirm")
+                $t('confirm')
               }}</el-button>
             </div>
             <template #reference>
@@ -45,7 +45,7 @@
                   </div>
                   <div class="received_msg">
                     <div class="received_withd_msg">
-                      <p>{{ $t("help-you") }}</p>
+                      <p>{{ $t('help-you') }}</p>
                       <span class="time_date"> {{ timestamp }} AM | Today</span>
                     </div>
                   </div>
@@ -67,13 +67,9 @@
                         />
                       </div>
                       <div v-if="msgData.msg !== ''">
-                        <!-- <chat-loading
-                          v-if="loading && msgData.sender === 'bot'"
-                        ></chat-loading> -->
-                        <!-- <template v-else> -->
                         <p v-if="msgData.msg.includes('http')">
                           {{
-                            msgData.msg.slice(0, msgData.msg.indexOf(":") + 1)
+                            msgData.msg.slice(0, msgData.msg.indexOf(':') + 1)
                           }}
 
                           <a
@@ -85,7 +81,7 @@
                             "
                             >{{
                               msgData.msg.slice(
-                                msgData.msg.indexOf(":") + 1,
+                                msgData.msg.indexOf(':') + 1,
                                 msgData.msg.length
                               )
                             }}</a
@@ -95,8 +91,6 @@
                           {{ msgData.msg }}
                         </p>
                         <span class="time_date"> {{ timestamp }} | Today</span>
-                        <!-- </template> -->
-                        <!-- -->
                       </div>
                     </div>
                   </div>
@@ -136,11 +130,11 @@ export default {
       isDelete: false,
       form: [
         {
-          msg: "",
+          msg: '',
         },
       ],
       err: null,
-      timestamp: "",
+      timestamp: '',
       clearData: false,
       loading: false,
       visible: false,
@@ -148,13 +142,14 @@ export default {
   },
   computed: {
     messages() {
-      return this.$store.getters["auth/getListMessages"];
+      return this.$store.getters['auth/getListMessages'];
     },
   },
   created() {
     setInterval(this.getNow, 1000);
   },
   methods: {
+    //bugs
     onOpen() {
       this.show = true;
     },
@@ -167,37 +162,39 @@ export default {
     onClose() {
       this.visible = false;
       this.show = false;
-      this.form = this.$store.getters["auth/clearListMessages"];
+      this.form = this.$store.getters['auth/clearListMessages'];
       this.clearData = true;
+      // debugs
+      // window.location.reload();
     },
 
     getNow() {
       const today = new Date();
       const date =
         today.getFullYear() +
-        "-" +
+        '-' +
         (today.getMonth() + 1) +
-        "-" +
+        '-' +
         today.getDate();
-      const time = today.getHours() + ":" + today.getMinutes();
-      const dateTime = date + " " + time;
+      const time = today.getHours() + ':' + today.getMinutes();
+      const dateTime = date + ' ' + time;
       this.timestamp = dateTime;
     },
 
     async onSubmit() {
       const chatboxEl = this.$refs.chatbox;
-      if (this.form.msg === "") {
+      if (this.form.msg === '') {
         return;
       }
       let data = new FormData();
-      data.append("msg", this.form.msg);
+      data.append('msg', this.form.msg);
       this.isSend = true;
       this.loading = true;
       this.form.push({ msg: this.form.msg });
       try {
-        const msgRes = await this.$store.dispatch("auth/onSendChat", data);
-        this.form.push({ msg: msgRes, sender: "bot" });
-        this.form.msg = "";
+        const msgRes = await this.$store.dispatch('auth/onSendChat', data);
+        this.form.push({ msg: msgRes, sender: 'bot' });
+        this.form.msg = '';
         chatboxEl.scrollTo(0, chatboxEl.scrollHeight);
       } catch (error) {
         this.err = error;

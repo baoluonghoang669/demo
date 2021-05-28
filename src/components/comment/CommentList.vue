@@ -3,30 +3,30 @@
     <slide v-for="slide in 3" :key="slide">
       <div class="item">
         <div class="test_item">
-          <h4><span>Hoàng Bảo</span> / Giám đốc công ty xây dựng Thăng Long</h4>
+          <h4><span>Hoang Bao</span> / Director of Thang Long Company</h4>
           <p>
-            Công ty chúng tôi đã hợp tác và làm việc với Troc Studio trong một
-            thời gian dài. Họ làm rất tốt, chu đáo và mang tính thẩm mĩ. Chúng
-            tôi đánh giá 5 sao.
+            Our company has cooperated and worked with Troc Studio in one long
+            time. They do very well, attentive and aesthetic. They I rated 5
+            stars.
           </p>
         </div>
       </div>
       <div class="item">
         <div class="test_item">
-          <h4><span>Thanh Sơn</span> / CEO công ty thiết kế thời trang</h4>
+          <h4><span>Thanh Son</span> / CEO of designed company</h4>
           <p>
-            Tôi đã hợp tác và làm việc với Troc Studio trong khoảng 3 tháng trở
-            lại đây. Xưởng của tôi do họ thiết kế rất đẹp mắt.
+            I have cooperated and worked with Troc Studio for about 3 months and
+            come here. My workshop was beautifully designed.
           </p>
         </div>
       </div>
       <div class="item">
         <div class="test_item">
-          <h4><span>Trung Nghĩa</span> / CEO khách sạn Monalisa Đà Nẵng</h4>
+          <h4><span>Trung Nghia</span> / CEO of Monalisa Hotel</h4>
           <p>
-            Tôi đã hợp tác và làm việc với Troc Studio trong khoảng 10 tháng trở
-            lại đây. Khách sạn chúng tôi đã được họ làm lại rất kĩ càng, tỉ mỉ
-            và độc đáo.
+            I have cooperated and worked with Troc Studio for about 10 months
+            and come here. Our hotel has been very careful and meticulous and
+            unique.
           </p>
         </div>
       </div>
@@ -34,8 +34,8 @@
   </carousel>
 </template>
 <script>
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide } from "vue3-carousel";
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide } from 'vue3-carousel';
 export default {
   components: { Carousel, Slide },
 };

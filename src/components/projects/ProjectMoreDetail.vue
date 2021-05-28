@@ -9,10 +9,10 @@
       <section class="breadcrumb_link">
         <div class="container">
           <router-link :to="{ name: 'ProjectMoreDetail' }">{{
-            $t("menu.home")
+            $t('menu.home')
           }}</router-link>
           <router-link :to="{ name: 'Project' }">{{
-            $t("menu.project")
+            $t('menu.project')
           }}</router-link>
         </div>
       </section>
@@ -24,21 +24,21 @@
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5 v-if="projects.categories">
-                  {{ $t("category") }}:
+                  {{ $t('category') }}:
                   <span>{{ projects.categories.name }}</span>
                 </h5>
                 <h5>
-                  {{ $t("client") }}: <span>{{ projects.client }}</span>
+                  {{ $t('client') }}: <span>{{ projects.client }}</span>
                 </h5>
               </div>
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5>
-                  {{ $t("completed") }}: <span>{{ projects.completeDay }}</span>
+                  {{ $t('completed') }}: <span>{{ projects.completeDay }}</span>
                 </h5>
                 <h5>
-                  {{ $t("architect") }}:
+                  {{ $t('architect') }}:
                   <span>{{ projects.architecture }}</span>
                 </h5>
               </div>
@@ -46,11 +46,11 @@
             <div class="col-lg-4 col-sm-6">
               <div class="pd_item">
                 <h5>
-                  {{ $t("area") }}:
+                  {{ $t('area') }}:
                   <span>{{ projects.area }} m<sup>2</sup></span>
                 </h5>
                 <h5 class="share_link">
-                  {{ $t("cost") }}: <span>{{ projects.cost }} vnd</span>
+                  {{ $t('cost') }}: <span>{{ projects.cost }} vnd</span>
                 </h5>
               </div>
             </div>
@@ -69,6 +69,16 @@
             </p>
           </div>
           <div class="villa_slider">
+            <el-carousel height="610px">
+              <el-carousel-item
+                v-for="project in projects.relatedPhoto"
+                :key="project._id"
+              >
+                <img class="fix-img-slider" :src="project" alt="" />
+              </el-carousel-item>
+            </el-carousel>
+          </div>
+          <!-- <div class="villa_slider">
             <carousel :items-to-show="1" :wrapAround="true" :transition="1000">
               <slide v-for="slide in 2" :key="slide">
                 <div
@@ -83,9 +93,9 @@
                 <navigation />
               </template>
             </carousel>
-          </div>
+          </div> -->
           <div class="villa_reviews" v-if="reviews">
-            <h2>{{ reviews.length }} {{ $t("comment") }}</h2>
+            <h2>{{ reviews.length }} {{ $t('comment') }}</h2>
             <div
               class="list_comments"
               v-for="review in reviews"
@@ -98,7 +108,7 @@
                   <p>
                     {{ review.comment }}
                   </p>
-                  <h5>{{ $t("rating") }}: {{ review.rating }}/10</h5>
+                  <h5>{{ $t('rating') }}: {{ review.rating }}/10</h5>
                   <small>{{ review.createdAt }}</small>
                 </div>
               </div>
@@ -117,24 +127,19 @@
   </div>
 </template>
 <script>
-import "vue3-carousel/dist/carousel.css";
-import { Carousel, Slide, Navigation } from "vue3-carousel";
-import TheFooter from "../layouts/TheFooter.vue";
-import TheHeader from "../layouts/TheHeader.vue";
-import CommentForm from "../comment/CommentForm.vue";
+import TheFooter from '../layouts/TheFooter.vue';
+import TheHeader from '../layouts/TheHeader.vue';
+import CommentForm from '../comment/CommentForm.vue';
 export default {
   components: {
-    Carousel,
-    Slide,
-    Navigation,
     TheFooter,
     TheHeader,
     CommentForm,
   },
   data() {
     return {
-      comment: "",
-      rating: "",
+      comment: '',
+      rating: '',
     };
   },
   created() {
@@ -143,17 +148,17 @@ export default {
   },
   computed: {
     projects() {
-      return this.$store.getters["projects/getProjectsDetail"];
+      return this.$store.getters['projects/getProjectsDetail'];
     },
     reviews() {
-      return this.$store.getters["reviews/getReviews"];
+      return this.$store.getters['reviews/getReviews'];
     },
   },
   methods: {
     async fetchDetailProject() {
       try {
         this.$store.dispatch(
-          "projects/fetchDetailProject",
+          'projects/fetchDetailProject',
           this.$route.params.id
         );
       } catch (err) {
@@ -163,7 +168,7 @@ export default {
     async fetchDetailReview() {
       try {
         this.$store.dispatch(
-          "reviews/fetchDetailReview",
+          'reviews/fetchDetailReview',
           this.$route.params.id
         );
       } catch (err) {
@@ -207,7 +212,7 @@ export default {
 
 .villa_reviews h2 {
   color: #263a4f;
-  font-family: "Heebo", sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-weight: bold;
   font-size: 36px;
 }
@@ -256,7 +261,7 @@ export default {
   box-shadow: none !important;
   outline: none !important;
   font-size: 14px;
-  font-family: "Heebo", sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-weight: bold;
   -webkit-transition: all 400ms linear 0s;
   -o-transition: all 400ms linear 0s;

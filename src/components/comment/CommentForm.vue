@@ -18,7 +18,7 @@
       <div class="container">
         <div class="fomment_form_inner box_layout fix_box_layout">
           <div class="comment_title">
-            <h2>{{ $t("leave-review") }}</h2>
+            <h2>{{ $t('leave-review') }}</h2>
           </div>
           <el-form
             :model="ruleForm"
@@ -62,11 +62,11 @@
                 type="primary"
                 id="btn-submit"
                 @click="submitForm('ruleForm')"
-                >{{ $t("post-comment") }}</el-button
+                >{{ $t('post-comment') }}</el-button
               >
               <el-button v-else type="primary" id="btn-submit"
                 ><router-link to="/auth">{{
-                  $t("login-to-post-comment")
+                  $t('login-to-post-comment')
                 }}</router-link></el-button
               >
             </div>
@@ -76,7 +76,7 @@
     </section>
     <div class="link_btn">
       <architect-button link :path="'/contact'"
-        >{{ $t("work-together") }} !</architect-button
+        >{{ $t('work-together') }} !</architect-button
       >
     </div>
   </div>
@@ -86,8 +86,8 @@ export default {
   data() {
     return {
       ruleForm: {
-        comment: "",
-        rating: "",
+        comment: '',
+        rating: '',
       },
       loading: false,
       error: null,
@@ -99,10 +99,10 @@ export default {
 
   computed: {
     isAuth() {
-      return this.$store.getters["auth/isAuth"];
+      return this.$store.getters['auth/isAuth'];
     },
     linkQuery() {
-      return "project/" + this.$route.params.id;
+      return 'project/' + this.$route.params.id;
     },
   },
   methods: {
@@ -112,7 +112,7 @@ export default {
     async fetchDetailReview() {
       try {
         this.$store.dispatch(
-          "reviews/fetchDetailReview",
+          'reviews/fetchDetailReview',
           this.$route.params.id
         );
       } catch (err) {
@@ -138,14 +138,14 @@ export default {
 
       try {
         await this.$store
-          .dispatch("reviews/addUserReview", data)
+          .dispatch('reviews/addUserReview', data)
           .then(() => this.fetchDetailReview())
           .then(() => {
-            this.ruleForm.comment = "";
-            this.ruleForm.rating = "";
+            this.ruleForm.comment = '';
+            this.ruleForm.rating = '';
           });
       } catch (err) {
-        this.error = this.$t("notify-comment");
+        this.error = this.$t('notify-comment');
       }
       this.loading = false;
     },
@@ -176,7 +176,7 @@ export default {
   box-shadow: none !important;
   outline: none !important;
   font-size: 14px;
-  font-family: "Heebo", sans-serif;
+  font-family: 'Heebo', sans-serif;
   font-weight: bold;
   -webkit-transition: all 400ms linear 0s;
   -o-transition: all 400ms linear 0s;
@@ -199,5 +199,12 @@ export default {
 }
 a {
   color: #fff;
+}
+
+.el-button,
+.el-button:hover {
+  outline: none !important;
+  color: #fff !important;
+  text-decoration: none !important;
 }
 </style>

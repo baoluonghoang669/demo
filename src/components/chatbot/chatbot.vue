@@ -164,8 +164,6 @@ export default {
       this.show = false;
       this.form = this.$store.getters['auth/clearListMessages'];
       this.clearData = true;
-      // debugs
-      // window.location.reload();
     },
 
     getNow() {

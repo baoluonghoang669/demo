@@ -160,15 +160,15 @@ export default {
     //Chat with chatbot
     async onSendChat({ commit }, payload) {
         return await axios
-            .post('https://38cb48d2108d.ngrok.io/get', payload, {
-                'Content-Type': `multipart/form-data`,
-            })
-            .then((response) => {
-                commit('SET_HISTORY', response.data);
-                return response.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+          .post('https://02d27ad6a9f9.ngrok.io/get', payload, {
+            'Content-Type': `multipart/form-data`,
+          })
+          .then((response) => {
+            commit('SET_HISTORY', response.data);
+            return response.data;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
 };

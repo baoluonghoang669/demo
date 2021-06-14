@@ -160,7 +160,7 @@ export default {
     //Chat with chatbot
     async onSendChat({ commit }, payload) {
         return await axios
-          .post('https://2c13614102f4.ngrok.io', payload, {
+          .post('http://localhost:5000/', payload, {
             'Content-Type': `multipart/form-data`,
           })
           .then((response) => {

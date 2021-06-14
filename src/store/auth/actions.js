@@ -153,7 +153,7 @@ export default {
             token: null,
             role: null,
             idUser: null,
-            responseData,
+            responseData
         });
     },
 

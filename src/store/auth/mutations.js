@@ -21,7 +21,6 @@ export default {
     },
 
     SET_RESET_TOKEN: (state, payload) => (state.setResetToken = payload),
-
     SET_RESET_PASSWORD: (state, payload) => (state.resetPassword = payload),
 
     UPDATE_NAME: (state, payload) => (state.user.name = payload),
